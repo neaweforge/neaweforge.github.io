@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Words & Hammers — Gizlilik Politikası / Privacy Policy</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -23,8 +24,12 @@
       <button class="ctrl-btn"        id="btn-tr"        onclick="setLang('tr')">TR</button>
       <div class="ctrl-divider"></div>
       <button class="ctrl-btn active" id="btn-auto"  onclick="setTheme('auto')" title="Auto (OS)">Auto</button>
-      <button class="ctrl-btn"        id="btn-dark"  onclick="setTheme('dark')"  title="Dark">🌙</button>
-      <button class="ctrl-btn"        id="btn-light" onclick="setTheme('light')" title="Light">☀</button>
+      <button class="ctrl-btn ctrl-icon" id="btn-dark"  onclick="setTheme('dark')"  title="Dark">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="ctrl-btn ctrl-icon" id="btn-light" onclick="setTheme('light')" title="Light">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="3.8"/><line x1="12" y1="20.2" x2="12" y2="22.5"/><line x1="4.9" y1="4.9" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="19.1" y2="19.1"/><line x1="1.5" y1="12" x2="3.8" y2="12"/><line x1="20.2" y1="12" x2="22.5" y2="12"/><line x1="4.9" y1="19.1" x2="6.5" y2="17.5"/><line x1="17.5" y1="6.5" x2="19.1" y2="4.9"/></svg>
+      </button>
     </div>
   </nav>
 

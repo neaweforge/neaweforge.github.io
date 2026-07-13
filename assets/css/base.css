@@ -19,3 +19,16 @@ body.lang-tr .en-content { display: none; }
 .en-inline { display: inline; }
 body.lang-tr .tr-inline { display: inline; }
 body.lang-tr .en-inline { display: none; }
+
+/* ══ FOOTER (universal default — home.css overrides with a richer layout) ══ */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  color: var(--text-mute);
+  text-align: center;
+  padding: 26px 24px;
+  font-size: 12px;
+  letter-spacing: .03em;
+}
+footer a { color: var(--green); text-decoration: none; }
+footer a:hover { text-decoration: underline; }

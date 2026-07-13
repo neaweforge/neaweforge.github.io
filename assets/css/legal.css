@@ -238,19 +238,6 @@ ul li::before { content: '—'; position: absolute; left: 0; color: var(--green)
 .legal-table tr:nth-child(even) td { background: var(--surface2); }
 .legal-table a { color: var(--cyan); text-decoration: underline; }
 
-/* ── FOOTER ── */
-footer {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  color: var(--text-mute);
-  text-align: center;
-  padding: 26px 24px;
-  font-size: 12px;
-  letter-spacing: .03em;
-}
-footer a { color: var(--green); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
-
 @media (max-width: 760px) {
   /* nav can wrap to a second row on narrow screens, so the tabs
      bar below it can no longer assume a fixed 52px sticky offset */

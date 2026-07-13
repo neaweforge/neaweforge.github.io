@@ -6,12 +6,18 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 8px 16px;
   min-height: 52px;
   position: sticky;
   top: 0;
   z-index: 100;
+}
+.nav-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border2);
+  flex-shrink: 0;
 }
 .nav-logo {
   font-family: var(--display);
@@ -48,6 +54,7 @@
   justify-content: flex-end;
   gap: 4px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 .ctrl-btn {
   background: var(--ctrl-bg);
@@ -63,6 +70,12 @@
   transition: all .18s;
   line-height: 1.4;
 }
+.ctrl-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ctrl-icon svg { display: block; }
 .ctrl-btn:hover, .ctrl-btn.active {
   background: var(--ctrl-active-bg);
   border-color: var(--ctrl-active-br);
@@ -84,6 +97,7 @@
     justify-content: center;
     flex-wrap: wrap;
   }
+  .nav-divider { display: none; }
 }
 @media (max-width: 480px) {
   .nav { padding: 8px 14px; }

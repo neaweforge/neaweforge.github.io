@@ -1,45 +1,45 @@
 # Kurulum ve Yerel Çalıştırma Rehberi
 
-Bu dosya, bu projeyi (neaweforge.github.io) başka bir bilgisayarda sıfırdan kurup yerel önizlemeyi çalıştırmak isteyen herkes için hazırlandı — ister Sait, ister projede yardım eden başka biri olsun. Adımları sırayla takip etmen yeterli.
+Bu dosya, projenin (neaweforge.github.io) başka bir bilgisayarda sıfırdan kurulup yerel ön izlemenin çalıştırılması için hazırlanmıştır. Adımlar sırasıyla izlenir.
 
-**Not:** Buradaki hiçbir adım canlı siteyi (`https://neaweforge.github.io`) etkilemez. Site GitHub Pages üzerinden düz HTML/CSS/JS olarak yayınlanıyor, hiçbir build adımı yok. Aşağıdaki kurulum yalnızca **yerel bilgisayarda değişiklikleri commit'lemeden tarayıcıda görebilmek** içindir.
+**Not:** Buradaki hiçbir adım canlı siteyi (`https://neaweforge.github.io`) etkilemez. Site GitHub Pages üzerinden düz HTML/CSS/JS olarak yayınlanır, herhangi bir build adımı yoktur. Aşağıdaki kurulum yalnızca **yerel bilgisayarda, değişiklikler commit'lenmeden önce tarayıcıda görülebilmesi** içindir.
 
 ---
 
 ## 1. Gerekenler
 
-- **Git** — repoyu indirmek için
-- **Node.js ve npm** — yerel önizleme sunucusunu çalıştırmak için
+- **Git** — reponun indirilmesi için
+- **Node.js ve npm** — yerel önizleme sunucusunun çalıştırılması için
 
-Bu proje şu sürümlerle test edildi:
+Proje şu sürümlerle test edilmiştir:
 
 | Araç | Test Edilen Sürüm |
 | --- | --- |
 | Node.js | v22.17.0 |
 | npm | 10.9.2 |
 
-Tam olarak bu sürümde olması şart değil — Node.js'in güncel bir **LTS (uzun süreli destek)** sürümü (18 ve üzeri) yeterlidir. Aşağıdaki komutla mevcut sürümünü kontrol edebilirsin:
+Tam olarak bu sürümde olması şart değildir — Node.js'in güncel bir **LTS (uzun süreli destek)** sürümü (18 ve üzeri) yeterlidir. Mevcut sürüm aşağıdaki komutla kontrol edilebilir:
 
 ```bash
 node -v
 npm -v
 ```
 
-Eğer bu komutlar "command not found" gibi bir hata veriyorsa, Node.js kurulu değil demektir — 2. adıma geç.
+Bu komutlar "command not found" gibi bir hata veriyorsa Node.js kurulu değildir — 2. adıma geçilir.
 
 ---
 
-## 2. Node.js / npm kurulumu (yoksa)
+## 2. Node.js / npm Kurulumu (Yoksa)
 
 ### macOS / Linux — nvm ile (önerilen)
 
-`nvm` (Node Version Manager), bilgisayarında birden fazla Node sürümünü yönetmeni sağlayan küçük bir araç. Kurulumu:
+`nvm` (Node Version Manager), bilgisayarda birden fazla Node sürümünün yönetilmesini sağlayan küçük bir araçtır. Kurulumu:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 ```
 
-Kurulumdan sonra terminali kapatıp yeniden aç (ya da `source ~/.zshrc` / `source ~/.bashrc` çalıştır), sonra:
+Kurulumdan sonra terminal kapatılıp yeniden açılır (ya da `source ~/.zshrc` / `source ~/.bashrc` çalıştırılır), ardından:
 
 ```bash
 nvm install --lts
@@ -48,31 +48,31 @@ nvm use --lts
 
 ### Windows
 
-[nodejs.org](https://nodejs.org) adresinden **LTS** sürümünü indirip kurman yeterli — kurulumla birlikte npm da otomatik gelir.
+[nodejs.org](https://nodejs.org) adresinden **LTS** sürümü indirilip kurulur — kurulumla birlikte npm da otomatik gelir.
 
-### Kurulumu doğrula
+### Kurulumun Doğrulanması
 
 ```bash
 node -v
 npm -v
 ```
 
-İkisi de bir sürüm numarası döndürüyorsa kurulum tamam demektir.
+İkisi de bir sürüm numarası döndürüyorsa kurulum tamamlanmış demektir.
 
 ---
 
-## 3. Repoyu indir (clone)
+## 3. Reponun İndirilmesi (Clone)
 
 ```bash
 git clone git@github.com:neaweforge/neaweforge.github.io.git
 cd neaweforge.github.io
 ```
 
-(SSH anahtarın kurulu değilse HTTPS ile de indirebilirsin: `git clone https://github.com/neaweforge/neaweforge.github.io.git`)
+(SSH anahtarı kurulu değilse HTTPS ile de indirilebilir: `git clone https://github.com/neaweforge/neaweforge.github.io.git`)
 
 ---
 
-## 4. Proje bağımlılıklarını kur
+## 4. Proje Bağımlılıklarının Kurulması
 
 Proje klasörünün içindeyken:
 
@@ -80,17 +80,17 @@ Proje klasörünün içindeyken:
 npm install
 ```
 
-Bu komut `package.json`'da tanımlı tek bağımlılığı (`serve` adında küçük bir statik sunucu paketi) indirir ve `node_modules/` klasörüne kurar. Bu klasör asla git'e commit'lenmez (`.gitignore`'da), yalnızca senin bilgisayarında durur. Yalnızca ilk kurulumda bir kere çalıştırman yeterli.
+Bu komut, `package.json`'da tanımlı tek bağımlılığı (`serve` adında küçük bir statik sunucu paketi) indirir ve `node_modules/` klasörüne kurar. Bu klasör asla git'e commit'lenmez (`.gitignore`'da yer alır), yalnızca ilgili bilgisayarda durur. Yalnızca ilk kurulumda bir kez çalıştırılması yeterlidir.
 
 ---
 
-## 5. Siteyi yerelde çalıştır
+## 5. Sitenin Yerelde Çalıştırılması
 
 ```bash
 npm run dev
 ```
 
-Terminalde şöyle bir çıktı göreceksin:
+Terminalde şöyle bir çıktı görülür:
 
 ```text
 > dev
@@ -99,21 +99,21 @@ Terminalde şöyle bir çıktı göreceksin:
  INFO  Accepting connections at http://localhost:3000
 ```
 
-Tarayıcında **`http://localhost:3000`** adresini aç — site tam canlıdaki gibi (commit'lenmemiş değişiklikler dahil) karşına çıkacak.
+Tarayıcıda **`http://localhost:3000`** adresi açılır — site tam canlıdaki gibi (commit'lenmemiş değişiklikler dahil) görüntülenir.
 
-Durdurmak istediğinde terminalde **Ctrl+C**'ye bas.
+Durdurmak için terminalde **Ctrl+C** kullanılır.
 
-Daha fazla dosya/klasör açıklaması ve genel proje bilgisi için [README.md](README.md)'ye bakabilirsin.
+Daha fazla dosya/klasör açıklaması ve genel proje bilgisi için [README.md](README.md) dosyasına bakılabilir.
 
 ---
 
 ## Olası Sorunlar
 
-**"Port 3000 zaten kullanımda" gibi bir hata alırsan:**
-Bilgisayarında başka bir şey 3000 portunu kullanıyor demektir. Diğer programı kapat, ya da `package.json` içindeki `"dev": "serve . -l 3000"` satırındaki `3000` sayısını başka bir port numarasıyla (ör. `4000`) değiştirip tekrar dene.
+**"Port 3000 zaten kullanımda" gibi bir hata alınırsa:**
+Bilgisayarda başka bir şey 3000 portunu kullanıyor demektir. İlgili program kapatılabilir, ya da `package.json` içindeki `"dev": "serve . -l 3000"` satırındaki `3000` sayısı başka bir port numarasıyla (ör. `4000`) değiştirilip tekrar denenir.
 
-**`npm install` hata veriyorsa:**
-`node_modules/` klasörünü ve `package-lock.json` dosyasını silip tekrar `npm install` dene:
+**`npm install` hata verirse:**
+`node_modules/` klasörü ve `package-lock.json` dosyası silinip tekrar `npm install` çalıştırılır:
 
 ```bash
 rm -rf node_modules package-lock.json
@@ -121,4 +121,4 @@ npm install
 ```
 
 **Bir sayfa 404 veriyorsa:**
-Doğru klasörde olduğundan emin ol — `npm run dev` komutunu proje kök klasöründe (README.md'nin bulunduğu yerde) çalıştırman gerekiyor.
+Doğru klasörde olunduğundan emin olunmalıdır — `npm run dev` komutu proje kök klasöründe (README.md'nin bulunduğu yerde) çalıştırılmalıdır.
