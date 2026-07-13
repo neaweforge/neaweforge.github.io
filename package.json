@@ -1,0 +1,11 @@
+{
+  "name": "neaweforge-github-io",
+  "private": true,
+  "description": "Local static preview server for neaweforge.github.io — GitHub Pages itself has no build step, this is dev-only.",
+  "scripts": {
+    "dev": "serve . -l 3000"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

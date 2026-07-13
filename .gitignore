@@ -7,3 +7,11 @@
 
 # Claude Code
 .claude/
+
+# Node (local preview server only — the live site itself has no build step)
+node_modules/
+
+# Secrets — never commit real values (see .env.example)
+.env
+.env.local
+.env.*.local

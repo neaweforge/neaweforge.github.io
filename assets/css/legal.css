@@ -1,160 +1,6 @@
-/* ══ DARK ══ */
-:root {
-  --bg:         #0a0d0a;
-  --surface:    #111511;
-  --surface2:   #192019;
-  --surface3:   #1f271f;
-  --border:     #263026;
-  --border2:    #324232;
-  --green:      #5cb84a;
-  --green-dim:  #2e6626;
-  --green-glow: rgba(92,184,74,.10);
-  --orange:     #c85a18;
-  --cyan:       #1eb8c4;
-  --cyan-dim:   #0e6e78;
-  --text:       #eef0ea;
-  --text-soft:  #a8b4a4;
-  --text-mute:  #5a6a56;
-  --warn-bg:    #1a1208;
-  --warn-br:    #c87a18;
-  --display:    'Cinzel', 'Times New Roman', serif;
-  --body:       'Jost', system-ui, sans-serif;
-  --ctrl-bg:    #192019;
-  --ctrl-br:    #324232;
-  --ctrl-text:  #5a6a56;
-  --ctrl-active-bg: #2e6626;
-  --ctrl-active-br: #5cb84a;
-  --ctrl-active-text: #eef0ea;
-}
-
-/* ══ LIGHT ══ */
-[data-theme="light"] {
-  --bg:         #f3f6ef;
-  --surface:    #ffffff;
-  --surface2:   #eaf0e5;
-  --surface3:   #dfebd8;
-  --border:     #c4d4bc;
-  --border2:    #b0c8a6;
-  --green:      #38920a;
-  --green-dim:  #c8e8bc;
-  --green-glow: rgba(56,146,10,.10);
-  --orange:     #b84e10;
-  --cyan:       #0e96a4;
-  --cyan-dim:   #b4eaf0;
-  --text:       #0e1a10;
-  --text-soft:  #1e3020;
-  --text-mute:  #3e5a38;
-  --warn-bg:    #fff5ec;
-  --warn-br:    #c87030;
-  --ctrl-bg:    #eaf0e5;
-  --ctrl-br:    #c4d4bc;
-  --ctrl-text:  #3e5a38;
-  --ctrl-active-bg: #c8e8bc;
-  --ctrl-active-br: #38920a;
-  --ctrl-active-text: #0e1a10;
-}
-
-@media (prefers-color-scheme: light) {
-  [data-theme="auto"] {
-    --bg:         #f3f6ef;
-    --surface:    #ffffff;
-    --surface2:   #eaf0e5;
-    --surface3:   #dfebd8;
-    --border:     #c4d4bc;
-    --border2:    #b0c8a6;
-    --green:      #38920a;
-    --green-dim:  #c8e8bc;
-    --green-glow: rgba(56,146,10,.10);
-    --orange:     #b84e10;
-    --cyan:       #0e96a4;
-    --cyan-dim:   #b4eaf0;
-    --text:       #0e1a10;
-    --text-soft:  #1e3020;
-    --text-mute:  #3e5a38;
-    --warn-bg:    #fff5ec;
-    --warn-br:    #c87030;
-    --ctrl-bg:    #eaf0e5;
-    --ctrl-br:    #c4d4bc;
-    --ctrl-text:  #3e5a38;
-    --ctrl-active-bg: #c8e8bc;
-    --ctrl-active-br: #38920a;
-    --ctrl-active-text: #0e1a10;
-  }
-}
-
-/* ══ BASE ══ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--body);
-  font-size: 16px;
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
-  transition: background .25s, color .25s;
-}
-
-/* ── NAV ── */
-.nav {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 24px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px 16px;
-  min-height: 52px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.nav-logo {
-  font-family: var(--display);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  text-decoration: none;
-  letter-spacing: .06em;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-.nav-logo .forge { color: var(--green); }
-.nav-right {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-  flex-shrink: 0;
-}
-.ctrl-btn {
-  background: var(--ctrl-bg);
-  border: 1px solid var(--ctrl-br);
-  color: var(--ctrl-text);
-  font-size: 10px;
-  letter-spacing: .1em;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  cursor: pointer;
-  font-family: var(--body);
-  transition: all .18s;
-  line-height: 1.4;
-}
-.ctrl-btn:hover,
-.ctrl-btn.active {
-  background: var(--ctrl-active-bg);
-  border-color: var(--ctrl-active-br);
-  color: var(--ctrl-active-text);
-}
-.ctrl-divider {
-  width: 1px;
-  height: 18px;
-  background: var(--border2);
-  margin: 0 2px;
-}
+/* Shared tokens.css / base.css / nav.css are linked before this file —
+   this stylesheet only holds rules specific to legal doc pages. */
+body { line-height: 1.75; }
 
 /* ── HEADER ── */
 header {
@@ -392,16 +238,6 @@ ul li::before { content: '—'; position: absolute; left: 0; color: var(--green)
 .legal-table tr:nth-child(even) td { background: var(--surface2); }
 .legal-table a { color: var(--cyan); text-decoration: underline; }
 
-/* ── LANG VISIBILITY ── */
-.tr-content { display: none; }
-.en-content { display: block; }
-body.lang-tr .tr-content { display: block; }
-body.lang-tr .en-content { display: none; }
-.tr-inline { display: none; }
-.en-inline { display: inline; }
-body.lang-tr .tr-inline { display: inline; }
-body.lang-tr .en-inline { display: none; }
-
 /* ── FOOTER ── */
 footer {
   background: var(--surface);
@@ -424,7 +260,4 @@ footer a:hover { text-decoration: underline; }
   .doc-header { flex-direction: column; align-items: flex-start; }
   .doc-meta { text-align: left; }
   .content { padding: 40px 16px 60px; }
-  .nav { padding: 8px 14px; }
-  .nav-right { gap: 3px; }
-  .ctrl-btn { padding: 4px 7px; font-size: 9px; }
 }
