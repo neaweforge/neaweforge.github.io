@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neawe Forge — Independent Game Studio</title>
+  <meta name="description" content="Neawe Forge is an independent game studio building mobile games with Flutter, Dart &amp; Flame." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ══ DARK THEME ══ */
+    :root {
+      --bg:         #0a0d0a;
+      --surface:    #111511;
+      --surface2:   #192019;
+      --surface3:   #1f271f;
+      --border:     #263026;
+      --border2:    #324232;
+      --green:      #5cb84a;
+      --green-dim:  #2e6626;
+      --green-glow: rgba(92,184,74,.12);
+      --orange:     #c85a18;
+      --orange-dim: #7a3510;
+      --cyan:       #1eb8c4;
+      --cyan-dim:   #0e6e78;
+      --text:       #eef0ea;
+      --text-soft:  #a8b4a4;
+      --text-mute:  #5a6a56;
+      --display:    'Cinzel', 'Times New Roman', serif;
+      --body:       'Jost', system-ui, sans-serif;
+      --shadow:     rgba(0,0,0,.4);
+      --badge-bg:   rgba(92,184,74,.08);
+      --ctrl-bg:    #192019;
+      --ctrl-br:    #324232;
+      --ctrl-text:  #5a6a56;
+      --ctrl-active-bg:   #2e6626;
+      --ctrl-active-br:   #5cb84a;
+      --ctrl-active-text: #eef0ea;
+    }
+
+    /* ══ LIGHT THEME ══ */
+    [data-theme="light"] {
+      --bg:         #f3f6ef;
+      --surface:    #ffffff;
+      --surface2:   #eaf0e5;
+      --surface3:   #dfebd8;
+      --border:     #c4d4bc;
+      --border2:    #b0c8a6;
+      --green:      #38920a;
+      --green-dim:  #c8e8bc;
+      --green-glow: rgba(56,146,10,.10);
+      --orange:     #b84e10;
+      --orange-dim: #f8d8c4;
+      --cyan:       #0e96a4;
+      --cyan-dim:   #b4eaf0;
+      --text:       #0e1a10;
+      --text-soft:  #1e3020;
+      --text-mute:  #3e5a38;
+      --shadow:     rgba(0,0,0,.10);
+      --badge-bg:   rgba(56,146,10,.09);
+      --ctrl-bg:    #eaf0e5;
+      --ctrl-br:    #c4d4bc;
+      --ctrl-text:  #3e5a38;
+      --ctrl-active-bg:   #c8e8bc;
+      --ctrl-active-br:   #38920a;
+      --ctrl-active-text: #0e1a10;
+    }
+
+    @media (prefers-color-scheme: light) {
+      [data-theme="auto"] {
+        --bg:         #f3f6ef;
+        --surface:    #ffffff;
+        --surface2:   #eaf0e5;
+        --surface3:   #dfebd8;
+        --border:     #c4d4bc;
+        --border2:    #b0c8a6;
+        --green:      #38920a;
+        --green-dim:  #c8e8bc;
+        --green-glow: rgba(56,146,10,.10);
+        --orange:     #b84e10;
+        --orange-dim: #f8d8c4;
+        --cyan:       #0e96a4;
+        --cyan-dim:   #b4eaf0;
+        --text:       #0e1a10;
+        --text-soft:  #1e3020;
+        --text-mute:  #3e5a38;
+        --shadow:     rgba(0,0,0,.10);
+        --badge-bg:   rgba(56,146,10,.09);
+        --ctrl-bg:    #eaf0e5;
+        --ctrl-br:    #c4d4bc;
+        --ctrl-text:  #3e5a38;
+        --ctrl-active-bg:   #c8e8bc;
+        --ctrl-active-br:   #38920a;
+        --ctrl-active-text: #0e1a10;
+      }
+    }
+
+    /* ══ BASE ══ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background .25s, color .25s;
+    }
+
+    /* ══ NAV ══ */
+    .nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 16px;
+      min-height: 52px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: .06em;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .nav-logo .forge { color: var(--green); }
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .nav-link {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: color .15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--green); }
+    .nav-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .ctrl-btn {
+      background: var(--ctrl-bg);
+      border: 1px solid var(--ctrl-br);
+      color: var(--ctrl-text);
+      font-size: 10px;
+      letter-spacing: .1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-family: var(--body);
+      transition: all .18s;
+      line-height: 1.4;
+    }
+    .ctrl-btn:hover, .ctrl-btn.active {
+      background: var(--ctrl-active-bg);
+      border-color: var(--ctrl-active-br);
+      color: var(--ctrl-active-text);
+    }
+    .ctrl-divider {
+      width: 1px; height: 18px;
+      background: var(--border2);
+      margin: 0 2px;
+    }
+
+    /* ══ HERO ══ */
+    .hero {
+      background: var(--surface);
+      border-bottom: 3px solid var(--green);
+      padding: 100px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: .4;
+      pointer-events: none;
+    }
+    .hero > * { position: relative; }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--green-dim);
+      color: var(--green);
+      background: var(--badge-bg);
+      font-size: 10px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(44px, 8vw, 80px);
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: .04em;
+    }
+    .hero h1 .forge { color: var(--green); }
+    .hero-rule {
+      width: 48px; height: 2px;
+      background: var(--orange);
+      margin: 20px auto;
+    }
+    .hero-tagline {
+      font-family: var(--display);
+      font-size: clamp(12px, 2vw, 15px);
+      color: var(--text-soft);
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-soft);
+      font-weight: 300;
+      max-width: 460px;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--green-dim);
+      border: 1px solid var(--green);
+      color: var(--ctrl-active-text);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      text-decoration: none;
+      transition: background .2s, box-shadow .2s;
+      font-family: var(--body);
+    }
+    .hero-cta:hover {
+      background: var(--green);
+      box-shadow: 0 0 32px var(--green-glow);
+    }
+
+    /* ══ SECTION LAYOUT ══ */
+    main { flex: 1; }
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .section + .section,
+    .section-bordered { border-top: 1px solid var(--border); }
+    .section-eyebrow {
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(20px, 3.5vw, 28px);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 40px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border2);
+      letter-spacing: .04em;
+    }
+
+    /* ══ GAMES ══ */
+    .game-card {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-top: 3px solid var(--green);
+      position: relative;
+      overflow: hidden;
+    }
+    .game-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: .25;
+      pointer-events: none;
+    }
+    .game-info {
+      position: relative;
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 640px;
+    }
+    .game-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tech-chip {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: var(--surface3);
+      border: 1px solid var(--border2);
+      padding: 3px 8px;
+    }
+    .game-title {
+      font-family: var(--display);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.05;
+      letter-spacing: .03em;
+    }
+    .game-desc {
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.75;
+      font-weight: 300;
+      flex: 1;
+    }
+    .game-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .status-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1px solid;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .status-badge.soon {
+      color: var(--orange);
+      border-color: var(--orange-dim);
+      background: rgba(200,90,24,.06);
+    }
+    .status-badge.legal {
+      color: var(--cyan);
+      border-color: var(--cyan-dim);
+      background: rgba(30,184,196,.06);
+      transition: background .15s;
+    }
+    .status-badge.legal:hover { background: rgba(30,184,196,.14); }
+
+    /* ══ FOUNDER ══ */
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .founder-left { display: flex; flex-direction: column; gap: 28px; }
+    .founder-name {
+      font-family: var(--display);
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: .04em;
+      line-height: 1.1;
+    }
+    .founder-role {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-top: 6px;
+    }
+    .founder-bio {
+      font-size: 14.5px;
+      color: var(--text-soft);
+      font-weight: 300;
+      line-height: 1.85;
+    }
+    .label-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      margin-bottom: 10px;
+    }
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .skill-chip {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      padding: 5px 12px;
+      text-decoration: none;
+      transition: border-color .15s, color .15s;
+    }
+    a.skill-chip:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      padding: 8px 14px;
+      text-decoration: none;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .social-btn:hover {
+      background: var(--green-dim);
+      border-color: var(--green);
+      color: var(--ctrl-active-text);
+    }
+    .social-icon { font-style: normal; line-height: 1; }
+    .social-arrow { color: var(--green); font-size: 12px; }
+
+    /* ══ TIMELINE ══ */
+    .timeline { display: flex; flex-direction: column; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 68px 16px 1fr;
+      gap: 0 12px;
+      padding-bottom: 28px;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-date {
+      font-size: 10px;
+      color: var(--text-mute);
+      font-weight: 500;
+      padding-top: 3px;
+      text-align: right;
+      line-height: 1.5;
+      letter-spacing: .02em;
+    }
+    .tl-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .tl-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--border2);
+      border: 2px solid var(--border2);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .tl-item.tl-active .tl-dot {
+      background: var(--green);
+      border-color: var(--green);
+      box-shadow: 0 0 8px var(--green-glow);
+    }
+    .tl-item.tl-edu .tl-dot {
+      background: var(--cyan-dim);
+      border-color: var(--cyan);
+    }
+    .tl-line {
+      flex: 1;
+      width: 1px;
+      background: var(--border);
+      margin-top: 4px;
+    }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-company {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+    .tl-item.tl-active .tl-company { color: var(--green); }
+    .tl-item.tl-edu .tl-company { color: var(--cyan); }
+    .tl-role {
+      font-size: 13px;
+      color: var(--text-soft);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .tl-detail {
+      font-size: 11.5px;
+      color: var(--text-mute);
+      margin-top: 3px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .tl-entry-sep {
+      height: 1px;
+      background: var(--border);
+      margin: 12px 0;
+    }
+
+    /* ══ LEGAL ══ */
+    .legal-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .legal-grid { display: flex; flex-direction: column; gap: 10px; }
+    .legal-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      flex-wrap: wrap;
+    }
+    .legal-app-name {
+      font-family: var(--display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: .04em;
+      flex: 1;
+      min-width: 120px;
+    }
+    .legal-links { display: flex; gap: 6px; flex-wrap: wrap; }
+    .legal-link {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      background: var(--surface3);
+      border: 1px solid var(--border2);
+      padding: 5px 12px;
+      text-decoration: none;
+      transition: all .15s;
+    }
+    .legal-link:hover {
+      color: var(--cyan);
+      border-color: var(--cyan-dim);
+      background: rgba(30,184,196,.06);
+    }
+
+    /* ══ FOOTER ══ */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      color: var(--text-mute);
+      padding: 28px 24px;
+      font-size: 12px;
+      letter-spacing: .03em;
+    }
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-copy { line-height: 1.7; }
+    .footer-copy a { color: var(--green); text-decoration: none; }
+    .footer-copy a:hover { text-decoration: underline; }
+    .footer-social { display: flex; gap: 4px; flex-wrap: wrap; }
+    .footer-social a {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      text-decoration: none;
+      transition: all .15s;
+    }
+    .footer-social a:hover { color: var(--green); border-color: var(--green-dim); }
+
+    /* ══ LANG VISIBILITY ══ */
+    .tr-content { display: none; }
+    .en-content { display: block; }
+    body.lang-tr .tr-content { display: block; }
+    body.lang-tr .en-content { display: none; }
+    .tr-inline { display: none; }
+    .en-inline { display: inline; }
+    body.lang-tr .tr-inline { display: inline; }
+    body.lang-tr .en-inline { display: none; }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 760px) {
+      .nav-center { display: none; }
+      .founder-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .hero { padding: 64px 16px 52px; }
+      .section { padding: 56px 16px; }
+      .nav { padding: 8px 14px; }
+      .nav-right { gap: 3px; }
+      .ctrl-btn { padding: 4px 7px; font-size: 9px; }
+      .game-info { padding: 28px 20px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav class="nav">
+    <a href="https://neaweforge.github.io/" class="nav-logo">Neawe <span class="forge">Forge</span></a>
+    <div class="nav-center">
+      <a class="nav-link" href="#games">
+        <span class="en-inline">Games</span><span class="tr-inline">Oyunlar</span>
+      </a>
+      <a class="nav-link" href="#founder">
+        <span class="en-inline">Founder</span><span class="tr-inline">Kurucu</span>
+      </a>
+      <a class="nav-link" href="#legal">
+        <span class="en-inline">Legal</span><span class="tr-inline">Yasal</span>
+      </a>
+    </div>
+    <div class="nav-right">
+      <button class="ctrl-btn active" id="btn-lang-auto" onclick="setLang('auto')" title="Auto (Browser)">Auto</button>
+      <button class="ctrl-btn"        id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="ctrl-btn"        id="btn-tr" onclick="setLang('tr')">TR</button>
+      <div class="ctrl-divider"></div>
+      <button class="ctrl-btn active" id="btn-auto"  onclick="setTheme('auto')"  title="Auto (OS)">Auto</button>
+      <button class="ctrl-btn"        id="btn-dark"  onclick="setTheme('dark')"  title="Dark">🌙</button>
+      <button class="ctrl-btn"        id="btn-light" onclick="setTheme('light')" title="Light">☀</button>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="en-inline">Independent Game Studio</span>
+      <span class="tr-inline">Bağımsız Oyun Stüdyosu</span>
+    </div>
+    <h1>Neawe <span class="forge">Forge</span></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-tagline">
+      <span class="en-inline">Crafting Digital Experiences.</span>
+      <span class="tr-inline">Dijital Deneyimler İnşa Ediyoruz.</span>
+    </p>
+    <p class="hero-desc en-content">A solo game studio building mobile games with Flutter, Dart &amp; Flame. Currently developing Words &amp; Hammers — a fast-paced competitive word puzzle game.</p>
+    <p class="hero-desc tr-content">Flutter, Dart ve Flame ile mobil oyunlar geliştiren bağımsız oyun stüdyosu. Şu an hızlı tempolu rekabetçi kelime bulmaca oyunu Words &amp; Hammers üzerinde çalışılıyor.</p>
+    <a href="#games" class="hero-cta">
+      <span class="en-inline">Explore Games ↓</span>
+      <span class="tr-inline">Oyunları Keşfet ↓</span>
+    </a>
+  </section>
+
+  <main>
+
+    <!-- ══ GAMES ══ -->
+    <div id="games" class="section">
+      <div class="section-eyebrow">
+        <span class="en-inline">Games &amp; Projects</span>
+        <span class="tr-inline">Oyunlar &amp; Projeler</span>
+      </div>
+      <div class="section-title">
+        <span class="en-inline">What We're Building</span>
+        <span class="tr-inline">Neler Geliştiriyoruz</span>
+      </div>
+
+      <div class="game-card">
+        <div class="game-info">
+          <div class="game-tech">
+            <span class="tech-chip">Flutter</span>
+            <span class="tech-chip">Dart</span>
+            <span class="tech-chip">Flame</span>
+            <span class="tech-chip">Supabase</span>
+          </div>
+          <div class="game-title">Words &amp;<br>Hammers</div>
+          <p class="game-desc en-content">A fast-paced competitive word puzzle game with real-time leaderboards and online play. Find hidden words on the board, unlock stages, and climb the ranks.</p>
+          <p class="game-desc tr-content">Gerçek zamanlı sıralama tablosu ve çevrim içi rekabetle hızlı tempolu rekabetçi bir kelime bulmaca oyunu. Harfleri bul, bölümleri aç, sıralamada yüksel.</p>
+          <div class="game-status">
+            <span class="status-badge soon">
+              <span class="en-inline">Coming to Google Play</span>
+              <span class="tr-inline">Google Play'e Geliyor</span>
+            </span>
+            <a class="status-badge legal" href="https://neaweforge.github.io/wordsandhammers/privacy-policy.html">
+              <span class="en-inline">Legal Docs ↗</span>
+              <span class="tr-inline">Yasal Belgeler ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ FOUNDER ══ -->
+    <div id="founder" class="section">
+      <div class="section-eyebrow">
+        <span class="en-inline">The Founder</span>
+        <span class="tr-inline">Kurucu</span>
+      </div>
+      <div class="section-title">
+        <span class="en-inline">About Sait Kaplan</span>
+        <span class="tr-inline">Sait Kaplan Hakkında</span>
+      </div>
+
+      <div class="founder-grid">
+
+        <div class="founder-left">
+          <div>
+            <div class="founder-name">Sait Kaplan</div>
+            <div class="founder-role">
+              <span class="en-inline">Founder · Software Developer · Game Dev</span>
+              <span class="tr-inline">Kurucu · Yazılım Geliştirici · Oyun Geliştirici</span>
+            </div>
+          </div>
+
+          <p class="founder-bio en-content">I see software not just as a profession, but as a passion. With an Electrical-Electronics Engineering background, I founded Neawe Forge to channel that drive into building games. I specialize in Flutter &amp; Dart, work daily with Supabase, and I'm always chasing the next technology worth mastering.</p>
+          <p class="founder-bio tr-content">Yazılımı sadece meslek değil, tutku olarak görüyorum. Elektrik-Elektronik Mühendisliği geçmişimle mobil geliştirmeye odaklanarak Neawe Forge'u kurdum. Flutter ve Dart'ta uzmanlaşıyor, Supabase ile çalışıyor ve her zaman öğrenmeye değer yeni teknolojilerin peşinden gidiyorum.</p>
+
+          <div>
+            <div class="label-eyebrow">
+              <span class="en-inline">Skills</span>
+              <span class="tr-inline">Yetenekler</span>
+            </div>
+            <div class="skills-grid">
+              <a class="skill-chip" href="https://flutter.dev" target="_blank" rel="noopener">Flutter</a>
+              <a class="skill-chip" href="https://dart.dev" target="_blank" rel="noopener">Dart</a>
+              <a class="skill-chip" href="https://flame-engine.org" target="_blank" rel="noopener">Flame</a>
+              <a class="skill-chip" href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>
+              <a class="skill-chip" href="https://play.google.com/console/about/" target="_blank" rel="noopener">Play Console</a>
+              <a class="skill-chip" href="https://admob.google.com" target="_blank" rel="noopener">AdMob</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="label-eyebrow">
+              <span class="en-inline">Find Me</span>
+              <span class="tr-inline">Bana Ulaş</span>
+            </div>
+            <div class="social-links">
+              <a class="social-btn" href="https://x.com/neawerse" target="_blank" rel="noopener">
+                <i class="social-icon">𝕏</i> X / Twitter <span class="social-arrow">↗</span>
+              </a>
+              <a class="social-btn" href="https://www.linkedin.com/in/saitkaplan" target="_blank" rel="noopener">
+                <i class="social-icon">in</i> LinkedIn <span class="social-arrow">↗</span>
+              </a>
+              <a class="social-btn" href="https://github.com/saitkaplan" target="_blank" rel="noopener">
+                <i class="social-icon">⬡</i> GitHub <span class="social-arrow">↗</span>
+              </a>
+              <a class="social-btn" href="mailto:neaweforge.support@gmail.com">
+                <i class="social-icon">@</i> Email <span class="social-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="timeline">
+
+            <div class="tl-item tl-edu">
+              <div class="tl-date">2017<br>2021</div>
+              <div class="tl-dot-col">
+                <div class="tl-dot"></div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-company">Erciyes University</div>
+                <div class="tl-role">
+                  <span class="en-inline">B.Sc. Electrical-Electronics Eng.</span>
+                  <span class="tr-inline">Lisans, Elektrik-Elektronik Müh.</span>
+                </div>
+                <div class="tl-detail">Kayseri, Türkiye</div>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-date">2024<br>2025</div>
+              <div class="tl-dot-col">
+                <div class="tl-dot"></div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-company">Elder Root Software</div>
+                <div class="tl-role">
+                  <span class="en-inline">Flutter Developer</span>
+                  <span class="tr-inline">Flutter Geliştirici</span>
+                </div>
+                <div class="tl-detail">Raven Language &amp; Corrupted Island</div>
+              </div>
+            </div>
+
+            <div class="tl-item tl-active">
+              <div class="tl-date">2025<br>now</div>
+              <div class="tl-dot-col">
+                <div class="tl-dot"></div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-entry">
+                  <div class="tl-company">KIRGAZ Doğalgaz A.Ş.</div>
+                  <div class="tl-role">IT Support</div>
+                </div>
+                <div class="tl-entry-sep"></div>
+                <div class="tl-entry">
+                  <div class="tl-company">Neawe Forge</div>
+                  <div class="tl-role">
+                    <span class="en-inline">Founder &amp; Lead Developer</span>
+                    <span class="tr-inline">Kurucu &amp; Baş Geliştirici</span>
+                  </div>
+                  <div class="tl-detail">Words &amp; Hammers — Flutter, Dart, Flame, Supabase</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══ LEGAL ══ -->
+  <div id="legal" class="legal-wrap">
+    <div class="section">
+      <div class="section-eyebrow">
+        <span class="en-inline">Legal</span>
+        <span class="tr-inline">Yasal</span>
+      </div>
+      <div class="section-title">
+        <span class="en-inline">Legal Documents</span>
+        <span class="tr-inline">Yasal Belgeler</span>
+      </div>
+      <div class="legal-grid">
+        <div class="legal-row">
+          <div class="legal-app-name">Words &amp; Hammers</div>
+          <div class="legal-links">
+            <a class="legal-link" href="https://neaweforge.github.io/wordsandhammers/privacy-policy.html">
+              <span class="en-inline">Privacy Policy ↗</span>
+              <span class="tr-inline">Gizlilik Politikası ↗</span>
+            </a>
+            <a class="legal-link" href="https://neaweforge.github.io/wordsandhammers/terms-of-service.html">
+              <span class="en-inline">Terms of Service ↗</span>
+              <span class="tr-inline">Kullanım Koşulları ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-copy">
+        <div>© 2026 Neawe Forge · Sait Kaplan</div>
+        <div><a href="mailto:neaweforge.support@gmail.com">neaweforge.support@gmail.com</a></div>
+      </div>
+      <div class="footer-social">
+        <a href="https://x.com/neawerse" target="_blank" rel="noopener">𝕏 Twitter</a>
+        <a href="https://www.linkedin.com/in/saitkaplan" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/saitkaplan" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const THEME_KEY = 'nf_theme';
+    const LANG_KEY  = 'nf_lang';
+
+    function setTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem(THEME_KEY, t);
+      ['auto','dark','light'].forEach(x => document.getElementById('btn-'+x).classList.toggle('active', x===t));
+    }
+
+    function setLang(l) {
+      const effective = (l === 'auto')
+        ? (navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en')
+        : l;
+      document.body.classList.toggle('lang-tr', effective === 'tr');
+      document.documentElement.lang = effective;
+      localStorage.setItem(LANG_KEY, l);
+      document.getElementById('btn-lang-auto').classList.toggle('active', l === 'auto');
+      document.getElementById('btn-en').classList.toggle('active', l === 'en');
+      document.getElementById('btn-tr').classList.toggle('active', l === 'tr');
+    }
+
+    (function() {
+      const t = localStorage.getItem(THEME_KEY) || 'auto';
+      const l = localStorage.getItem(LANG_KEY)  || 'auto';
+      setTheme(t);
+      setLang(l);
+    })();
+  </script>
+
+</body>
+</html>
