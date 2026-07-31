@@ -1,0 +1,34 @@
+/* ══ RESET & BASE TYPOGRAPHY ══ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  transition: background .25s, color .25s;
+}
+
+/* ══ LANG VISIBILITY ══ */
+.tr-content { display: none; }
+.en-content { display: block; }
+body.lang-tr .tr-content { display: block; }
+body.lang-tr .en-content { display: none; }
+.tr-inline { display: none; }
+.en-inline { display: inline; }
+body.lang-tr .tr-inline { display: inline; }
+body.lang-tr .en-inline { display: none; }
+
+/* ══ FOOTER (universal default — home.css overrides with a richer layout) ══ */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  color: var(--text-mute);
+  text-align: center;
+  padding: 26px 24px;
+  font-size: 12px;
+  letter-spacing: .03em;
+}
+footer a { color: var(--green); text-decoration: none; }
+footer a:hover { text-decoration: underline; }

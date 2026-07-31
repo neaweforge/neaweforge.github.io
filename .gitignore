@@ -8,10 +8,13 @@
 # Claude Code
 .claude/
 
-# Node (local preview server only — the live site itself has no build step)
+# Node / Vite / React Router build artifacts — GitHub Actions rebuilds these,
+# they are never committed.
 node_modules/
+build/
+.react-router/
 
-# Secrets — never commit real values (see .env.example)
+# Secrets — .env is a personal, uncommitted notes file (see .env's own header)
 .env
 .env.local
 .env.*.local
