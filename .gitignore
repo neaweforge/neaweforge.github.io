@@ -5,6 +5,10 @@
 .Spotlight-V100
 .Trashes
 
+# Windows
+Thumbs.db
+Desktop.ini
+
 # Claude Code
 .claude/
 
@@ -18,3 +22,14 @@ build/
 .env
 .env.local
 .env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# TypeScript incremental build
+*.tsbuildinfo
+
+# Editors
+.vscode/
+.idea/

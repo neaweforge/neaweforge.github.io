@@ -11,24 +11,14 @@ body {
 }
 
 /* ══ LANG VISIBILITY ══ */
-.tr-content { display: none; }
-.en-content { display: block; }
-body.lang-tr .tr-content { display: block; }
-body.lang-tr .en-content { display: none; }
-.tr-inline { display: none; }
-.en-inline { display: inline; }
-body.lang-tr .tr-inline { display: inline; }
-body.lang-tr .en-inline { display: none; }
-
-/* ══ FOOTER (universal default — home.css overrides with a richer layout) ══ */
-footer {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  color: var(--text-mute);
-  text-align: center;
-  padding: 26px 24px;
-  font-size: 12px;
-  letter-spacing: .03em;
-}
-footer a { color: var(--green); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
+/* Keyed off <html lang="…">, not a body class — the boot script (see
+   app/lib/theme_lang.ts) sets documentElement.lang before <body> even
+   exists, so this must not depend on anything body-related. */
+.en_content { display: block; }
+.tr_content { display: none; }
+html[lang="tr"] .en_content { display: none; }
+html[lang="tr"] .tr_content { display: block; }
+.en_inline { display: inline; }
+.tr_inline { display: none; }
+html[lang="tr"] .en_inline { display: none; }
+html[lang="tr"] .tr_inline { display: inline; }

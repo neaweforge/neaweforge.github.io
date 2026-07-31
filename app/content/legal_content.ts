@@ -2,6 +2,12 @@ import type { LocalizedText } from "../data/games";
 
 export type LegalDocType = "privacy_policy" | "terms_of_service";
 
+const legalDocTypes: readonly LegalDocType[] = ["privacy_policy", "terms_of_service"];
+
+export function isLegalDocType(value: string): value is LegalDocType {
+  return (legalDocTypes as readonly string[]).includes(value);
+}
+
 export interface LegalDoc {
   title: LocalizedText;
   // Placeholder body for the Phase 2 skeleton — Phase 4 replaces this with

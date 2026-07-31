@@ -8,13 +8,11 @@ export default function NotFound() {
   return (
     <main>
       <h1>Neawe Forge</h1>
-      <p>
-        404 — Page not found.
-        <br />
-        404 — Sayfa bulunamadı.
-      </p>
+      <p className="en_content">404 — Page not found.</p>
+      <p className="tr_content">404 — Sayfa bulunamadı.</p>
       <a href="/">
-        ← Studio Hub / Ana Sayfa
+        <span className="en_inline">← Studio Hub</span>
+        <span className="tr_inline">← Ana Sayfa</span>
       </a>
     </main>
   );

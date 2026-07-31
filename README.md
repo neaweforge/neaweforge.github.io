@@ -1,5 +1,10 @@
 # neaweforge.github.io
 
+> ⚠️ **Bu doküman eski statik site dönemini anlatıyor.** React + Vite +
+> React Router geçişi sürüyor. Tam güncelleme Faz 8'de yapılacak. Güncel
+> mimari ve adlandırma standardı için [CONVENTIONS.md](CONVENTIONS.md)'ye
+> bakın.
+
 **Neawe Forge** için resmi web sitesidir — bağımsız bir mobil oyun stüdyosunun sitesidir.
 
 🌐 **Canlı site:** [https://neaweforge.github.io](https://neaweforge.github.io)

@@ -14,11 +14,8 @@ export default function Founder() {
   return (
     <main>
       <h1>Sait Kaplan</h1>
-      <p>
-        Phase 2 skeleton — real founder page design lands in Phase 6.
-        <br />
-        Faz 2 iskeleti — gerçek kurucu sayfası tasarımı Faz 6'da gelecek.
-      </p>
+      <p className="en_content">Phase 3 skeleton — the real founder page design lands in Phase 6.</p>
+      <p className="tr_content">Faz 3 iskeleti — gerçek kurucu sayfası tasarımı Faz 6'da gelecek.</p>
     </main>
   );
 }

@@ -1,5 +1,10 @@
 # Kurulum ve Yerel Çalıştırma Rehberi
 
+> ⚠️ **Bu doküman eski statik site dönemini anlatıyor.** React + Vite +
+> React Router geçişi sürüyor. Tam güncelleme Faz 8'de yapılacak. Güncel
+> mimari ve adlandırma standardı için [CONVENTIONS.md](CONVENTIONS.md)'ye
+> bakın.
+
 Bu dosya, projenin (neaweforge.github.io) başka bir bilgisayarda sıfırdan kurulup yerel ön izlemenin çalıştırılması için hazırlanmıştır. Adımlar sırasıyla izlenir.
 
 **Not:** Buradaki hiçbir adım canlı siteyi (`https://neaweforge.github.io`) etkilemez. Site GitHub Pages üzerinden düz HTML/CSS/JS olarak yayınlanır, herhangi bir build adımı yoktur. Aşağıdaki kurulum yalnızca **yerel bilgisayarda, değişiklikler commit'lenmeden önce tarayıcıda görülebilmesi** içindir.

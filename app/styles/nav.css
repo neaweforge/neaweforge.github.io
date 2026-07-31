@@ -1,0 +1,103 @@
+/* ══ NAV & THEME/LANG CONTROLS ══ */
+.nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px 16px;
+  min-height: 52px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav_divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border2);
+  flex-shrink: 0;
+}
+.nav_logo {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: .06em;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.nav_logo .forge { color: var(--green); }
+.nav_center {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.nav_link {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  text-decoration: none;
+  padding: 6px 12px;
+  transition: color .15s;
+  white-space: nowrap;
+}
+.nav_link:hover { color: var(--green); }
+.nav_right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.ctrl_btn {
+  background: var(--ctrl-bg);
+  border: 1px solid var(--ctrl-br);
+  color: var(--ctrl-text);
+  font-size: 10px;
+  letter-spacing: .1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: var(--body);
+  transition: all .18s;
+  line-height: 1.4;
+}
+.ctrl_icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ctrl_icon svg { display: block; }
+.ctrl_btn:hover, .ctrl_btn.active {
+  background: var(--ctrl-active-bg);
+  border-color: var(--ctrl-active-br);
+  color: var(--ctrl-active-text);
+}
+.ctrl_divider {
+  width: 1px; height: 18px;
+  background: var(--border2);
+  margin: 0 2px;
+}
+
+@media (max-width: 760px) {
+  .nav_center {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav_divider { display: none; }
+}
+@media (max-width: 480px) {
+  .nav { padding: 8px 14px; }
+  .nav_right { gap: 3px; }
+  .ctrl_btn { padding: 4px 7px; font-size: 9px; }
+}

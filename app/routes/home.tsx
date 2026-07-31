@@ -15,12 +15,12 @@ export default function Home() {
   return (
     <main>
       <h1>Neawe Forge</h1>
-      <p>
-        Phase 2 skeleton — real homepage design lands in Phase 5.
-        <br />
-        Faz 2 iskeleti — gerçek anasayfa tasarımı Faz 5'te gelecek.
-      </p>
-      <h2>Games / Oyunlar</h2>
+      <p className="en_content">Phase 3 skeleton — the real homepage design lands in Phase 5.</p>
+      <p className="tr_content">Faz 3 iskeleti — gerçek anasayfa tasarımı Faz 5'te gelecek.</p>
+      <h2>
+        <span className="en_inline">Games</span>
+        <span className="tr_inline">Oyunlar</span>
+      </h2>
       <ul>
         {games.map((game) => (
           <li key={game.slug}>
