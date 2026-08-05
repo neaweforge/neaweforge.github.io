@@ -1,23 +1,49 @@
+import { useEffect, useRef, useState } from "react";
 import { Link, useMatches } from "react-router";
-import { useThemeLang } from "../lib/theme_lang_context";
+import { founderPath, homePath } from "../lib/paths";
+import { SettingsControls } from "./settings_controls";
 
 export function Nav() {
-  const { theme, lang, setTheme, setLang } = useThemeLang();
   const matches = useMatches();
+  const [panelOpen, setPanelOpen] = useState(false);
+  const panelWrapRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
   // Legal pages must stay minimal — brand + controls only, no nav links —
   // so they render cleanly when opened standalone inside an app's webview.
   const isLegalPage = matches.some((match) => match.id === "routes/legal_page");
 
+  useEffect(() => {
+    if (!panelOpen) return;
+
+    function handlePointerDown(event: PointerEvent) {
+      if (!panelWrapRef.current?.contains(event.target as Node)) {
+        setPanelOpen(false);
+      }
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setPanelOpen(false);
+        toggleRef.current?.focus();
+      }
+    }
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [panelOpen]);
+
   return (
     <nav className="nav">
-      <Link to="/" className="nav_logo">
+      <Link to={homePath} className="nav_logo">
         Neawe <span className="forge">Forge</span>
       </Link>
       {!isLegalPage && (
         <>
           <span className="nav_divider" />
           <div className="nav_center">
-            <Link className="nav_link" to="/founder">
+            <Link className="nav_link" to={founderPath}>
               <span className="en_inline">Founder</span>
               <span className="tr_inline">Kurucu</span>
             </Link>
@@ -25,73 +51,38 @@ export function Nav() {
         </>
       )}
       <div className="nav_right">
-        <button
-          type="button"
-          className={`ctrl_btn${lang === "auto" ? " active" : ""}`}
-          onClick={() => setLang("auto")}
-          title="Auto (Browser)"
-        >
-          Auto
-        </button>
-        <button
-          type="button"
-          className={`ctrl_btn${lang === "en" ? " active" : ""}`}
-          onClick={() => setLang("en")}
-        >
-          EN
-        </button>
-        <button
-          type="button"
-          className={`ctrl_btn${lang === "tr" ? " active" : ""}`}
-          onClick={() => setLang("tr")}
-        >
-          TR
-        </button>
-        <div className="ctrl_divider" />
-        <button
-          type="button"
-          className={`ctrl_btn${theme === "auto" ? " active" : ""}`}
-          onClick={() => setTheme("auto")}
-          title="Auto (OS)"
-        >
-          Auto
-        </button>
-        <button
-          type="button"
-          className={`ctrl_btn ctrl_icon${theme === "dark" ? " active" : ""}`}
-          onClick={() => setTheme("dark")}
-          title="Dark"
-        >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          className={`ctrl_btn ctrl_icon${theme === "light" ? " active" : ""}`}
-          onClick={() => setTheme("light")}
-          title="Light"
-        >
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
+        {/* Desktop: controls sit directly in the bar, labeled so the two
+            "Auto" buttons are distinguishable. Hidden below the breakpoint
+            in nav.css — there's no room to spare and no 44px touch target
+            to give them there. */}
+        <div className="settings_inline">
+          <SettingsControls />
+        </div>
+        {/* Mobile: same controls, collected behind one button so the nav
+            stays a single row and each control gets a real touch target
+            once it's expanded into the panel below. */}
+        <div className="settings_popover_wrap" ref={panelWrapRef}>
+          <button
+            ref={toggleRef}
+            type="button"
+            className="settings_toggle"
+            aria-expanded={panelOpen}
+            aria-haspopup="dialog"
+            aria-controls="nav_settings_panel"
+            aria-label="Settings / Ayarlar"
+            onClick={() => setPanelOpen((open) => !open)}
           >
-            <circle cx="12" cy="12" r="4.5" />
-            <line x1="12" y1="1.5" x2="12" y2="3.8" />
-            <line x1="12" y1="20.2" x2="12" y2="22.5" />
-            <line x1="4.9" y1="4.9" x2="6.5" y2="6.5" />
-            <line x1="17.5" y1="17.5" x2="19.1" y2="19.1" />
-            <line x1="1.5" y1="12" x2="3.8" y2="12" />
-            <line x1="20.2" y1="12" x2="22.5" y2="12" />
-            <line x1="4.9" y1="19.1" x2="6.5" y2="17.5" />
-            <line x1="17.5" y1="6.5" x2="19.1" y2="4.9" />
-          </svg>
-        </button>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+          </button>
+          {panelOpen && (
+            <div id="nav_settings_panel" className="settings_panel" role="dialog" aria-label="Settings / Ayarlar">
+              <SettingsControls />
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

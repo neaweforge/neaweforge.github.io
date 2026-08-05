@@ -20,18 +20,23 @@ public/img/words_and_hammers/screenshot_01.webp
 
 ## URL yolları
 
-`snake_case`, küçük harf, **uzantısız**:
+`snake_case`, küçük harf, **uzantısız**, **sonda her zaman `/`** (kök hariç):
 
 ```text
-/                                     → anasayfa
-/founder                             → kurucu
-/words_and_hammers/privacy_policy    → gizlilik politikası
-/words_and_hammers/terms_of_service  → kullanım koşulları
+/                                      → anasayfa
+/founder/                             → kurucu
+/words_and_hammers/privacy_policy/    → gizlilik politikası
+/words_and_hammers/terms_of_service/  → kullanım koşulları
 ```
 
 Prerender çıktısında bu, `words_and_hammers/privacy_policy/index.html`
 şeklinde klasör + index dosyası olarak üretilir. `.html` hiçbir adreste
-görünmez.
+görünmez. Sondaki `/` zorunlu: GitHub Pages, slash'sız bir klasör adresine
+gelen isteği slash'lıya 301 ile yönlendiriyor — mağaza formlarına ve site
+içi bağlantılara doğrudan slash'lı hali vererek bu gereksiz yönlendirmeyi
+atlıyoruz. Site içi tüm bağlantılar `app/lib/paths.ts`'teki tek merkezden
+üretilir; yeni bir link eklerken oraya bir builder eklemek, path'i elle
+yazmak yerine tercih edilir.
 
 ## CSS sınıf adları
 

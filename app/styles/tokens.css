@@ -28,6 +28,12 @@
   --ctrl-active-bg:   #2e6626;
   --ctrl-active-br:   #5cb84a;
   --ctrl-active-text: #eef0ea;
+  /* "Kor Hattı" (Ember Seam) — the site's one recurring signature accent.
+     Used sparingly, only at a page's single biggest visual moment (hero
+     rule, game card top edge, legal doc header) — never as a default
+     border, or it stops meaning anything. */
+  --kor-hatti: linear-gradient(90deg, var(--orange), var(--green));
+  --kor-hatti-v: linear-gradient(180deg, var(--orange), var(--green));
 }
 
 /* ══ LIGHT THEME ══ */

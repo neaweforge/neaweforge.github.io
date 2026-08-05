@@ -8,21 +8,7 @@ header {
   border-bottom: 3px solid var(--green);
   padding: 48px 24px 40px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: .3;
-  pointer-events: none;
-}
-header > * { position: relative; }
 .header_eyebrow {
   font-size: 10px;
   letter-spacing: .22em;
@@ -42,7 +28,7 @@ header h1 {
 header h1 .hammers { color: var(--green); }
 .header_rule {
   width: 44px; height: 2px;
-  background: var(--orange);
+  background: var(--kor-hatti);
   margin: 16px auto;
 }
 .header_sub {
@@ -90,7 +76,9 @@ header h1 .hammers { color: var(--green); }
   gap: 14px;
   padding-bottom: 24px;
   margin-bottom: 40px;
-  border-bottom: 1px solid var(--border2);
+  border-bottom: 2px solid var(--border2);
+  border-image-source: var(--kor-hatti);
+  border-image-slice: 1;
 }
 .doc_title {
   font-family: var(--display);
@@ -116,11 +104,17 @@ header h1 .hammers { color: var(--green); }
 .doc_meta dd { margin: 0; }
 
 /* ── SECTIONS ── */
-.legal_section { margin-bottom: 44px; }
+/* Flat 44px between every section ignored how much content each one
+   actually holds — a one-paragraph clause got the same weight as one
+   built from a table plus three other blocks. .legal_section_heavy (set
+   by legal_doc_view.tsx based on the section's actual block count) gets
+   more breathing room; everything else gets less. */
+.legal_section { margin-bottom: 32px; }
+.legal_section_heavy { margin-bottom: 56px; }
 .section_title {
-  font-family: var(--display);
-  font-size: 17px;
-  font-weight: 700;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 800;
   color: var(--text);
   padding-bottom: 9px;
   margin-bottom: 16px;
@@ -128,18 +122,15 @@ header h1 .hammers { color: var(--green); }
   display: flex;
   align-items: center;
   gap: 14px;
-  letter-spacing: .04em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
 .section_num {
   font-family: var(--body);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--orange);
-  background: rgba(200, 90, 24, .07);
-  border: 1px solid var(--orange-dim);
-  padding: 4px 10px;
+  letter-spacing: .16em;
+  color: var(--green);
   flex-shrink: 0;
   white-space: nowrap;
 }
@@ -178,10 +169,20 @@ header h1 .hammers { color: var(--green); }
 /* ── WARN BOX ── */
 .warn_box {
   background: var(--warn-bg);
-  border: 1px solid var(--warn-br);
-  border-left: 3px solid var(--orange);
+  border-top: 1px solid var(--warn-br);
+  border-right: 1px solid var(--warn-br);
+  border-bottom: 1px solid var(--warn-br);
+  border-left: 3px solid transparent;
+  position: relative;
   padding: 16px 20px;
   margin: 16px 0;
+}
+.warn_box::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: var(--kor-hatti-v);
 }
 .warn_title {
   font-size: 10.5px;
@@ -227,7 +228,6 @@ header h1 .hammers { color: var(--green); }
   font-size: 13.5px;
   word-break: break-word;
 }
-.legal_table tr:nth-child(even) td { background: var(--surface2); }
 .legal_table a { color: var(--cyan); text-decoration: underline; }
 
 /* ── BACK TO TOP ── */

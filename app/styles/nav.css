@@ -81,12 +81,36 @@
   border-color: var(--ctrl-active-br);
   color: var(--ctrl-active-text);
 }
-.ctrl_divider {
-  width: 1px; height: 18px;
-  background: var(--border2);
-  margin: 0 2px;
+
+/* ══ SETTINGS GROUPS (shared by the inline row and the popover panel) ══ */
+.settings_group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.settings_label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  white-space: nowrap;
+}
+.settings_buttons {
+  display: flex;
+  gap: 4px;
 }
 
+/* ── Desktop: labeled groups directly in the nav bar ── */
+.settings_inline {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.settings_popover_wrap { position: relative; }
+.settings_toggle { display: none; }
+
+/* ── Mobile: one icon button, controls move into a popover ── */
 @media (max-width: 760px) {
   .nav_center {
     order: 3;
@@ -95,9 +119,52 @@
     flex-wrap: wrap;
   }
   .nav_divider { display: none; }
+
+  .settings_inline { display: none; }
+  .settings_toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--ctrl-bg);
+    border: 1px solid var(--ctrl-br);
+    color: var(--ctrl-text);
+    cursor: pointer;
+  }
+  .settings_toggle[aria-expanded="true"] {
+    background: var(--ctrl-active-bg);
+    border-color: var(--ctrl-active-br);
+    color: var(--ctrl-active-text);
+  }
+  .settings_panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 110;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    box-shadow: 0 12px 32px var(--shadow);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 220px;
+  }
+  .settings_panel .settings_group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .settings_panel .settings_buttons { gap: 6px; }
+  .settings_panel .ctrl_btn {
+    min-height: 44px;
+    padding: 0 14px;
+    font-size: 11px;
+  }
+  .settings_panel .ctrl_icon { min-width: 44px; }
 }
+
 @media (max-width: 480px) {
   .nav { padding: 8px 14px; }
-  .nav_right { gap: 3px; }
-  .ctrl_btn { padding: 4px 7px; font-size: 9px; }
 }

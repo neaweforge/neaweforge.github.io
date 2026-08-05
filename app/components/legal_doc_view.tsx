@@ -93,18 +93,21 @@ export function LegalDocView({ doc, lang, content }: LegalDocViewProps) {
           <dd>{doc.application}</dd>
         </dl>
       </div>
-      {content.sections.map((section) => (
-        <div className="legal_section" key={section.number}>
-          <div className="section_title">
-            <span className="section_num">{section.number}</span>
-            {section.title}
+      {content.sections.map((section) => {
+        const isHeavy = section.blocks.some((block) => block.kind === "table" || block.kind === "list");
+        return (
+          <div className={`legal_section${isHeavy ? " legal_section_heavy" : ""}`} key={section.number}>
+            <div className="section_title">
+              <span className="section_num">{section.number}</span>
+              {section.title}
+            </div>
+            {section.blocks.map((block, blockIndex) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <LegalBlockView key={blockIndex} block={block} />
+            ))}
           </div>
-          {section.blocks.map((block, blockIndex) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <LegalBlockView key={blockIndex} block={block} />
-          ))}
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 }

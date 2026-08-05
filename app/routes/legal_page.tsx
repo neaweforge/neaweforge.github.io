@@ -3,6 +3,7 @@ import type { Route } from "./+types/legal_page";
 import { games } from "../data/games";
 import { legalContent, isLegalDocType, type LegalDocType } from "../content/legal_content";
 import { LegalDocView } from "../components/legal_doc_view";
+import { legalPath } from "../lib/paths";
 import "../styles/legal.css";
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -51,7 +52,7 @@ export default function LegalPage({ loaderData, params }: Route.ComponentProps) 
           <Link
             key={tab.docType}
             className={`tab_btn${tab.docType === params.docType ? " active" : ""}`}
-            to={`/${params.gameSlug}/${tab.docType}`}
+            to={legalPath(params.gameSlug, tab.docType)}
           >
             <span className="en_inline">{tab.en}</span>
             <span className="tr_inline">{tab.tr}</span>

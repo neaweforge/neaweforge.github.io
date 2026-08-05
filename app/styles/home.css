@@ -1,0 +1,251 @@
+/* Home-page-only styles — imported directly by home.tsx. Mobile-first:
+   base rules target the smallest screens, min-width queries add to them
+   for wider viewports. */
+
+/* ══ HERO ══ */
+.hero {
+  background: var(--surface);
+  border-bottom: 3px solid var(--green);
+  padding: 64px 16px 52px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: .4;
+  pointer-events: none;
+}
+.hero > * { position: relative; }
+.hero_badge {
+  display: inline-block;
+  border: 1px solid var(--green-dim);
+  color: var(--green);
+  background: var(--badge-bg);
+  font-size: 10px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  padding: 5px 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(44px, 8vw, 80px);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: .04em;
+}
+.hero h1 .forge { color: var(--green); }
+.hero .kor_hatti_h { margin: 20px auto; }
+.hero_tagline {
+  font-family: var(--body);
+  font-size: clamp(11px, 1.6vw, 13px);
+  color: var(--text-soft);
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero_desc {
+  font-size: 15px;
+  color: var(--text-soft);
+  font-weight: 300;
+  max-width: 460px;
+  margin: 0 auto 32px;
+  line-height: 1.8;
+}
+.hero_cta {
+  display: inline-block;
+  background: var(--green-dim);
+  border: 1px solid var(--green);
+  color: var(--ctrl-active-text);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  text-decoration: none;
+  transition: background .2s, box-shadow .2s;
+  font-family: var(--body);
+}
+.hero_cta:hover {
+  background: var(--green);
+  box-shadow: 0 0 32px var(--green-glow);
+}
+
+/* ══ GAME CARD LIST ══ */
+/* A single card fills the row today. auto-fit means adding a second game
+   to games.ts forms a multi-column grid with no CSS changes needed. */
+.game_card_list {
+  display: grid;
+  /* min(320px, 100%) — without the min(), a 320px hard floor overflows any
+     container narrower than that (e.g. a 288px content box at 320px
+     viewport width). */
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 24px;
+}
+
+/* ══ GAME CARD ══ */
+.game_card {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  position: relative;
+  overflow: hidden;
+}
+.game_card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--kor-hatti);
+}
+.game_card::after {
+  content: '';
+  position: absolute;
+  inset: 3px 0 0 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: .25;
+  pointer-events: none;
+}
+.game_card_grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  padding: 32px 24px;
+}
+.game_shot_frame {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 390 / 844;
+  margin: 0 auto;
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  overflow: hidden;
+  position: relative;
+}
+.game_shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.game_shot_placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  border: 1px dashed var(--border2);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--surface2) 0 8px,
+    var(--surface3) 8px 16px
+  );
+}
+.game_info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+.game_tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tech_chip {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  padding: 3px 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background .15s, border-color .15s;
+}
+.tech_chip:hover {
+  border-color: var(--cyan-dim);
+  background: rgba(30,184,196,.14);
+}
+.game_title {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.05;
+  letter-spacing: .03em;
+}
+.game_desc {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.game_status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.status_badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.status_badge.store {
+  color: var(--green);
+  border-color: var(--green-dim);
+  background: var(--badge-bg);
+  transition: background .15s;
+}
+.status_badge.store:hover { background: var(--green-glow); }
+.status_badge.soon { cursor: default; }
+.badge_soon_tag {
+  color: var(--orange);
+  font-weight: 700;
+}
+.status_badge.legal {
+  color: var(--cyan);
+  border-color: var(--cyan-dim);
+  background: rgba(30,184,196,.06);
+  transition: background .15s;
+}
+.status_badge.legal:hover { background: rgba(30,184,196,.14); }
+
+@media (min-width: 760px) {
+  .hero { padding: 100px 24px 80px; }
+  .game_card_grid {
+    grid-template-columns: 240px 1fr;
+    align-items: center;
+    padding: 40px 36px;
+  }
+  .game_shot_frame { max-width: 100%; }
+}

@@ -11,3 +11,49 @@
 @media (max-width: 600px) {
   .content { padding: 40px 16px 60px; }
 }
+
+/* ══ SECTION SCAFFOLD ══ */
+/* Shared by any full-content page's in-page sections (home's Games block
+   today, Founder later). Not used by legal pages, which have their own
+   header/doc-* system. */
+.section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+.section_eyebrow {
+  font-size: 10px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.section_title {
+  font-family: var(--body);
+  font-size: clamp(20px, 3.2vw, 26px);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 40px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border2);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+  .section { padding: 56px 16px; }
+}
+
+/* ══ "KOR HATTI" (EMBER SEAM) ══ */
+/* The one recurring signature accent — a 2px orange→green gradient line.
+   Apply only at a page's single biggest visual moment; see the token
+   comment in tokens.css. */
+.kor_hatti_h {
+  width: 48px;
+  height: 2px;
+  background: var(--kor-hatti);
+}
+.kor_hatti_v {
+  background: var(--kor-hatti-v);
+}
