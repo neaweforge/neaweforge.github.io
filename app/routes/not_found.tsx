@@ -6,7 +6,7 @@ export function meta(_: Route.MetaArgs) {
 
 export default function NotFound() {
   return (
-    <main>
+    <main className="content">
       <h1>Neawe Forge</h1>
       <p className="en_content">404 — Page not found.</p>
       <p className="tr_content">404 — Sayfa bulunamadı.</p>

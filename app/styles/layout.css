@@ -1,0 +1,13 @@
+/* Shared comfortable-reading-width wrapper — every route's <main> (or, for
+   pages with a full-bleed header like legal docs, the text-content div
+   inside <main>) should use this. This is what was missing site-wide:
+   text was flush against the viewport edge on every page. */
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 52px 24px 80px;
+}
+
+@media (max-width: 600px) {
+  .content { padding: 40px 16px 60px; }
+}

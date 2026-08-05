@@ -5,6 +5,7 @@ import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/nav.css";
 import "./styles/footer.css";
+import "./styles/layout.css";
 
 import { themeLangBootScript } from "./lib/theme_lang";
 import { ThemeLangProvider } from "./lib/theme_lang_context";

@@ -12,10 +12,10 @@ export function meta(_: Route.MetaArgs) {
 
 export default function Founder() {
   return (
-    <main>
+    <main className="content">
       <h1>Sait Kaplan</h1>
-      <p className="en_content">Phase 3 skeleton — the real founder page design lands in Phase 6.</p>
-      <p className="tr_content">Faz 3 iskeleti — gerçek kurucu sayfası tasarımı Faz 6'da gelecek.</p>
+      <p className="en_content">Phase 4 skeleton — the real founder page design lands in Phase 6.</p>
+      <p className="tr_content">Faz 4 iskeleti — gerçek kurucu sayfası tasarımı Faz 6'da gelecek.</p>
     </main>
   );
 }

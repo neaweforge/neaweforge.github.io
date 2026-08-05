@@ -13,10 +13,10 @@ export function meta(_: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <main>
+    <main className="content">
       <h1>Neawe Forge</h1>
-      <p className="en_content">Phase 3 skeleton — the real homepage design lands in Phase 5.</p>
-      <p className="tr_content">Faz 3 iskeleti — gerçek anasayfa tasarımı Faz 5'te gelecek.</p>
+      <p className="en_content">Phase 4 skeleton — the real homepage design lands in Phase 5.</p>
+      <p className="tr_content">Faz 4 iskeleti — gerçek anasayfa tasarımı Faz 5'te gelecek.</p>
       <h2>
         <span className="en_inline">Games</span>
         <span className="tr_inline">Oyunlar</span>
