@@ -1,0 +1,9 @@
+version: 2
+updates:
+  # deploy.yml pins actions to a full commit SHA (see the workflow's inline
+  # version comments) — Dependabot still understands SHA-pinned actions and
+  # opens a PR bumping both the SHA and its comment when a new release ships.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"

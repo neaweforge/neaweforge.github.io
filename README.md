@@ -1,86 +1,98 @@
-# neaweforge.github.io
+# neaweforge.com
 
-> ⚠️ **Bu doküman eski statik site dönemini anlatıyor.** React + Vite +
-> React Router geçişi sürüyor. Tam güncelleme Faz 8'de yapılacak. Güncel
-> mimari ve adlandırma standardı için [CONVENTIONS.md](CONVENTIONS.md)'ye
-> bakın.
+**Neawe Forge** için resmi geliştirici merkezi — bağımsız bir mobil oyun stüdyosunun marka genelindeki tanıtım, kurucu ve yasal belge sitesi.
 
-**Neawe Forge** için resmi web sitesidir — bağımsız bir mobil oyun stüdyosunun sitesidir.
-
-🌐 **Canlı site:** [https://neaweforge.github.io](https://neaweforge.github.io)
+🌐 **Canlı site:** [https://neaweforge.com](https://neaweforge.com)
 
 ---
 
 ## Sitede Neler Var
 
-Site, **GitHub Pages** üzerinden yayınlanan tek sayfalık bir stüdyo web sitesidir. İçeriği:
-
-- **Stüdyo tanıtımı** — Neawe Forge'un kim olduğu ve ne inşa ettiği
-- **Oyunlar** — Yayınlanan ve geliştirilmekte olan oyunların ekran görüntüleriyle vitrini
-- **Kurucu** — Sait Kaplan hakkında bilgi (kurucu, geliştirici)
-- **Yasal Merkez** — Yayınlanan uygulamalar için gizlilik politikaları ve kullanım koşulları
+- **Stüdyo tanıtımı** — Neawe Forge'un kim olduğu ve ne inşa ettiği (ana sayfa)
+- **Oyunlar** — yayınlanan ve geliştirilmekte olan oyunların vitrini
+- **Kurucu** — Sait Kaplan hakkında kısa, stüdyo odaklı bilgi (`/founder/`)
+- **Yasal Merkez** — her uygulama için gizlilik politikası ve kullanım koşulları
 
 **İngilizce / Türkçe** dil değişimi ve **koyu / açık / otomatik** tema seçimi desteklenmektedir.
+
+---
+
+## Teknoloji
+
+**React 19 + Vite 7 + TypeScript + React Router 8** (framework mode). `ssr:false` ve build-time `prerender()` ile çalışır — sunucu tarafı çalışma zamanı yoktur, çıktı tamamen statik HTML/CSS/JS'tir. GitHub Pages bu statik çıktıyı doğrudan sunar.
+
+Dağıtım `.github/workflows/deploy.yml` üzerinden GitHub Actions ile yapılır: `main`'e her push, build alır ve GitHub Pages'e yayınlar.
 
 ---
 
 ## Yapı
 
 ```text
-index.html                        ← Ana stüdyo web sitesi (tek sayfa)
-wordsandhammers/
-  index.html                      ← privacy-policy.html'e yönlendirir (/wordsandhammers/ URL'sini çalışır tutar)
-  privacy-policy.html             ← Words & Hammers için Gizlilik Politikası
-  terms-of-service.html           ← Words & Hammers için Kullanım Koşulları
-assets/
-  css/
-    tokens.css                    ← Koyu/açık/otomatik tema değişkenleri (renkler, fontlar) — tüm sayfalarda ortak
-    base.css                      ← Reset, temel tipografi, EN/TR görünürlük yardımcı sınıfları — tüm sayfalarda ortak
-    nav.css                       ← Yapışkan üst nav + tema/dil değiştirme kontrolleri — tüm sayfalarda ortak
-    home.css                      ← Yalnızca ana sayfaya özgü stiller (hero, oyunlar, kurucu, zaman çizelgesi, footer)
-    legal.css                     ← Yalnızca yasal belge sayfalarına özgü stiller (header, doküman sekmeleri, bölümler, tablolar, kutular)
-  js/
-    theme-lang.js                 ← Tüm sayfalarca kullanılan ortak tema/dil değiştirme mantığı
-  img/
-    wordsandhammers/               ← Oyun ekran görüntüleri
+app/
+  root.tsx                    ← <html>/<body> iskeleti, boot script, global stil importları
+  routes.ts                   ← Route tanımları
+  routes/
+    home.tsx                  ← Ana sayfa (hero + oyun vitrini)
+    founder.tsx                ← Kurucu sayfası
+    legal_page.tsx             ← Tek dinamik route, her oyunun yasal belgelerini karşılar (:gameSlug/:docType)
+    not_found.tsx               ← 404
+  components/                 ← Nav, Footer, GameCard, ayarlar paneli, yasal belge render bileşeni
+  data/
+    games.ts                  ← Oyunların TEK veri kaynağı — yeni oyun eklemek route/prerender değişikliği gerektirmez
+  content/
+    legal_types.ts             ← Yasal içerik tipleri
+    legal_content.ts            ← games.ts ↔ yasal içerik eşleşmesi, eksikse build'i patlatır
+    words_and_hammers/         ← Her oyunun kendi klasöründe EN+TR yasal metinleri
+  lib/
+    paths.ts                  ← Tüm site-içi URL'ler ve route-id'ler TEK yerden üretilir
+    site_config.ts             ← İletişim adresi, sosyal linkler, stüdyo durum metni
+    theme_lang.ts / theme_lang_context.tsx  ← Tema/dil state + localStorage
+  styles/                     ← Sayfa/bileşen bazlı CSS, snake_case (bkz. CONVENTIONS.md)
+public/
+  CNAME, .nojekyll
+  favicon.ico, favicon.svg, apple_touch_icon.png, icon_192.png, icon_512.png
+  site_manifest.json          ← Android "ana ekrana ekle" için isim/ikon — PWA değil, servis worker yok
+scripts/
+  postbuild.mjs                ← Build sonrası: 404.html kopyalama, CNAME/.nojekyll doğrulama, kullanılmayan dosya temizliği
 ```
-
-Her sayfa (`index.html` ve her uygulamanın `privacy-policy.html` / `terms-of-service.html` dosyaları) `tokens.css` + `base.css` + `nav.css`'i, ardından kendi sayfaya özgü stil dosyasını (`home.css` veya `legal.css`) ve tek ortak `theme-lang.js`'i bağlar. Nav ve footer HTML'i her sayfada hâlâ küçük, elle kopyalanmış bir yapı olarak yer alır (build adımı yok, istemci taraflı include yok — bu her sayfanın hızlı kalmasını ve bir uygulamanın uygulama içi webview'ında bile tam işlevsel olmasını sağlar); bunların arkasındaki CSS/JS ise hiçbir yerde tekrarlanmaz.
 
 ### Yasal Belge URL'leri
 
-Her uygulamanın kendine özel sayfalara sahip bir alt klasörü bulunur. Bunlar Google Play / App Store'a gizlilik politikası / kullanım koşulları linki olarak gönderilen URL'lerdir.
+Her uygulama `app/data/games.ts`'te bir `slug` ile tanımlanır, yasal sayfaları otomatik olarak şu adreslerde oluşur:
 
 | Uygulama | Gizlilik Politikası | Kullanım Koşulları |
 | --- | --- | --- |
-| Words & Hammers | `https://neaweforge.github.io/wordsandhammers/privacy-policy.html` | `https://neaweforge.github.io/wordsandhammers/terms-of-service.html` |
+| Words & Hammers | `https://neaweforge.com/words_and_hammers/privacy_policy/` | `https://neaweforge.com/words_and_hammers/terms_of_service/` |
 
-### Yeni Bir Uygulama Ekleme
+### Yeni Bir Oyun Ekleme
 
-Yeni bir uygulama eklemek için aşağıdaki adımlar izlenir:
-
-1. `wordsandhammers/` klasörü kopyalanır, alt çizgisiz olacak şekilde yeniden adlandırılır (ör. `mynewgame/`)
-2. Yeni klasördeki `privacy-policy.html` ve `terms-of-service.html` dosyaları uygulamanın içeriğiyle güncellenir (paylaşılan `assets/css/{tokens,base,nav,legal}.css` ve `assets/js/theme-lang.js` dosyalarına zaten bağlıdır)
-3. Dosya adı farklıysa yeni klasördeki `index.html`'in yönlendirme hedefi güncellenir
-4. Ana `index.html`'e bir oyun kartı eklenir
-5. `privacy-policy.html` URL'si mağazaya gizlilik politikası linki olarak gönderilir
+1. `app/data/games.ts`'e yeni bir `Game` girdisi eklenir (slug, ad, paket kimliği, açıklama, teknoloji rozetleri, mağaza linkleri, ekran görüntüleri)
+2. `app/content/<slug>/privacy_policy.ts` ve `terms_of_service.ts` dosyaları oluşturulur, `app/content/legal_content.ts`'e kaydedilir
+3. Bu kadar — route'lar, prerender yolları ve ana sayfadaki oyun kartı otomatik oluşur. `legal_content.ts` bir oyun için eksikse build hata verip durur, sessizce boş sayfa yayınlamaz.
 
 ---
 
-## Teknoloji
-
-Saf HTML/CSS/JS kullanılır — framework ya da build adımı yoktur. `main` branch'ine yapılan her push'ta GitHub Pages üzerinden otomatik olarak yayınlanır.
-
-## Yerel Önizleme
-
-`package.json`, değişiklikler commit'lenmeden önce tarayıcıda kontrol edilebilmesi için yerel bir statik sunucu çalıştırmaya yarar — yayınlanan sitede hiçbir etkisi yoktur (GitHub Pages dosyaları olduğu gibi sunar, build adımı yoktur).
+## Yerel Çalıştırma
 
 ```bash
-npm install   # yalnızca ilk seferde gereklidir
-npm run dev   # site http://localhost:3000 adresinde sunulur
+npm install   # yalnızca ilk seferde
+npm run dev   # http://localhost:5173 — sadece localhost'a bağlanır
 ```
 
-Node.js/npm kurulu değilse veya sıfırdan kurulum yapılması gerekiyorsa, adım adım anlatan [KURULUM.md](KURULUM.md) dosyası kullanılabilir.
+Sıfırdan kurulum (Node.js dahil) için adım adım [KURULUM.md](KURULUM.md).
+
+Diğer komutlar:
+
+```bash
+npm run build       # prodüksiyon build'i (build/client/)
+npm run typecheck   # React Router tip üretimi + tsc
+```
+
+---
+
+## Adlandırma Standardı
+
+Dosya/klasör/URL/CSS sınıfı adlandırması için tek referans [CONVENTIONS.md](CONVENTIONS.md)'dir.
 
 ---
 

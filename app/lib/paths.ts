@@ -12,3 +12,10 @@ export const founderPath = "/founder/";
 export function legalPath(gameSlug: string, docType: LegalDocType): string {
   return `/${gameSlug}/${docType}/`;
 }
+
+// React Router's own route identifiers (app/routes.ts file paths without
+// extension) — a different thing from the URL paths above. Nav.tsx matches
+// these against useMatches() to decide when to hide itself; centralized
+// here so the id string only has to be right in one place.
+export const legalPageRouteId = "routes/legal_page";
+export const founderRouteId = "routes/founder";

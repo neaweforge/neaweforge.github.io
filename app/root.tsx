@@ -21,7 +21,14 @@ export function Layout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Order matters: browsers use the last icon they support, not the
+            first. .ico first as the fallback every browser understands,
+            .svg last so anything that understands type="image/svg+xml"
+            (i.e. everything modern) prefers the scalable version over it. */}
+        <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/apple_touch_icon.png" />
+        <link rel="manifest" href="/site_manifest.json" />
         {/* --display/--body/--mono in tokens.css name these families, but
             naming a font doesn't load it — this is what actually fetches
             Cinzel/Jost/JetBrains Mono. Without it every page silently falls

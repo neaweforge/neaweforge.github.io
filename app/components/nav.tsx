@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useMatches } from "react-router";
-import { founderPath, homePath } from "../lib/paths";
+import { founderPath, founderRouteId, homePath, legalPageRouteId } from "../lib/paths";
 import { SettingsControls } from "./settings_controls";
 
 export function Nav() {
@@ -12,7 +12,7 @@ export function Nav() {
   // so they render cleanly when opened standalone inside an app's webview.
   // The founder page's own nav shouldn't link back to itself either.
   const hideNavCenter = matches.some(
-    (match) => match.id === "routes/legal_page" || match.id === "routes/founder",
+    (match) => match.id === legalPageRouteId || match.id === founderRouteId,
   );
 
   useEffect(() => {

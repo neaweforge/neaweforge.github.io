@@ -75,7 +75,7 @@ bozmaz, danışılmadan uygulanır.
   zaman `snake_case` slug kullanılır (paket `com.neaweforge.wordsandhammers`
   iken URL `/words_and_hammers/...`). Bu tutarsızlık değil, iki ayrı isim
   alanı.
-- **React Router v7 (framework mode) konvansiyonları** — `app/` kök klasörü,
+- **React Router v8 (framework mode) konvansiyonları** — `app/` kök klasörü,
   `app/root.tsx`, `app/routes.ts`, React Router'ın ürettiği
   `app/routes/+types/*` dosyaları: bunlar React Router'ın kendi dayattığı,
   değiştirilemez adlardır. Bunların **içindeki** route bileşen dosyaları yine
@@ -85,8 +85,8 @@ bozmaz, danışılmadan uygulanır.
 - **Ekosistem dosyaları kendi adlarını korur:** `package.json`,
   `vite.config.ts`, `tsconfig.json`, `react-router.config.ts`, `.nojekyll`,
   `CNAME`, `README.md`, `CONVENTIONS.md`, `.markdownlint.json`,
-  `.github/workflows/deploy.yml` — bunların adları ilgili aracın kendisi
-  tarafından aranıyor, değiştirilemez.
+  `.github/workflows/deploy.yml`, `.github/dependabot.yml` — bunların adları
+  ilgili aracın kendisi tarafından aranıyor, değiştirilemez.
 
 ## Neden alt çizgi, tire değil
 

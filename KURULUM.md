@@ -1,29 +1,15 @@
 # Kurulum ve Yerel Çalıştırma Rehberi
 
-> ⚠️ **Bu doküman eski statik site dönemini anlatıyor.** React + Vite +
-> React Router geçişi sürüyor. Tam güncelleme Faz 8'de yapılacak. Güncel
-> mimari ve adlandırma standardı için [CONVENTIONS.md](CONVENTIONS.md)'ye
-> bakın.
+Bu dosya, projenin (`neaweforge.com`) başka bir bilgisayarda sıfırdan kurulup yerel ön izlemesinin çalıştırılması için hazırlanmıştır. Adımlar sırasıyla izlenir.
 
-Bu dosya, projenin (neaweforge.github.io) başka bir bilgisayarda sıfırdan kurulup yerel ön izlemenin çalıştırılması için hazırlanmıştır. Adımlar sırasıyla izlenir.
-
-**Not:** Buradaki hiçbir adım canlı siteyi (`https://neaweforge.github.io`) etkilemez. Site GitHub Pages üzerinden düz HTML/CSS/JS olarak yayınlanır, herhangi bir build adımı yoktur. Aşağıdaki kurulum yalnızca **yerel bilgisayarda, değişiklikler commit'lenmeden önce tarayıcıda görülebilmesi** içindir.
+**Not:** Buradaki hiçbir adım canlı siteyi (`https://neaweforge.com`) etkilemez. Site React + Vite + React Router ile inşa edilir, build çıktısı statik dosyalardır; canlıya çıkış yalnızca `main` dalına yapılan push ile GitHub Actions üzerinden olur. Aşağıdaki kurulum yalnızca **yerel bilgisayarda, değişiklikler commit'lenmeden önce tarayıcıda görülebilmesi** içindir.
 
 ---
 
 ## 1. Gerekenler
 
 - **Git** — reponun indirilmesi için
-- **Node.js ve npm** — yerel önizleme sunucusunun çalıştırılması için
-
-Proje şu sürümlerle test edilmiştir:
-
-| Araç | Test Edilen Sürüm |
-| --- | --- |
-| Node.js | v22.17.0 |
-| npm | 10.9.2 |
-
-Tam olarak bu sürümde olması şart değildir — Node.js'in güncel bir **LTS (uzun süreli destek)** sürümü (18 ve üzeri) yeterlidir. Mevcut sürüm aşağıdaki komutla kontrol edilebilir:
+- **Node.js ve npm** — bağımlılıkların kurulması ve yerel sunucunun çalıştırılması için
 
 ```bash
 node -v
@@ -32,13 +18,13 @@ npm -v
 
 Bu komutlar "command not found" gibi bir hata veriyorsa Node.js kurulu değildir — 2. adıma geçilir.
 
+**Sürüm şartı:** `react-router@8.3.0`, Node.js `>=22.22.0` gerektirir. Daha eski bir 22.x sürümü (ör. 22.17.0) kuruluysa `npm run dev`/`build`/`typecheck` çalışır ama her seferinde bir sürüm uyarısı basar — zararsızdır ama gidermek için Node güncellenmelidir. GitHub Actions üzerindeki build bu sürüme (`22.22.0`) sabitlenmiştir, canlı yayını bu uyarı etkilemez.
+
 ---
 
 ## 2. Node.js / npm Kurulumu (Yoksa)
 
 ### macOS / Linux — nvm ile (önerilen)
-
-`nvm` (Node Version Manager), bilgisayarda birden fazla Node sürümünün yönetilmesini sağlayan küçük bir araçtır. Kurulumu:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
@@ -47,13 +33,13 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 Kurulumdan sonra terminal kapatılıp yeniden açılır (ya da `source ~/.zshrc` / `source ~/.bashrc` çalıştırılır), ardından:
 
 ```bash
-nvm install --lts
-nvm use --lts
+nvm install 22.22.0
+nvm use 22.22.0
 ```
 
 ### Windows
 
-[nodejs.org](https://nodejs.org) adresinden **LTS** sürümü indirilip kurulur — kurulumla birlikte npm da otomatik gelir.
+[nodejs.org](https://nodejs.org) adresinden Node.js **22.22.0 veya üzeri** indirilip kurulur — kurulumla birlikte npm da otomatik gelir.
 
 ### Kurulumun Doğrulanması
 
@@ -61,8 +47,6 @@ nvm use --lts
 node -v
 npm -v
 ```
-
-İkisi de bir sürüm numarası döndürüyorsa kurulum tamamlanmış demektir.
 
 ---
 
@@ -79,13 +63,11 @@ cd neaweforge.github.io
 
 ## 4. Proje Bağımlılıklarının Kurulması
 
-Proje klasörünün içindeyken:
-
 ```bash
 npm install
 ```
 
-Bu komut, `package.json`'da tanımlı tek bağımlılığı (`serve` adında küçük bir statik sunucu paketi) indirir ve `node_modules/` klasörüne kurar. Bu klasör asla git'e commit'lenmez (`.gitignore`'da yer alır), yalnızca ilgili bilgisayarda durur. Yalnızca ilk kurulumda bir kez çalıştırılması yeterlidir.
+React, React Router, Vite, TypeScript ve geliştirme araçlarının tamamını `node_modules/` klasörüne kurar. Bu klasör asla git'e commit'lenmez (`.gitignore`'da yer alır). Yalnızca ilk kurulumda ve `package.json`/`package-lock.json` değiştiğinde çalıştırılması yeterlidir.
 
 ---
 
@@ -98,32 +80,49 @@ npm run dev
 Terminalde şöyle bir çıktı görülür:
 
 ```text
-> dev
-> serve . -l 3000
-
- INFO  Accepting connections at http://localhost:3000
+➜  Local:   http://localhost:5173/
+➜  Network: use --host to expose
 ```
 
-Tarayıcıda **`http://localhost:3000`** adresi açılır — site tam canlıdaki gibi (commit'lenmemiş değişiklikler dahil) görüntülenir.
+Tarayıcıda **`http://localhost:5173`** adresi açılır — dosya kaydedildikçe sayfa otomatik güncellenir. `--host` **kullanılmaz**: bayrak eklenmediği sürece sunucu yalnızca bu bilgisayara (localhost) bağlanır, ağdaki başka bir cihazdan erişilemez.
 
 Durdurmak için terminalde **Ctrl+C** kullanılır.
 
-Daha fazla dosya/klasör açıklaması ve genel proje bilgisi için [README.md](README.md) dosyasına bakılabilir.
+### Prodüksiyon Build'ini Yerelde Görmek
+
+`npm run dev` geliştirme sunucusudur; canlıda çalışacak gerçek statik dosyaları görmek için:
+
+```bash
+npm run build
+npx serve build/client -l tcp://127.0.0.1:3000
+```
+
+`-l tcp://127.0.0.1:3000` önemlidir: `serve` paketi bayraksız çalıştırıldığında (`-l 3000` gibi salt port verilse bile) tüm ağ arayüzlerinde dinlemeye başlayabiliyor — adres açıkça `127.0.0.1` verilmezse başka bir cihazdan bu bilgisayara erişilebilir hale gelebilir.
+
+### Diğer Komutlar
+
+```bash
+npm run typecheck   # React Router tip üretimi + tsc, hata varsa listeler
+```
+
+Daha fazla dosya/klasör açıklaması için [README.md](README.md) dosyasına bakılabilir.
 
 ---
 
 ## Olası Sorunlar
 
-**"Port 3000 zaten kullanımda" gibi bir hata alınırsa:**
-Bilgisayarda başka bir şey 3000 portunu kullanıyor demektir. İlgili program kapatılabilir, ya da `package.json` içindeki `"dev": "serve . -l 3000"` satırındaki `3000` sayısı başka bir port numarasıyla (ör. `4000`) değiştirilip tekrar denenir.
+**"Port zaten kullanımda" gibi bir hata alınırsa:**
+Bilgisayarda başka bir şey ilgili portu kullanıyor demektir. O programı kapatmak ya da `npm run dev -- --port 5174` gibi farklı bir port belirtmek çözer.
 
 **`npm install` hata verirse:**
-`node_modules/` klasörü ve `package-lock.json` dosyası silinip tekrar `npm install` çalıştırılır:
 
 ```bash
 rm -rf node_modules package-lock.json
 npm install
 ```
 
+**Node sürüm uyarısı çıkıyorsa ama her şey çalışıyorsa:**
+Zararsızdır (bkz. madde 1) — ama gidermek isteniyorsa Node `22.22.0` veya üzerine güncellenir.
+
 **Bir sayfa 404 veriyorsa:**
-Doğru klasörde olunduğundan emin olunmalıdır — `npm run dev` komutu proje kök klasöründe (README.md'nin bulunduğu yerde) çalıştırılmalıdır.
+Doğru klasörde olunduğundan emin olunmalıdır — `npm run dev` komutu proje kök klasöründe (`package.json`'ın bulunduğu yerde) çalıştırılmalıdır.
