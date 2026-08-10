@@ -10,7 +10,10 @@ export function Nav() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   // Legal pages must stay minimal — brand + controls only, no nav links —
   // so they render cleanly when opened standalone inside an app's webview.
-  const isLegalPage = matches.some((match) => match.id === "routes/legal_page");
+  // The founder page's own nav shouldn't link back to itself either.
+  const hideNavCenter = matches.some(
+    (match) => match.id === "routes/legal_page" || match.id === "routes/founder",
+  );
 
   useEffect(() => {
     if (!panelOpen) return;
@@ -39,7 +42,7 @@ export function Nav() {
       <Link to={homePath} className="nav_logo">
         Neawe <span className="forge">Forge</span>
       </Link>
-      {!isLegalPage && (
+      {!hideNavCenter && (
         <>
           <span className="nav_divider" />
           <div className="nav_center">

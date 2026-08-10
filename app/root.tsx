@@ -22,6 +22,18 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        {/* --display/--body/--mono in tokens.css name these families, but
+            naming a font doesn't load it — this is what actually fetches
+            Cinzel/Jost/JetBrains Mono. Without it every page silently falls
+            back to each variable's system-font alternate. Weights listed
+            here are exactly the ones the CSS uses (checked via grep) — at
+            most 2 per family, nothing speculative. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Jost:wght@300;700&family=JetBrains+Mono:wght@700&display=swap"
+          rel="stylesheet"
+        />
         <Meta />
         <Links />
         {/* Applies the previously-chosen theme/lang before first paint —

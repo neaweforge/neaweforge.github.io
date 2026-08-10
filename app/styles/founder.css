@@ -1,0 +1,83 @@
+/* Founder-page-only styles — imported directly by founder.tsx. Single
+   column at every width (the page is short — a 2-column split left an
+   empty-looking sidebar once the timeline was cut). Reading width is
+   already capped by the shared .content wrapper on <main>. */
+
+.founder_main { display: flex; flex-direction: column; gap: 24px; }
+.founder_name {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: .04em;
+  line-height: 1.1;
+}
+.founder_role {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-top: 6px;
+}
+.founder_bio {
+  font-size: 14.5px;
+  color: var(--text-soft);
+  font-weight: 300;
+  line-height: 1.85;
+}
+.label_eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  margin-bottom: 10px;
+}
+.social_links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.social_btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.social_btn:hover {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--ctrl-active-text);
+}
+.social_icon { font-style: normal; line-height: 1; }
+.social_arrow { color: var(--green); font-size: 12px; }
+
+/* ══ CURRENTLY ══ */
+/* Deliberately not a card, not a timeline — a label and one line of plain
+   text, in the normal reading flow (not a sidebar). */
+.founder_currently_label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.founder_currently_text {
+  font-size: 13.5px;
+  color: var(--text-soft);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-top: 6px;
+}

@@ -8,7 +8,20 @@ body {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   transition: background .25s, color .25s;
+  /* Sticky footer: body is the flex column, <main> is the one growing
+     item, so short pages (founder, 404) pin the footer to the viewport
+     bottom instead of leaving it stranded mid-screen. 100vh first for
+     browsers without dvh support, 100dvh after — mobile browsers resize
+     their address bar without firing a real viewport resize, and 100vh
+     alone measures the tall state, leaving a gap under the footer once
+     the bar collapses. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
+
+main { flex: 1; }
 
 /* ══ LANG VISIBILITY ══ */
 /* Keyed off <html lang="…">, not a body class — the boot script (see

@@ -7,4 +7,11 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/saitkaplan",
     github: "https://github.com/saitkaplan",
   },
+  // Shown on the founder page's "Now" line. Update this one place when the
+  // studio's current milestone changes (e.g. once Words & Hammers ships) —
+  // not tied to games.ts so a game's status field can change independently.
+  studioStatus: {
+    en: "Words & Hammers — preparing for release on iOS and Android.",
+    tr: "Words & Hammers — iOS ve Android yayınına hazırlanıyor.",
+  },
 } as const;

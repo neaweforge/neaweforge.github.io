@@ -86,4 +86,4 @@ Node.js/npm kurulu değilse veya sıfırdan kurulum yapılması gerekiyorsa, ad�
 
 ## İletişim
 
-📧 [neaweforge.support@gmail.com](mailto:neaweforge.support@gmail.com)
+📧 [support@neaweforge.com](mailto:support@neaweforge.com)
