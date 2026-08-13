@@ -113,6 +113,30 @@ bir konuşmanın ortasına düşmüş gibi hissetmemesi için önemli.
 - Açık kalan bir karar "sana bırakıyorum" değil, tarafsız biçimde "karar
   bekliyor" olarak yazılır.
 
+## tokens.css — tek kaynak kuralı
+
+Bir renk değeri `tokens.css`'te yalnızca **bir** yerde ham (hex veya rgb)
+olarak tanımlanır. Aynı rengi kullanan her başka token, kendi kopyasını
+taşımak yerine ona `var()` ile bağlanır: `--ctrl-bg: var(--surface2)`,
+`--ctrl-active-br: var(--green)` gibi.
+
+**Neden:** İki token aynı değeri elle iki yerde taşırsa, biri güncellenip
+diğeri unutulduğunda sessizce ayrışır — bu, bir kontrast/erişilebilirlik
+sorunu ya da görünür bir marka tutarsızlığı olarak ortaya çıkana kadar fark
+edilmez. Faz 8'de tam olarak bu yaşandı: `--ctrl-text`, `--text-mute` ile
+aynı hex'i elle taşıyordu; `--text-mute` bir kontrast düzeltmesinde
+güncellendi, `--ctrl-text` unutuldu, WCAG kontrastı bozuldu. Aynı ailede
+5 token daha aynı riski taşıdığı, 2 tanesinin (`--ctrl-active-br`,
+`--green-glow`, ikisi de açık tema) başka bir renk değişikliğinde zaten
+sessizce ayrıştığı ayrıca bulundu.
+
+**`rgba()` gibi alfa gerektiren durumlar istisna:** `rgba()`'nın renk
+argümanı, içinde hex string tutan bir custom property'yi doğrudan kabul
+etmiyor (`rgba(var(--green), .12)` geçersiz), bu yüzden doğrudan `var()`
+bağlanamıyor. Bu durumda değer elle kopyalanır ama üstüne "bu değer
+--X ile senkron tutulmalı" yorumu eklenir — unutulma ihtimalini sıfırlamaz
+ama en azından değişiklik anında görünür kılar.
+
 ## Neden alt çizgi, tire değil
 
 Marka genelinde (mobil projeler dahil) uygulanan bir karar. Google tire'yi

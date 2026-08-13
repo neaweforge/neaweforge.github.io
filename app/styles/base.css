@@ -52,6 +52,35 @@ html[lang="tr"] .tr_inline { display: inline; }
   border: 0;
 }
 
+/* Off-screen via transform, not display:none — the latter would make the
+   link unfocusable, defeating the point. Revealed on :focus so keyboard
+   users see it; mouse/touch users never do. */
+.skip_link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  transform: translateY(-100%);
+  background: var(--ctrl-active-bg);
+  color: var(--ctrl-active-text);
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .15s;
+}
+.skip_link:focus {
+  transform: translateY(0);
+}
+/* The skip link itself was the visible focus cue; an outline around the
+   full-height <main> it jumps to would just be visual noise, not new
+   information. */
+#main_content:focus {
+  outline: none;
+}
+
 /* Single global switch for motion sensitivity — every transition/animation
    on the site collapses to near-zero and smooth scrolling becomes instant.
    Near-zero rather than literally 0 so nothing that waits on a

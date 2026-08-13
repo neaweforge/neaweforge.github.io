@@ -1,5 +1,6 @@
 import type { Route } from "./+types/founder";
 import { siteConfig } from "../lib/site_config";
+import { mainContentId } from "../lib/paths";
 import "../styles/founder.css";
 
 export function meta(_: Route.MetaArgs) {
@@ -14,7 +15,7 @@ export function meta(_: Route.MetaArgs) {
 
 export default function Founder() {
   return (
-    <main className="content">
+    <main className="content" id={mainContentId} tabIndex={-1}>
       <div className="section_eyebrow">
         <span className="en_inline">The Founder</span>
         <span className="tr_inline">Kurucu</span>

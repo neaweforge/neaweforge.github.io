@@ -1,6 +1,7 @@
 import type { Route } from "./+types/home";
 import { games } from "../data/games";
 import { GameCard } from "../components/game_card";
+import { mainContentId } from "../lib/paths";
 import "../styles/home.css";
 
 export function meta(_: Route.MetaArgs) {
@@ -15,7 +16,7 @@ export function meta(_: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <main>
+    <main id={mainContentId} tabIndex={-1}>
       <section className="hero">
         <div className="hero_badge">
           <span className="en_inline">Independent Game Studio</span>

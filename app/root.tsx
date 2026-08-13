@@ -11,6 +11,7 @@ import { themeLangBootScript } from "./lib/theme_lang";
 import { ThemeLangProvider } from "./lib/theme_lang_context";
 import { Nav } from "./components/nav";
 import { Footer } from "./components/footer";
+import { SkipLink } from "./components/skip_link";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -48,6 +49,10 @@ export function Layout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: themeLangBootScript }} />
       </head>
       <body>
+        {/* First focusable element in the document, ahead of even the
+            theme/lang provider's children — a keyboard user tabbing from
+            the address bar must land here before anything else. */}
+        <SkipLink />
         <ThemeLangProvider>
           <Nav />
           {children}

@@ -3,7 +3,7 @@ import type { Route } from "./+types/legal_page";
 import { games } from "../data/games";
 import { legalContent, isLegalDocType, type LegalDocType } from "../content/legal_content";
 import { LegalDocView } from "../components/legal_doc_view";
-import { legalPath } from "../lib/paths";
+import { legalPath, mainContentId } from "../lib/paths";
 import "../styles/legal.css";
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -30,14 +30,14 @@ export default function LegalPage({ loaderData, params }: Route.ComponentProps) 
 
   if (!game || !doc) {
     return (
-      <main className="content">
+      <main className="content" id={mainContentId} tabIndex={-1}>
         <p>Not found / Bulunamadı</p>
       </main>
     );
   }
 
   return (
-    <main>
+    <main id={mainContentId} tabIndex={-1}>
       <header>
         <div className="header_eyebrow en_content">Neawe Forge · Legal Documents</div>
         <div className="header_eyebrow tr_content">Neawe Forge · Yasal Belgeler</div>

@@ -45,6 +45,22 @@
   .section { padding: 56px 16px; }
 }
 
+/* ══ BACK LINK ══ */
+/* Same treatment as legal.css's .back_to_top — kept as a separate rule
+   since this one lives in a globally-imported file and back_to_top is
+   scoped to legal pages only. */
+.back_link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  text-decoration: none;
+}
+.back_link:hover { color: var(--green); }
+
 /* ══ "KOR HATTI" (EMBER SEAM) ══ */
 /* The one recurring signature accent — a 2px orange→green gradient line.
    Apply only at a page's single biggest visual moment; see the token

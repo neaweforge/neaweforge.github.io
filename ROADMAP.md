@@ -9,22 +9,17 @@ Adlandırma, dizin ve URL kuralları için `CONVENTIONS.md`.
 
 ## Durum Özeti — 2026-08-13
 
-**Durum:** Faz 8 (Semantik ve Erişilebilirlik) kısmen tamamlandı — kod tarafı
-bitti, 3 karar açık. Dependabot majör sürüm güncellemesi tamamlandı, henüz
-commit'lenmedi.
+**Durum: Faz 8 (Semantik ve Erişilebilirlik) TAMAMLANDI.** Kontrast
+taraması sıfır geçemeyen satırla kapandı (194 ham ölçüm, 54 benzersiz
+token çifti, hepsi WCAG AA eşiğini geçiyor). 404 linki stillendirildi,
+skip-to-content eklendi ve klavyeyle test edildi. Kontrast düzeltmesi
+sırasında bulunan 2 marka-tutarlılığı hatası (`--ctrl-active-br` ve
+`--green-glow`, ikisi de açık tema) düzeltildi, `--ctrl-*` ailesindeki 5
+kırılgan kopya `var()` ile kaynağına bağlandı — tekrarlanan hex artık
+`tokens.css`'te yok (grep ile doğrulandı). Dependabot majör sürüm
+güncellemesi de tamamlandı. Hiçbiri henüz commit'lenmedi.
 
-**Açık 3 karar (Faz 8'i kapatmak için gereken tek şey bunlar):**
-
-1. Kontrast tablosundaki 14 geçemeyen token çifti (aşağıda, Faz 8 içinde) —
-   hangi renk nasıl değişecek?
-2. 404 sayfasının stilsiz "← Studio Hub" linki — sitenin diğer linkleriyle
-   aynı stili alsın mı?
-3. Skip-to-content bağlantısı eklensin mi? (Öneri: düşük öncelikli ama
-   sıfır maliyetli değil — nav kısa olduğu için gerekmeyebilir.)
-
-**Sıradaki adım:** 3 karar netleşince uygulanır, build alınır, Faz 8
-"Tamamlandı" olarak işaretlenir, ardından Faz 9'a (SEO ve Sosyal Paylaşım)
-geçilir.
+**Sıradaki adım:** Faz 9'a (SEO ve Sosyal Paylaşım) geçilir.
 
 ---
 
@@ -150,9 +145,11 @@ yapılırsa yapılsın kısayol her zaman ana sayfayı açsın diye. Build
 
 ## Faz 8 — Semantik ve Erişilebilirlik
 
-**Durum: Kısmen tamamlandı** (2026-08-10). Semantik/etiket/klavye/ekran-okuyucu
-maddeleri bitti. Kontrast token'ları ve iki görsel karar açık — aşağıda
-ayrı işaretli.
+**Durum: ✅ TAMAMLANDI** (kontrast ve klavye/semantik maddeleri 2026-08-10,
+kontrast token güncellemesi + 404 link + skip-to-content 2026-08-13,
+kontrast taraması sıfır geçemeyen satırla kapandı ve kapanışta bulunan
+2 marka-tutarlılığı hatası + 5 kırılgan token kopyası düzeltildi
+2026-08-13, aynı gün ikinci tur).
 
 **Başlık yapısı — ✅ tamamlandı.** Her sayfada tam 1 `<h1>`, atlamasız
 h1→h2→h3: kurucu sayfası (`founder_name`→h1, `label_eyebrow`/
@@ -187,48 +184,115 @@ Esc odağı tetikleyiciye döndürüyor, dil/tema değişince odak kaybolmuyor.
 ve TR ayrı ayrı tam ağaç kontrolü: gizli dil (`display:none`) hiçbir zaman
 ağaçta görünmüyor, çift okuma riski yok.
 
-**⚠️ Kontrast — ÖLÇÜLDÜ, KARAR BEKLİYOR (tokens.css'e dokunulmadı).**
-Playwright ile gerçek sayfalar taranıp her görünür metin/zemin çiftinin
-gerçek renkleri okundu, WCAG formülüyle hesaplandı (170 ham ölçüm → 54
-benzersiz token çifti). WCAG AA hedefi: normal metin 4.5:1, büyük metin
-(18px+ veya 14px+ bold) 3:1. **Geçemeyen 14 çift:**
+**✅ Kontrast — 5 token güncellendi, yeniden tarandı (2026-08-13).**
+`tokens.css`'te 5 değer değişti: koyu tema `--text-mute` `#5a6a56`→`#7c9276`,
+koyu tema `--orange` `#c85a18`→`#d9621a`, açık tema (hem `[data-theme="light"]`
+hem `@media (prefers-color-scheme: light)` bloğu, ikisi de) `--cyan`
+`#0e96a4`→`#0b737e`, `--green` `#38920a`→`#2e7708`, `--orange` `#b84e10`→`#ad490f`.
+Playwright taraması tekrar çalıştırıldı (194 ham ölçüm → 53 benzersiz token
+çifti, önceki turdan daha fazla — skip-to-content ve 404 link stilinin
+eklenmesiyle yeni ölçülebilir eleman sayısı arttı). **Önceki 14 geçemeyen
+çiftten 10'u artık geçiyor:**
 
-| Tema | Metin token | Zemin token | Oran | Nerede kullanılıyor |
+| Tema | Metin token | Zemin | Eski oran | Yeni oran |
 | --- | --- | --- | --- | --- |
-| koyu | `--text-mute` #5a6a56 | `--surface3` #1f271f | 2.65 | "Screenshot coming soon" yer tutucu |
-| koyu | `--text-mute` #5a6a56 | `--surface2`/`--ctrl-bg` #192019 | 2.88 | nav butonları "EN"/"TR", footer sosyal linkler |
-| light | `--cyan` #0e96a4 | `--surface3` #dfebd8 | 2.88 | tech_chip ("Flutter" vb.) |
-| light | `--cyan` #0e96a4 | `--surface2` #eaf0e5 | 2.92 | "Legal Docs ↗" rozeti |
-| light | `--green` #38920a | `--surface2` #eaf0e5 | 3.10 | "Soon" rozeti (yeşil kısım) |
-| koyu | `--text-mute` #5a6a56 | `--surface` #111511 | 3.19 | nav_link "Founder", footer telif, legal header_eyebrow |
-| light | `--green` #38920a | `--surface3` #dfebd8 | 3.22 | tablo `<th>` başlıkları |
-| light | `--cyan` #0e96a4 | `--bg` #f3f6ef | 3.25 | dış link metinleri (policies.google.com vb.) |
-| koyu | `--text-mute` #5a6a56 | `--bg` #0a0d0a | 3.38 | "Find Me", versiyon no, "Back to top" |
-| koyu | `--orange` #c85a18 | `--surface2` #192019 | 3.43 | "Soon" rozeti (turuncu kısım) |
-| light | `--green` #38920a | `--bg` #f3f6ef | 3.64 | eyebrow'lar ("Games & Projects" vb.), `section_num` |
-| light | `--orange` #b84e10 | `--surface2` #eaf0e5 | 3.96 | "Soon" rozeti (açık tema turuncu) |
-| light | `--green` #38920a | `--surface` #ffffff | 3.97 | nav logo "Forge", e-posta linkleri |
-| koyu | `--orange` #c85a18 | `--warn-bg` #1a1208 | 4.35 | "⚠ Important Security Notice" (4.5'e çok yakın) |
+| koyu | `--text-mute` | `--surface3` | 2.65 | 4.55 ✅ |
+| koyu | `--text-mute` | `--surface` | 3.19 | 5.47 ✅ |
+| koyu | `--text-mute` | `--bg` | 3.38 | 5.80 ✅ |
+| light | `--cyan` | `--surface3` | 2.88 | 4.52 ✅ |
+| light | `--cyan` | `--surface2` | 2.92 | 4.59 ✅ |
+| light | `--green` | `--surface3` | 3.22 | 4.53 ✅ |
+| light | `--cyan` | `--bg` | 3.25 | 5.11 ✅ |
+| light | `--green` | `--bg` | 3.64 | 5.12 ✅ |
+| light | `--green` | `--surface` | 3.97 | 5.59 ✅ |
+| koyu | `--orange` | `--warn-bg` | 4.35 | 5.04 ✅ |
 
-**En kritik/sistemik bulgu:** `--text-mute` **koyu temada** kendi 4 tipik
-zemininin HİÇBİRİNE karşı geçmiyor (yukarıdaki 4 satır). Aynı token açık
-temada (`#3e5a38`) aynı zeminlere karşı 6.24–7.71 ile sorunsuz — yani tek
-yönlü, koyu temaya özgü bir sorun. Açık temada `--cyan`/`--green`/`--orange`
-bazı yüzeylere karşı geçemiyor ama aynı renklerin koyu temadaki halleri
-(`--green` #5cb84a, `--cyan` #1eb8c4) çoğu zeminde zaten geçiyor (7-8:1) —
-sorun büyük ölçüde açık temanın accent renklerinin biraz soluk kalması ve
-koyu temanın `--text-mute`'unun biraz karanlık kalması. Karar bekleyen:
-hangi token değişecek, ne kadar (ör. sadece `--text-mute` mü, yoksa accent
-renkler de mi).
+**✅ Kalan 4 çift de çözüldü — ikinci tur (2026-08-13).** Kalan 4 satır,
+listelenen 5 token'ın dışında iki ayrı token'a bağlıydı:
 
-**⚠️ Gerçek bug bulundu, görsel karar bekliyor:** 404 sayfasının
-"← Studio Hub" linkinde hiç CSS class yok, tarayıcı varsayılan mavisiyle
-render oluyor (koyu zeminde 2.08:1). Düzeltme görsel bir değişiklik
-(link rengi) gerektirdiği için dokunulmadı.
+- **`--ctrl-text`** (koyu+açık) — `--text-mute` ile aynı eski hex'i elle iki
+  yerde taşıyordu, biri düzelince diğeri düzelmedi. Artık bağımsız bir hex
+  değil: `--ctrl-text: var(--text-mute)`. Bir daha ayrışamaz.
+- **`--badge-bg`** (koyu+açık) — `rgba()` idi, gerçek rengi altındaki yüzeye
+  göre değişiyordu. Kullanıldığı asıl yüzey (`--surface2`, oyun kartı zemini)
+  üzerinde hesaplanmış opak hex'e çevrildi, sonra hem `--green` hem `--orange`
+  metnin 4.5'i geçmesi için ayarlandı (koyuda koyulaştırıldı, açıkta
+  açıldı; 4.5 tam sınırında değil, ~4.6 güvenlik payıyla): koyu
+  `#151f14` (30 adımlık aramada 30. adım), açık `#e2ecdb` (21. adım).
 
-**⚠️ Atlama bağlantısı ("skip to content") — değerlendirme yapıldı, karar
-bekliyor.** Nav kısa (mobilde 3, masaüstünde en fazla ~8 durak) olduğu için
-düşük öncelikli ama sıfır maliyetli değil; eklenmedi.
+| Tema | Metin token | Zemin | Eski oran | Yeni oran |
+| --- | --- | --- | --- | --- |
+| koyu | `--ctrl-text` | `--ctrl-bg` | 2.88 | 4.94 ✅ |
+| koyu | `--orange` | `--badge-bg` (opak) | 3.98 | 4.61 ✅ |
+| light | `--green` | `--badge-bg` (opak) | 4.36 | 4.59 ✅ |
+| light | `--orange` | `--badge-bg` (opak) | 4.39 | 4.62 ✅ |
+
+**Son tarama: 194 ham ölçüm → 54 benzersiz token çifti, 54/54 GEÇTİ, 0
+geçemeyen.** En düşük oran 4.52:1 (`--cyan`/`--surface3`, açık tema), en
+yüksek 17.89:1. Playwright ile doğrulandı, elle hesaplanmadı.
+
+**✅ Duplicate-hex denetiminin sonucu düzeltildi (2026-08-13, ikinci tur).**
+`--ctrl-text` düzeltmesi istenirken tokens.css'teki tüm el-ile-kopyalanmış
+hex tekrarları tarandı, 7 örnek daha bulundu — hepsi çözüldü:
+
+- **2 çift gerçekten bozuktu, düzeltildi:** `--ctrl-active-br` (açık tema,
+  `#38920a` eski `--green`'di → artık `var(--green)`, çözülen `#2e7708`)
+  ve `--green-glow` (açık tema, `rgba(56,146,10,…)` eski `--green`'in
+  RGB'siydi → `rgba(46,119,8,…)`'e güncellendi, güncel `--green` ile
+  eşleşiyor). İkisi de sadece `:hover`'da görünüyordu (ayarlar butonu
+  aktif kenarlığı, "Explore Games" CTA hover parıltısı) — bu yüzden statik
+  kontrast taraması yakalamamıştı, gerçek klavye/fare hover testiyle ve
+  `getComputedStyle` ile doğrulandı.
+- **5 çift senkrondu ama kırılgandı, artık gerçek `var()` alias:**
+  `--ctrl-bg: var(--surface2)`, `--ctrl-br: var(--border2)` (koyu) /
+  `var(--border)` (açık), `--ctrl-active-bg: var(--green-dim)`,
+  `--ctrl-active-text: var(--text)`, `--ctrl-active-br: var(--green)`
+  (artık her iki temada da, koyu için de).
+- **`--green-glow`, iki temada da,** `rgba()` olduğu için doğrudan `var()`
+  alamıyor (renk argümanı hex string kabul etmiyor) — RGB triplet elle
+  senkron tutuluyor, yanına "bu değer --green ile senkron tutulmalı" yorumu
+  eklendi.
+
+`tokens.css`'te el-ile-tekrarlanan hex kalmadığı bir script ile doğrulandı
+(her iki tema bloğu ayrı ayrı tarandı, sıfır duplicate). Kalıcı kural
+`CONVENTIONS.md`'ye yazıldı ("tokens.css — tek kaynak kuralı"): bir renk
+değeri yalnızca bir yerde ham tanımlanır, gerisi `var()` ile bağlanır.
+
+Kontrast taraması tekrar çalıştırıldı: **54/54 GEÇTİ, hâlâ 0 geçemeyen**
+(alias'lar aynı sonuç değerine çözüldüğü için beklenen sonuç). Hover
+durumları (ayarlar paneli aktif pilli, CTA hover parıltısı, rozet hover
+dolgusu) koyu+açık temada ekran görüntüsüyle ve `getComputedStyle` ile
+ayrıca doğrulandı — `--ctrl-active-br`/`--green-glow` artık ikisi de
+güncel `--green`'e (`#2e7708`) çözülüyor.
+
+**✅ 404 sayfası linki — düzeltildi (2026-08-13).** "← Studio Hub" /
+"← Ana Sayfa" linkine `layout.css`'te yeni, global `.back_link` class'ı
+eklendi (legal sayfalardaki `.back_to_top` ile birebir aynı stil:
+`--text-mute` rengi, hover'da `--green`) — artık tarayıcı varsayılan
+mavisi değil, sitenin geri kalanıyla tutarlı. Ölçülen: koyu tema 5.80:1,
+açık tema 7.06:1 (ikisi de 4.5 hedefinin üstünde).
+
+**✅ Skip-to-content bağlantısı — eklendi (2026-08-13).** `app/lib/paths.ts`'e
+`mainContentId` sabiti, `app/components/skip_link.tsx`'e `SkipLink`
+bileşeni eklendi; `root.tsx`'te `<body>`'nin ilk çocuğu olarak render
+ediliyor. `base.css`'te `.skip_link` — `transform: translateY(-100%)` ile
+ekran dışına gizli (`display:none` değil, odaklanabilir kalıyor),
+`:focus`'ta `translateY(0)` ile görünür oluyor; `--ctrl-active-bg`/
+`--ctrl-active-text` token'larıyla markaya uygun. Hedefi tüm route'ların
+`<main>`'i, hepsine `id={mainContentId}` + `tabIndex={-1}` eklendi (odak
+gerçekten taşınıyor, sadece scroll değil). Gerçek klavye etkileşimiyle
+test edildi (Playwright `keyboard.press`): ilk Tab linke odaklanıyor ve
+`top:0`'a taşıyor (dark 6.01:1, light 13.40:1 kontrast), Enter `<main>`'e
+odağı taşıyor (`document.activeElement.id === "main_content"`), sıradaki
+Tab `<main>` içindeki ilk gerçek elemana (`.hero_cta`) gidiyor.
+`prefers-reduced-motion` zaten global blok tarafından kapsanıyor, ayrı
+işlem gerekmedi.
+
+**Görsel regresyon — kontrol edildi (2026-08-13).** Yeni token'larla anasayfa,
+kurucu sayfası, yasal sayfa, 404 — hepsi koyu ve açık temada ekran görüntüsü
+alındı. Renk uyumunda bozulma yok, "Kor Hattı" (turuncu→yeşil gradient)
+hero altında, oyun kartı üst kenarında ve yasal sayfa başlığında beklendiği
+gibi görünüyor.
 
 ---
 

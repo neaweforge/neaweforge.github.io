@@ -8,27 +8,42 @@
   --border2:    #324232;
   --green:      #5cb84a;
   --green-dim:  #2e6626;
+  /* Can't be var(--green) directly — rgba()'s color argument doesn't accept
+     a custom property that already contains a hex string. Keep this RGB
+     triplet in sync with --green by hand whenever --green changes. */
   --green-glow: rgba(92,184,74,.12);
-  --orange:     #c85a18;
+  --orange:     #d9621a;
   --orange-dim: #7a3510;
   --cyan:       #1eb8c4;
   --cyan-dim:   #0e6e78;
   --text:       #eef0ea;
   --text-soft:  #a8b4a4;
-  --text-mute:  #5a6a56;
+  --text-mute:  #7c9276;
   --display:    'Cinzel', 'Times New Roman', serif;
   --body:       'Jost', system-ui, sans-serif;
   --mono:       'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
   --shadow:     rgba(0,0,0,.4);
-  --badge-bg:   rgba(92,184,74,.08);
+  /* Opaque, not translucent — a translucent fill's real on-screen color
+     depends on whatever surface sits behind it, which made its contrast
+     against the badge text unmeasurable in the abstract. Value computed by
+     blending the old rgba(92,184,74,.08) over --surface2 (its dominant
+     usage, the game card background) and then darkened until both badge
+     text colors (--green, --orange) clear 4.5:1 against it. */
+  --badge-bg:   #151f14;
   --warn-bg:    #1a1208;
   --warn-br:    #c87a18;
-  --ctrl-bg:    #192019;
-  --ctrl-br:    #324232;
-  --ctrl-text:  #5a6a56;
-  --ctrl-active-bg:   #2e6626;
-  --ctrl-active-br:   #5cb84a;
-  --ctrl-active-text: #eef0ea;
+  /* --ctrl-* mirrors existing surface/text/green tokens by design — aliased
+     with var() rather than holding its own copy of the hex, the same fix
+     applied to --ctrl-text below (see CONVENTIONS.md's single-source rule). */
+  --ctrl-bg:    var(--surface2);
+  --ctrl-br:    var(--border2);
+  /* Was its own hardcoded hex that happened to equal --text-mute's old
+     value — the two silently diverged the moment only one of them got a
+     contrast fix. Aliased so that can't happen again. */
+  --ctrl-text:  var(--text-mute);
+  --ctrl-active-bg:   var(--green-dim);
+  --ctrl-active-br:   var(--green);
+  --ctrl-active-text: var(--text);
   /* "Kor Hattı" (Ember Seam) — the site's one recurring signature accent.
      Used sparingly, only at a page's single biggest visual moment (hero
      rule, game card top edge, legal doc header) — never as a default
@@ -45,26 +60,29 @@
   --surface3:   #dfebd8;
   --border:     #c4d4bc;
   --border2:    #b0c8a6;
-  --green:      #38920a;
+  --green:      #2e7708;
   --green-dim:  #c8e8bc;
-  --green-glow: rgba(56,146,10,.10);
-  --orange:     #b84e10;
+  /* Can't be var(--green) directly — rgba()'s color argument doesn't accept
+     a custom property that already contains a hex string. Keep this RGB
+     triplet in sync with --green by hand whenever --green changes. */
+  --green-glow: rgba(46,119,8,.10);
+  --orange:     #ad490f;
   --orange-dim: #f8d8c4;
-  --cyan:       #0e96a4;
+  --cyan:       #0b737e;
   --cyan-dim:   #b4eaf0;
   --text:       #0e1a10;
   --text-soft:  #1e3020;
   --text-mute:  #3e5a38;
   --shadow:     rgba(0,0,0,.10);
-  --badge-bg:   rgba(56,146,10,.09);
+  --badge-bg:   #e2ecdb;
   --warn-bg:    #fff5ec;
   --warn-br:    #c87030;
-  --ctrl-bg:    #eaf0e5;
-  --ctrl-br:    #c4d4bc;
-  --ctrl-text:  #3e5a38;
-  --ctrl-active-bg:   #c8e8bc;
-  --ctrl-active-br:   #38920a;
-  --ctrl-active-text: #0e1a10;
+  --ctrl-bg:    var(--surface2);
+  --ctrl-br:    var(--border);
+  --ctrl-text:  var(--text-mute);
+  --ctrl-active-bg:   var(--green-dim);
+  --ctrl-active-br:   var(--green);
+  --ctrl-active-text: var(--text);
 }
 
 @media (prefers-color-scheme: light) {
@@ -75,25 +93,28 @@
     --surface3:   #dfebd8;
     --border:     #c4d4bc;
     --border2:    #b0c8a6;
-    --green:      #38920a;
+    --green:      #2e7708;
     --green-dim:  #c8e8bc;
-    --green-glow: rgba(56,146,10,.10);
-    --orange:     #b84e10;
+    /* Can't be var(--green) directly — rgba()'s color argument doesn't
+       accept a custom property that already contains a hex string. Keep
+       this RGB triplet in sync with --green by hand whenever it changes. */
+    --green-glow: rgba(46,119,8,.10);
+    --orange:     #ad490f;
     --orange-dim: #f8d8c4;
-    --cyan:       #0e96a4;
+    --cyan:       #0b737e;
     --cyan-dim:   #b4eaf0;
     --text:       #0e1a10;
     --text-soft:  #1e3020;
     --text-mute:  #3e5a38;
     --shadow:     rgba(0,0,0,.10);
-    --badge-bg:   rgba(56,146,10,.09);
+    --badge-bg:   #e2ecdb;
     --warn-bg:    #fff5ec;
     --warn-br:    #c87030;
-    --ctrl-bg:    #eaf0e5;
-    --ctrl-br:    #c4d4bc;
-    --ctrl-text:  #3e5a38;
-    --ctrl-active-bg:   #c8e8bc;
-    --ctrl-active-br:   #38920a;
-    --ctrl-active-text: #0e1a10;
+    --ctrl-bg:    var(--surface2);
+    --ctrl-br:    var(--border);
+    --ctrl-text:  var(--text-mute);
+    --ctrl-active-bg:   var(--green-dim);
+    --ctrl-active-br:   var(--green);
+    --ctrl-active-text: var(--text);
   }
 }
