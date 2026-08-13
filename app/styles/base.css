@@ -35,3 +35,34 @@ html[lang="tr"] .tr_content { display: block; }
 .tr_inline { display: none; }
 html[lang="tr"] .en_inline { display: none; }
 html[lang="tr"] .tr_inline { display: inline; }
+
+/* ══ ACCESSIBILITY UTILITIES ══ */
+/* Present for assistive tech, invisible on screen — for text that needs to
+   be part of an element's accessible name without changing its visual
+   layout (e.g. appending a legal doc's type to its <h1>). */
+.sr_only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Single global switch for motion sensitivity — every transition/animation
+   on the site collapses to near-zero and smooth scrolling becomes instant.
+   Near-zero rather than literally 0 so nothing that waits on a
+   transitionend event silently breaks. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}

@@ -88,6 +88,31 @@ bozmaz, danışılmadan uygulanır.
   `.github/workflows/deploy.yml`, `.github/dependabot.yml` — bunların adları
   ilgili aracın kendisi tarafından aranıyor, değiştirilemez.
 
+## Dokümantasyon ve yorum dili
+
+Marka genelinde (bu site, `neawe.com`, `saitkaplan.com`) geçerli, tek karar:
+
+- **Kod yorumları İngilizce** — `.ts`, `.tsx`, `.css`, `.mjs`, `.yml` fark
+  etmeksizin. Kod zaten İngilizce isimlerle yazılıyor, yorumların da aynı
+  dilde olması tutarlılık sağlıyor.
+- **README.md İngilizce** — repoya ilk bakan kişinin okuduğu dosya budur.
+- **Diğer çalışma dokümanları (`KURULUM.md`, `CONVENTIONS.md`, `ROADMAP.md`
+  ve benzerleri) Türkçe kalabilir** — bunlar projeyi işleten kişiye yönelik
+  günlük çalışma dokümanlarıdır.
+
+**Dilden bağımsız, her ikisi için de geçerli kural — tarafsız dil:**
+Kod yorumları ve dokümantasyon, herhangi bir kişiye hitaben değil, projenin
+kendisi hakkında yazılır. Repo public olduğu için bu, üçüncü bir kişinin
+bir konuşmanın ortasına düşmüş gibi hissetmemesi için önemli.
+
+- Bir yorum/madde "neden böyle" olduğunu anlatır — hangi kısıtın, hangi
+  kararın sonucu olduğunu. "Kim karar verdi" bilgisi (isim, "sen/ben" gibi
+  hitaplar) yorumun bir parçası değildir; kararın kendisi ve gerekçesi kalır.
+- Örnek: ~~"senin istediğin gibi X yapıldı"~~ → "X yapıldı, çünkü Y" veya
+  sadece "X yapıldı" (gerekçe zaten madde içinde geçiyorsa).
+- Açık kalan bir karar "sana bırakıyorum" değil, tarafsız biçimde "karar
+  bekliyor" olarak yazılır.
+
 ## Neden alt çizgi, tire değil
 
 Marka genelinde (mobil projeler dahil) uygulanan bir karar. Google tire'yi

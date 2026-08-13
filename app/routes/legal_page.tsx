@@ -41,13 +41,27 @@ export default function LegalPage({ loaderData, params }: Route.ComponentProps) 
       <header>
         <div className="header_eyebrow en_content">Neawe Forge · Legal Documents</div>
         <div className="header_eyebrow tr_content">Neawe Forge · Yasal Belgeler</div>
-        <h1>{game.name}</h1>
+        <h1>
+          {game.name}
+          {/* Visually the heading only ever shows the game name — the doc
+              type is already restated right below in .header_sub. This
+              hidden span just makes the *type* part of the <h1>'s
+              accessible name too ("Words & Hammers — Privacy Policy"),
+              since the visible .header_sub line is marked aria-hidden
+              below to avoid announcing the same words twice. */}
+          <span className="sr_only en_content"> — {doc.en.headerSub}</span>
+          <span className="sr_only tr_content"> — {doc.tr.headerSub}</span>
+        </h1>
         <div className="header_rule" />
-        <p className="header_sub en_content">{doc.en.headerSub}</p>
-        <p className="header_sub tr_content">{doc.tr.headerSub}</p>
+        <p className="header_sub en_content" aria-hidden="true">
+          {doc.en.headerSub}
+        </p>
+        <p className="header_sub tr_content" aria-hidden="true">
+          {doc.tr.headerSub}
+        </p>
       </header>
 
-      <nav className="tabs_nav">
+      <nav className="tabs_nav" aria-label="Legal document tabs / Yasal belge sekmeleri">
         {docTabs.map((tab) => (
           <Link
             key={tab.docType}
@@ -60,7 +74,7 @@ export default function LegalPage({ loaderData, params }: Route.ComponentProps) 
         ))}
       </nav>
 
-      <div className="content" id="top">
+      <div className="content" id="top" tabIndex={-1}>
         <div className="en_content">
           <LegalDocView doc={doc} lang="en" content={doc.en} />
         </div>
@@ -68,8 +82,12 @@ export default function LegalPage({ loaderData, params }: Route.ComponentProps) 
           <LegalDocView doc={doc} lang="tr" content={doc.tr} />
         </div>
         <a className="back_to_top" href="#top">
-          <span className="en_inline">↑ Back to top</span>
-          <span className="tr_inline">↑ Başa dön</span>
+          <span className="en_inline">
+            <span aria-hidden="true">↑</span> Back to top
+          </span>
+          <span className="tr_inline">
+            <span aria-hidden="true">↑</span> Başa dön
+          </span>
         </a>
       </div>
     </main>

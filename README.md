@@ -1,101 +1,101 @@
 # neaweforge.com
 
-**Neawe Forge** için resmi geliştirici merkezi — bağımsız bir mobil oyun stüdyosunun marka genelindeki tanıtım, kurucu ve yasal belge sitesi.
+Official developer hub for **Neawe Forge** — a brand-wide site for an independent mobile game studio, covering studio introduction, founder profile, and legal documents.
 
-🌐 **Canlı site:** [https://neaweforge.com](https://neaweforge.com)
-
----
-
-## Sitede Neler Var
-
-- **Stüdyo tanıtımı** — Neawe Forge'un kim olduğu ve ne inşa ettiği (ana sayfa)
-- **Oyunlar** — yayınlanan ve geliştirilmekte olan oyunların vitrini
-- **Kurucu** — Sait Kaplan hakkında kısa, stüdyo odaklı bilgi (`/founder/`)
-- **Yasal Merkez** — her uygulama için gizlilik politikası ve kullanım koşulları
-
-**İngilizce / Türkçe** dil değişimi ve **koyu / açık / otomatik** tema seçimi desteklenmektedir.
+🌐 **Live site:** [https://neaweforge.com](https://neaweforge.com)
 
 ---
 
-## Teknoloji
+## What's on the Site
 
-**React 19 + Vite 7 + TypeScript + React Router 8** (framework mode). `ssr:false` ve build-time `prerender()` ile çalışır — sunucu tarafı çalışma zamanı yoktur, çıktı tamamen statik HTML/CSS/JS'tir. GitHub Pages bu statik çıktıyı doğrudan sunar.
+- **Studio introduction** — who Neawe Forge is and what it builds (home page)
+- **Games** — a showcase of released and in-development games
+- **Founder** — a short, studio-focused profile of the founder (`/founder/`)
+- **Legal center** — privacy policy and terms of service for each app
 
-Dağıtım `.github/workflows/deploy.yml` üzerinden GitHub Actions ile yapılır: `main`'e her push, build alır ve GitHub Pages'e yayınlar.
+**English / Turkish** language switching and **dark / light / auto** theme selection are both supported.
 
 ---
 
-## Yapı
+## Technology
+
+**React 19 + Vite 7 + TypeScript + React Router 8** (framework mode). Runs with `ssr:false` and a build-time `prerender()` — there is no server-side runtime, the output is entirely static HTML/CSS/JS. GitHub Pages serves that static output directly.
+
+Deployment runs through GitHub Actions via `.github/workflows/deploy.yml`: every push to `main` triggers a build and publishes to GitHub Pages.
+
+---
+
+## Structure
 
 ```text
 app/
-  root.tsx                    ← <html>/<body> iskeleti, boot script, global stil importları
-  routes.ts                   ← Route tanımları
+  root.tsx                    ← <html>/<body> shell, boot script, global style imports
+  routes.ts                   ← Route definitions
   routes/
-    home.tsx                  ← Ana sayfa (hero + oyun vitrini)
-    founder.tsx                ← Kurucu sayfası
-    legal_page.tsx             ← Tek dinamik route, her oyunun yasal belgelerini karşılar (:gameSlug/:docType)
+    home.tsx                  ← Home page (hero + game showcase)
+    founder.tsx                ← Founder page
+    legal_page.tsx             ← Single dynamic route serving every game's legal docs (:gameSlug/:docType)
     not_found.tsx               ← 404
-  components/                 ← Nav, Footer, GameCard, ayarlar paneli, yasal belge render bileşeni
+  components/                 ← Nav, Footer, GameCard, settings panel, legal doc renderer
   data/
-    games.ts                  ← Oyunların TEK veri kaynağı — yeni oyun eklemek route/prerender değişikliği gerektirmez
+    games.ts                  ← Single source of truth for games — adding a game needs no route/prerender changes
   content/
-    legal_types.ts             ← Yasal içerik tipleri
-    legal_content.ts            ← games.ts ↔ yasal içerik eşleşmesi, eksikse build'i patlatır
-    words_and_hammers/         ← Her oyunun kendi klasöründe EN+TR yasal metinleri
+    legal_types.ts             ← Legal content types
+    legal_content.ts            ← Maps games.ts to legal content; the build fails if a game is missing content
+    words_and_hammers/         ← Each game's own folder with EN+TR legal text
   lib/
-    paths.ts                  ← Tüm site-içi URL'ler ve route-id'ler TEK yerden üretilir
-    site_config.ts             ← İletişim adresi, sosyal linkler, stüdyo durum metni
-    theme_lang.ts / theme_lang_context.tsx  ← Tema/dil state + localStorage
-  styles/                     ← Sayfa/bileşen bazlı CSS, snake_case (bkz. CONVENTIONS.md)
+    paths.ts                  ← Every internal URL and route id is generated from this one place
+    site_config.ts             ← Contact address, social links, studio status text
+    theme_lang.ts / theme_lang_context.tsx  ← Theme/language state + localStorage
+  styles/                     ← Per-page/component CSS, snake_case (see CONVENTIONS.md)
 public/
   CNAME, .nojekyll
   favicon.ico, favicon.svg, apple_touch_icon.png, icon_192.png, icon_512.png
-  site_manifest.json          ← Android "ana ekrana ekle" için isim/ikon — PWA değil, servis worker yok
+  site_manifest.json          ← Name/icon for Android "add to home screen" — not a PWA, no service worker
 scripts/
-  postbuild.mjs                ← Build sonrası: 404.html kopyalama, CNAME/.nojekyll doğrulama, kullanılmayan dosya temizliği
+  postbuild.mjs                ← Post-build: copies 404.html, verifies CNAME/.nojekyll, removes unused files
 ```
 
-### Yasal Belge URL'leri
+### Legal Document URLs
 
-Her uygulama `app/data/games.ts`'te bir `slug` ile tanımlanır, yasal sayfaları otomatik olarak şu adreslerde oluşur:
+Each app is defined by a `slug` in `app/data/games.ts`; its legal pages are generated automatically at:
 
-| Uygulama | Gizlilik Politikası | Kullanım Koşulları |
+| App | Privacy Policy | Terms of Service |
 | --- | --- | --- |
 | Words & Hammers | `https://neaweforge.com/words_and_hammers/privacy_policy/` | `https://neaweforge.com/words_and_hammers/terms_of_service/` |
 
-### Yeni Bir Oyun Ekleme
+### Adding a New Game
 
-1. `app/data/games.ts`'e yeni bir `Game` girdisi eklenir (slug, ad, paket kimliği, açıklama, teknoloji rozetleri, mağaza linkleri, ekran görüntüleri)
-2. `app/content/<slug>/privacy_policy.ts` ve `terms_of_service.ts` dosyaları oluşturulur, `app/content/legal_content.ts`'e kaydedilir
-3. Bu kadar — route'lar, prerender yolları ve ana sayfadaki oyun kartı otomatik oluşur. `legal_content.ts` bir oyun için eksikse build hata verip durur, sessizce boş sayfa yayınlamaz.
+1. Add a new `Game` entry to `app/data/games.ts` (slug, name, package id, description, tech badges, store links, screenshots)
+2. Create `app/content/<slug>/privacy_policy.ts` and `terms_of_service.ts`, and register them in `app/content/legal_content.ts`
+3. That's it — routes, prerender paths, and the home page's game card are generated automatically. If a game is missing an entry in `legal_content.ts`, the build fails instead of silently publishing an empty page.
 
 ---
 
-## Yerel Çalıştırma
+## Running Locally
 
 ```bash
-npm install   # yalnızca ilk seferde
-npm run dev   # http://localhost:5173 — sadece localhost'a bağlanır
+npm install   # first time only
+npm run dev   # http://localhost:5173 — binds to localhost only
 ```
 
-Sıfırdan kurulum (Node.js dahil) için adım adım [KURULUM.md](KURULUM.md).
+For a from-scratch setup guide, including Node.js installation, see [KURULUM.md](KURULUM.md) (Turkish).
 
-Diğer komutlar:
+Other commands:
 
 ```bash
-npm run build       # prodüksiyon build'i (build/client/)
-npm run typecheck   # React Router tip üretimi + tsc
+npm run build       # production build (build/client/)
+npm run typecheck   # React Router type generation + tsc
 ```
 
 ---
 
-## Adlandırma Standardı
+## Naming Standard
 
-Dosya/klasör/URL/CSS sınıfı adlandırması için tek referans [CONVENTIONS.md](CONVENTIONS.md)'dir.
+File/folder/URL/CSS class naming follows [CONVENTIONS.md](CONVENTIONS.md) (Turkish).
 
 ---
 
-## İletişim
+## Contact
 
 📧 [support@neaweforge.com](mailto:support@neaweforge.com)

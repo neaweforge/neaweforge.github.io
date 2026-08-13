@@ -5,7 +5,7 @@ function StoreBadge({ url, name }: { url: string | null; name: string }) {
   if (url) {
     return (
       <a className="status_badge store" href={url} target="_blank" rel="noopener noreferrer">
-        {name} ↗
+        {name} <span aria-hidden="true">↗</span>
       </a>
     );
   }
@@ -67,15 +67,19 @@ export function GameCard({ game }: { game: Game }) {
               </a>
             ))}
           </div>
-          <div className="game_title">{game.name}</div>
+          <h3 className="game_title">{game.name}</h3>
           <p className="game_desc en_content">{game.description.en}</p>
           <p className="game_desc tr_content">{game.description.tr}</p>
           <div className="game_status">
             <StoreBadge url={game.stores.android} name="Play Store" />
             <StoreBadge url={game.stores.ios} name="App Store" />
             <a className="status_badge legal" href={legalPath(game.slug, "privacy_policy")}>
-              <span className="en_inline">Legal Docs ↗</span>
-              <span className="tr_inline">Yasal Belgeler ↗</span>
+              <span className="en_inline">
+                Legal Docs <span aria-hidden="true">↗</span>
+              </span>
+              <span className="tr_inline">
+                Yasal Belgeler <span aria-hidden="true">↗</span>
+              </span>
             </a>
           </div>
         </div>

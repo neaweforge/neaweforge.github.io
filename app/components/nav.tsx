@@ -38,7 +38,7 @@ export function Nav() {
   }, [panelOpen]);
 
   return (
-    <nav className="nav">
+    <nav className="nav" aria-label="Main navigation / Ana gezinme">
       <Link to={homePath} className="nav_logo">
         Neawe <span className="forge">Forge</span>
       </Link>

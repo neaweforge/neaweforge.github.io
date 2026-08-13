@@ -16,7 +16,7 @@ const metaLabels = {
 function LegalBlockView({ block }: { block: LegalBlock }) {
   switch (block.kind) {
     case "subtitle":
-      return <p className="sub_title" dangerouslySetInnerHTML={{ __html: block.html }} />;
+      return <h3 className="sub_title" dangerouslySetInnerHTML={{ __html: block.html }} />;
     case "paragraph":
       return <p dangerouslySetInnerHTML={{ __html: block.html }} />;
     case "list":
@@ -35,7 +35,9 @@ function LegalBlockView({ block }: { block: LegalBlock }) {
             <thead>
               <tr>
                 {block.headers.map((header) => (
-                  <th key={header}>{header}</th>
+                  <th key={header} scope="col">
+                    {header}
+                  </th>
                 ))}
               </tr>
             </thead>
@@ -97,10 +99,10 @@ export function LegalDocView({ doc, lang, content }: LegalDocViewProps) {
         const isHeavy = section.blocks.some((block) => block.kind === "table" || block.kind === "list");
         return (
           <div className={`legal_section${isHeavy ? " legal_section_heavy" : ""}`} key={section.number}>
-            <div className="section_title">
+            <h2 className="section_title">
               <span className="section_num">{section.number}</span>
               {section.title}
-            </div>
+            </h2>
             {section.blocks.map((block, blockIndex) => (
               // eslint-disable-next-line react/no-array-index-key
               <LegalBlockView key={blockIndex} block={block} />

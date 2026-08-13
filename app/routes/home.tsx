@@ -15,7 +15,7 @@ export function meta(_: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <>
+    <main>
       <section className="hero">
         <div className="hero_badge">
           <span className="en_inline">Independent Game Studio</span>
@@ -38,28 +38,32 @@ export default function Home() {
           kelime bulmaca oyunu Words &amp; Hammers üzerinde çalışılıyor.
         </p>
         <a href="#games" className="hero_cta">
-          <span className="en_inline">Explore Games ↓</span>
-          <span className="tr_inline">Oyunları Keşfet ↓</span>
+          <span className="en_inline">
+            Explore Games{" "}
+            <span aria-hidden="true">↓</span>
+          </span>
+          <span className="tr_inline">
+            Oyunları Keşfet{" "}
+            <span aria-hidden="true">↓</span>
+          </span>
         </a>
       </section>
 
-      <main>
-        <div id="games" className="section">
-          <div className="section_eyebrow">
-            <span className="en_inline">Games &amp; Projects</span>
-            <span className="tr_inline">Oyunlar &amp; Projeler</span>
-          </div>
-          <div className="section_title">
-            <span className="en_inline">What We're Building</span>
-            <span className="tr_inline">Neler Geliştiriyoruz</span>
-          </div>
-          <div className="game_card_list">
-            {games.map((game) => (
-              <GameCard key={game.slug} game={game} />
-            ))}
-          </div>
+      <div id="games" className="section">
+        <div className="section_eyebrow">
+          <span className="en_inline">Games &amp; Projects</span>
+          <span className="tr_inline">Oyunlar &amp; Projeler</span>
         </div>
-      </main>
-    </>
+        <h2 className="section_title">
+          <span className="en_inline">What We're Building</span>
+          <span className="tr_inline">Neler Geliştiriyoruz</span>
+        </h2>
+        <div className="game_card_list">
+          {games.map((game) => (
+            <GameCard key={game.slug} game={game} />
+          ))}
+        </div>
+      </div>
+    </main>
   );
 }

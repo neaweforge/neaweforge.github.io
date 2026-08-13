@@ -12,7 +12,7 @@ export function Footer() {
         </div>
         <div className="footer_social">
           <a href={siteConfig.social.x} target="_blank" rel="noopener noreferrer">
-            𝕏 Twitter
+            <span aria-hidden="true">𝕏</span> Twitter
           </a>
           <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn
