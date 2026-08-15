@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "react-router dev",
-    "build": "react-router build && node scripts/postbuild.mjs",
+    "build": "react-router build && node scripts/postbuild.mjs && node scripts/generate_sitemap.mjs",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {

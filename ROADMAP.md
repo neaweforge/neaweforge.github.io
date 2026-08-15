@@ -19,7 +19,18 @@ kırılgan kopya `var()` ile kaynağına bağlandı — tekrarlanan hex artık
 `tokens.css`'te yok (grep ile doğrulandı). Dependabot majör sürüm
 güncellemesi de tamamlandı. Hiçbiri henüz commit'lenmedi.
 
-**Sıradaki adım:** Faz 9'a (SEO ve Sosyal Paylaşım) geçilir.
+**Durum: Faz 9 (SEO ve Sosyal Etiketler) TAMAMLANDI** (2026-08-13, og:image
+hariç — Faz 12'ye ertelendi). Yaklaşan logo/renk yenilemesi nedeniyle
+görsele/renk paletine bağlı her iş Faz 12'de toplanıyor — kapsam ve yeni
+faz sıralaması (9 SEO, 10 Yasal Denetim, 11 Ölçüm ve Performans, 12 Logo ve
+Renk Yenilemesi, 13 Bulut Hesap Paketi) aşağıda güncel. Her sayfada EN+TR
+title/description (onaylanmış metinlerle), canonical URL, OG/Twitter metin
+etiketleri, `Organization`+`SoftwareApplication` JSON-LD, `robots.txt`,
+build'den üretilen `sitemap.xml` — hepsi uygulandı ve doğrulandı. Hiçbiri
+henüz commit'lenmedi.
+
+**Sıradaki adım:** Faz 10'a (Yasal Denetim) geçilir — kapsamı henüz
+detaylandırılmadı.
 
 ---
 
@@ -296,24 +307,124 @@ gibi görünüyor.
 
 ---
 
-## Faz 9 — SEO ve Sosyal Paylaşım
+## Faz 9 — SEO ve Sosyal Etiketler (og:image hariç)
 
-- Her sayfada `<title>` ve `meta description` (bazıları var, tamamlanacak)
-- `canonical` URL'ler
-- Open Graph ve Twitter Card etiketleri — X'te (@neawerse) paylaşımda düzgün
-  önizleme. `og:image` gerekiyor: 1200×630 WebP/PNG, marka görseli
-- JSON-LD yapılandırılmış veri: `Organization` (stüdyo), `SoftwareApplication`
-  (oyun, `games.ts`'ten beslensin)
-- `public/robots.txt`
-- `sitemap.xml` — build sırasında `prerender()` yollarından üretilsin, elle
-  yazılmasın
-- Yasal sayfalarda EN ve TR içeriğin ikisi de DOM'da; arama motorunun bunu
-  yinelenen içerik saymaması için `hreflang` veya benzeri bir çözüm
-  değerlendirilecek
+**Durum: ✅ TAMAMLANDI** (2026-08-13). `og:image` ve renk paletine bağlı
+her şey **Faz 12'ye ertelendi** — yaklaşan logo/renk yenilemesi bu işi
+geçersiz kılacağı için: `og:image`/`twitter:image` etiketleri,
+`site_manifest.json`'daki `theme_color`/`background_color` revizyonu.
+
+**✅ Hreflang — araştırıldı, karar verildi ve gerekçesiyle kayıtlı: hiçbir
+şey yapılmıyor.** Hreflang aynı içeriğin FARKLI URL'lerdeki dil
+sürümlerini birbirine bağlar; bu sitede tek URL var, iki dil aynı sayfada
+— bağlanacak ikinci bir URL yok, yani hreflang teknik olarak anlamsız.
+Gerçek çözüm `/tr/...` gibi ayrı URL'ler olurdu, bilinçli olarak
+uygulanmadı: (1) route sayısı ikiye katlanır, kalıcı bakım yükü, (2) yasal
+URL'ler değişir, onlar mağazaya gidecek, (3) kazanç marjinal — bu siteye
+arama motorundan trafik hedeflenmiyor, ziyaretçi mağazadan veya doğrudan
+gelecek, (4) yasal sayfalarda iki dilin birlikte görünmesi avantaj —
+mağaza incelemecisi hangi dili konuşursa konuşsun okuyabiliyor. **Buna
+bağlı kabul:** `root.tsx`'in statik `<html lang="en">`'i prerender'da hep
+böyle kalıyor (dil script'i yalnızca tarayıcıda çalışıyor) — taranan HTML
+her zaman İngilizce, Türkçe içerik tarayıcıda görünür ama indekslenmiyor.
+Bu, siteye arama trafiği hedeflenmediği için bilinçli olarak kabul edildi,
+düzeltilmeye çalışılmadı. `og:locale="en_US"` + `og:locale:alternate="tr_TR"`
+eklendi — hreflang değil, sosyal platformlara sayfanın iki dilli olduğunu
+söylemenin ucuz yolu.
+
+**✅ Title + meta description — EN ve TR, onaylandı (3 düzeltmeyle).**
+Önce mevcut durum çıkarıldı (home/founder'da yalnızca EN vardı, legal ve
+404'te hiç description yoktu), sonra öneriler sunulup onaylandı:
+
+| Sayfa | Dil | Title | Description |
+| --- | --- | --- | --- |
+| `/` | EN | Neawe Forge — Independent Game Studio | Neawe Forge is an independent game studio building mobile games with Flutter, Dart & Flame. Currently developing Words & Hammers. |
+| `/` | TR | Neawe Forge — Bağımsız Oyun Stüdyosu | Flutter, Dart ve Flame ile mobil oyunlar geliştiren bağımsız oyun stüdyosu. Şu an Words & Hammers üzerinde çalışılıyor. |
+| `/founder/` | EN | Sait Kaplan — Founder, Neawe Forge | Sait Kaplan — founder and lead developer of Neawe Forge, an independent game studio. |
+| `/founder/` | TR | Sait Kaplan — Neawe Forge Kurucusu | Bağımsız oyun stüdyosu Neawe Forge'un kurucusu ve geliştiricisi Sait Kaplan. |
+| `/:game/privacy_policy/` | EN | `${game.name} — ${doc.en.headerSub}` (dinamik) | Privacy Policy for ${game.name} — how Neawe Forge collects, uses, and protects your data. |
+| `/:game/privacy_policy/` | TR | `${game.name} — ${doc.tr.headerSub}` (dinamik) | ${game.name} Gizlilik Politikası — Neawe Forge verilerinizi nasıl topluyor, kullanıyor ve koruyor. |
+| `/:game/terms_of_service/` | EN | `${game.name} — ${doc.en.headerSub}` (dinamik) | Terms of Service for ${game.name} — the rules for using the app, from Neawe Forge. |
+| `/:game/terms_of_service/` | TR | `${game.name} — ${doc.tr.headerSub}` (dinamik) | ${game.name} Kullanım Koşulları — uygulamayı kullanırken geçerli olan kurallar. |
+| `/404` | EN/TR | 404 — Neawe Forge (değişmedi) | The page you're looking for doesn't exist. / Aradığınız sayfa bulunamadı. |
+
+Legal sayfalar `game.name`/`doc.headerSub` ile şablon halinde
+(`app/routes/legal_page.tsx`'teki `legalDescription()`) — yeni oyun
+eklenince elle bir şey yazmaya gerek yok. Sunucudan giden `<title>`/
+`meta description` (crawler'ın gördüğü, her zaman EN — yukarıdaki hreflang
+kararına bakınız) `app/lib/seo.ts`'teki `buildMeta()`'dan geliyor.
+**Ek olarak** (istenenin ötesinde, düşük riskli): `app/lib/use_page_title.ts`'teki
+`usePageTitle()` hook'u, dil `tr`'ye çevrilince tarayıcı sekmesi
+başlığını VE description meta etiketini istemci tarafında TR'ye
+güncelliyor — SEO değeri yok (crawler bunu hiç görmüyor) ama TR
+ziyaretçinin sekme/yer imi başlığı doğru dilde görünüyor. Onaylanan TR
+description metinlerinin bir kullanım yeri olsun diye eklendi (yoksa hiç
+kullanılmayan ölü kod olarak kalacaklardı — kendi incelememde fark edilip
+düzeltildi).
+
+**✅ Canonical URL'ler.** `app/lib/paths.ts`'e `siteUrl`
+(`https://neaweforge.com`, `public/CNAME` ile aynı) ve `absoluteUrl()`
+eklendi. Her sayfa `buildMeta()` üzerinden `<link rel="canonical">` alıyor,
+sondaki slash dahil.
+
+**✅ Open Graph + Twitter Card metin etiketleri.** `og:title`,
+`og:description`, `og:url`, `og:type` (`website`), `og:site_name`
+(`Neawe Forge`), `og:locale`/`og:locale:alternate`, `twitter:card`
+(`summary` — `og:image` yokken doğru değer). Hepsi `buildMeta()`'da tek
+yerde, her route kendi title/description/path'ini veriyor. `og:image`
+eklenince `twitter:card`'ı `summary_large_image`'a çevirmek tek satır.
+
+**✅ JSON-LD.** `app/lib/json_ld.ts`: `organizationJsonLd()` (stüdyo —
+`name`, `url`, `sameAs` `site_config.ts`'teki sosyal linkler, `logo`
+**`icon_512.png`** — `favicon.ico`/`.svg` değil, Google'ın yapılandırılmış
+veri kuralları `logo` alanı için raster görsel (PNG/JPEG/WebP) istiyor,
+`.ico` desteklenmiyor ve `.svg` özellikle önerilmiyor) ve
+`softwareApplicationJsonLd(game)` (oyun — tamamen `games.ts`'ten, elle
+yazılmadı; mağaza linki yoksa `installUrl` eklenmiyor, veri yokken tahmin
+yürütülmedi). Organization `root.tsx`'in `meta()`'sından, her sayfada.
+**Gerçek bir react-router davranışı bulundu:** bir route kendi `meta()`'sını
+tanımlarsa üst (root) route'un meta'sı OTOMATİK BİRLEŞMİYOR, tamamen
+değişiyor — ilk uygulamada Organization şeması her sayfada kayboluyordu.
+Çözüm: her route'un `meta()`'sı `matches` argümanından root'un meta'sını
+bulup kendi listesinin başına ekliyor (`buildMeta()`'nın içinde,
+tek yerde). Build çıktısında doğrulandı: home 2 şema (Organization +
+SoftwareApplication), diğer 4 sayfa 1 şema (yalnızca Organization).
+
+**✅ `public/robots.txt`.** `Allow: /` + `Sitemap:` satırı, disallow
+kuralı yok (özel/admin alan yok).
+
+**✅ `sitemap.xml` — build'den üretiliyor, elle yazılmadı.**
+`scripts/generate_sitemap.mjs`, `react-router build` sonrası çalışıyor:
+`build/client`'ı gezip her `index.html`'i bir URL'e çeviriyor (404 hariç
+tutuluyor), `sitemap.xml`'i oraya yazıyor. `contentPaths()`'e (paths.ts,
+`prerender()`'ın da kullandığı aynı fonksiyon) bağlı olmak yerine
+GERÇEK build çıktısını okuyor — bu yüzden üretilen dosya sayısı ile
+sitemap'teki URL sayısı asla birbirinden kopamaz, "elle yazılmasın" kuralı
+en güçlü haliyle sağlanmış oluyor. Domain `public/CNAME`'den okunuyor
+(`siteUrl` burada da ayrıca tanımlanmadı). `package.json`'ın `build`
+script'ine eklendi. Doğrulandı: 4 URL (home, founder, 2 legal sayfa),
+404 doğru şekilde dışarıda.
+
+**Doğrulama:** typecheck+build temiz. Build çıktısında her sayfanın
+`<title>`/`meta description`/canonical/OG/JSON-LD'si grep ile tek tek
+kontrol edildi. Gerçek klavye/fare değil ama gerçek Playwright testiyle:
+dil TR'ye çevrilince sekme başlığı VE description meta'sı doğru TR
+metnine geçiyor, statik (sunucudan gelen) description EN kalıyor —
+ayrıca doğrulandı. `robots.txt`/`sitemap.xml` sunucudan 200 dönüyor.
+Görsel regresyon yok (bu fazda hiçbir CSS/görsel değişmedi) — ekran
+görüntüsüyle spot-check yapıldı.
 
 ---
 
-## Faz 10 — Ölçüm ve Performans
+## Faz 10 — Yasal Denetim
+
+Words & Hammers'ın gizlilik politikası/kullanım koşullarının, uygulamanın
+fiilen yaptıklarıyla eşleşip eşleşmediği denetlenecek. Kapsam henüz
+detaylandırılmadı, bu fazın konusu netleşince buraya yazılır.
+
+---
+
+## Faz 11 — Ölçüm ve Performans
 
 - **Cloudflare Web Analytics beacon** `root.tsx`'e eklenecek. DNS-only kurulum
   olduğu için Cloudflare panel analitiği hiçbir veri göremiyor; beacon tek yol.
@@ -333,7 +444,21 @@ verilmeden yapılmayacak.
 
 ---
 
-## Faz 11 — Bulut Hesap Paketi (tarih yok, tetiklemeli)
+## Faz 12 — Logo ve Renk Yenilemesi
+
+Faz 9'dan ertelenen, görsele/renk paletine bağlı her şey burada toplanıyor:
+
+- `og:image` görseli (1200×630, WebP/PNG) ve onu referans eden `og:image`/
+  `twitter:image` etiketleri — Faz 9'da yapı hazır bırakıldıysa tek satır
+- `public/site_manifest.json`'daki `theme_color`/`background_color` revizyonu
+  (yeni palet netleşince)
+- Yeni logo netleşince favicon ailesinin (`favicon.ico/svg`,
+  `apple_touch_icon.png`, `icon_192/512.png`) yeniden üretilmesi
+- Görsele veya renk paletine bağlı, bu fazdan önce ertelenen başka her iş
+
+---
+
+## Faz 13 — Bulut Hesap Paketi (tarih yok, tetiklemeli)
 
 Words & Hammers'a Supabase tabanlı bulut hesap özelliği eklendiğinde
 başlayacak. Takvime bağlı değil, özelliğe bağlı.

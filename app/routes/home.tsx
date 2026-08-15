@@ -1,20 +1,30 @@
 import type { Route } from "./+types/home";
 import { games } from "../data/games";
 import { GameCard } from "../components/game_card";
-import { mainContentId } from "../lib/paths";
+import { mainContentId, homePath } from "../lib/paths";
+import { buildMeta } from "../lib/seo";
+import { softwareApplicationJsonLd } from "../lib/json_ld";
+import { usePageTitle } from "../lib/use_page_title";
 import "../styles/home.css";
 
-export function meta(_: Route.MetaArgs) {
+const title = {
+  en: "Neawe Forge — Independent Game Studio",
+  tr: "Neawe Forge — Bağımsız Oyun Stüdyosu",
+};
+const description = {
+  en: "Neawe Forge is an independent game studio building mobile games with Flutter, Dart & Flame. Currently developing Words & Hammers.",
+  tr: "Flutter, Dart ve Flame ile mobil oyunlar geliştiren bağımsız oyun stüdyosu. Şu an Words & Hammers üzerinde çalışılıyor.",
+};
+
+export function meta({ matches }: Route.MetaArgs) {
   return [
-    { title: "Neawe Forge" },
-    {
-      name: "description",
-      content: "Neawe Forge is an independent game studio building mobile games with Flutter, Dart & Flame.",
-    },
+    ...buildMeta({ matches, path: homePath, title: title.en, description: description.en }),
+    ...games.map((game) => ({ "script:ld+json": softwareApplicationJsonLd(game) })),
   ];
 }
 
 export default function Home() {
+  usePageTitle({ title, description });
   return (
     <main id={mainContentId} tabIndex={-1}>
       <section className="hero">

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import type { Route } from "./+types/root";
 
 import "./styles/tokens.css";
 import "./styles/base.css";
@@ -12,6 +13,15 @@ import { ThemeLangProvider } from "./lib/theme_lang_context";
 import { Nav } from "./components/nav";
 import { Footer } from "./components/footer";
 import { SkipLink } from "./components/skip_link";
+import { organizationJsonLd } from "./lib/json_ld";
+
+// Root-level meta runs on every route (react-router merges it with each
+// leaf route's own meta() automatically) — the Organization schema
+// describes the studio itself, not any one page, so it belongs here once
+// rather than repeated in every route file.
+export function meta(_: Route.MetaArgs) {
+  return [{ "script:ld+json": organizationJsonLd() }];
+}
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

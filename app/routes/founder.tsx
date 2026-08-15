@@ -1,19 +1,25 @@
 import type { Route } from "./+types/founder";
 import { siteConfig } from "../lib/site_config";
-import { mainContentId } from "../lib/paths";
+import { mainContentId, founderPath } from "../lib/paths";
+import { buildMeta } from "../lib/seo";
+import { usePageTitle } from "../lib/use_page_title";
 import "../styles/founder.css";
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: "Sait Kaplan — Founder, Neawe Forge" },
-    {
-      name: "description",
-      content: "Sait Kaplan — founder and lead developer of Neawe Forge, an independent game studio.",
-    },
-  ];
+const title = {
+  en: "Sait Kaplan — Founder, Neawe Forge",
+  tr: "Sait Kaplan — Neawe Forge Kurucusu",
+};
+const description = {
+  en: "Sait Kaplan — founder and lead developer of Neawe Forge, an independent game studio.",
+  tr: "Bağımsız oyun stüdyosu Neawe Forge'un kurucusu ve geliştiricisi Sait Kaplan.",
+};
+
+export function meta({ matches }: Route.MetaArgs) {
+  return buildMeta({ matches, path: founderPath, title: title.en, description: description.en });
 }
 
 export default function Founder() {
+  usePageTitle({ title, description });
   return (
     <main className="content" id={mainContentId} tabIndex={-1}>
       <div className="section_eyebrow">

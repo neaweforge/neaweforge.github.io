@@ -4,6 +4,8 @@ import { games } from "../data/games";
 import { legalContent, isLegalDocType, type LegalDocType } from "../content/legal_content";
 import { LegalDocView } from "../components/legal_doc_view";
 import { legalPath, mainContentId } from "../lib/paths";
+import { buildMeta } from "../lib/seo";
+import { usePageTitle } from "../lib/use_page_title";
 import "../styles/legal.css";
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -13,11 +15,42 @@ export function loader({ params }: Route.LoaderArgs) {
   return { game, doc };
 }
 
-export function meta({ loaderData }: Route.MetaArgs) {
-  if (!loaderData?.game || !loaderData?.doc) {
-    return [{ title: "Not Found" }];
+// Description templates, keyed by doc type rather than by game — a new
+// game's legal pages get a correct description for free, no new copy.
+function legalDescription(docType: LegalDocType, gameName: string): { en: string; tr: string } {
+  if (docType === "privacy_policy") {
+    return {
+      en: `Privacy Policy for ${gameName} — how Neawe Forge collects, uses, and protects your data.`,
+      tr: `${gameName} Gizlilik Politikası — Neawe Forge verilerinizi nasıl topluyor, kullanıyor ve koruyor.`,
+    };
   }
-  return [{ title: `${loaderData.game.name} — ${loaderData.doc.en.headerSub}` }];
+  return {
+    en: `Terms of Service for ${gameName} — the rules for using the app, from Neawe Forge.`,
+    tr: `${gameName} Kullanım Koşulları — uygulamayı kullanırken geçerli olan kurallar.`,
+  };
+}
+
+export function meta({ loaderData, params, matches }: Route.MetaArgs) {
+  const docType = isLegalDocType(params.docType) ? params.docType : undefined;
+  const path = docType ? legalPath(params.gameSlug, docType) : `/${params.gameSlug}/${params.docType}/`;
+
+  if (!loaderData?.game || !loaderData?.doc || !docType) {
+    return buildMeta({
+      matches,
+      path,
+      title: "Not Found",
+      description: "The requested legal document doesn't exist.",
+      noindex: true,
+    });
+  }
+
+  const { game, doc } = loaderData;
+  return buildMeta({
+    matches,
+    path,
+    title: `${game.name} — ${doc.en.headerSub}`,
+    description: legalDescription(docType, game.name).en,
+  });
 }
 
 const docTabs: { docType: LegalDocType; en: string; tr: string }[] = [
@@ -27,6 +60,16 @@ const docTabs: { docType: LegalDocType; en: string; tr: string }[] = [
 
 export default function LegalPage({ loaderData, params }: Route.ComponentProps) {
   const { game, doc } = loaderData;
+  const docType = isLegalDocType(params.docType) ? params.docType : undefined;
+
+  usePageTitle(
+    game && doc && docType
+      ? {
+          title: { en: `${game.name} — ${doc.en.headerSub}`, tr: `${game.name} — ${doc.tr.headerSub}` },
+          description: legalDescription(docType, game.name),
+        }
+      : { title: { en: "Not Found", tr: "Bulunamadı" } },
+  );
 
   if (!game || !doc) {
     return (
