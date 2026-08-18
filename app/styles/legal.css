@@ -39,12 +39,20 @@ header h1 .hammers { color: var(--green); }
 }
 
 /* ── DOC TABS (switch between this app's Privacy Policy / Terms) ── */
+/* Exactly 2 tabs today (docTabs in legal_page.tsx) — they fit every real
+   viewport, so no horizontal scroll container is needed. overflow-x: auto
+   used to sit here as a narrow-screen safety net, but it made the bar
+   hijack vertical mouse-wheel scrolling into a 1-2px horizontal nudge
+   whenever the cursor hovered it (browsers route wheel input into a
+   horizontally-scrollable element under the cursor first) — visible as a
+   constant tiny shimmy. flex-wrap covers the same narrow-screen case
+   (stacks to two centered rows) without that side effect. */
 .tabs_nav {
   background: var(--surface);
   border-bottom: 1px solid var(--border2);
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  overflow-x: auto;
 }
 .tab_btn {
   padding: 12px 22px;

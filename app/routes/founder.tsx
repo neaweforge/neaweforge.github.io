@@ -57,39 +57,39 @@ export default function Founder() {
             <span className="tr_inline">Bana Ulaş</span>
           </h2>
           <div className="social_links">
-            <a className="social_btn" href={siteConfig.social.x} target="_blank" rel="noopener noreferrer">
-              <span className="social_icon" aria-hidden="true">
+            <a className="reach_link" href={siteConfig.social.x} target="_blank" rel="noopener noreferrer">
+              <span className="reach_icon" aria-hidden="true">
                 𝕏
               </span>{" "}
               X / Twitter{" "}
-              <span className="social_arrow" aria-hidden="true">
+              <span className="reach_arrow" aria-hidden="true">
                 ↗
               </span>
             </a>
-            <a className="social_btn" href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">
-              <span className="social_icon" aria-hidden="true">
+            <a className="reach_link" href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">
+              <span className="reach_icon" aria-hidden="true">
                 in
               </span>{" "}
               LinkedIn{" "}
-              <span className="social_arrow" aria-hidden="true">
+              <span className="reach_arrow" aria-hidden="true">
                 ↗
               </span>
             </a>
-            <a className="social_btn" href={siteConfig.social.github} target="_blank" rel="noopener noreferrer">
-              <span className="social_icon" aria-hidden="true">
+            <a className="reach_link" href={siteConfig.social.github} target="_blank" rel="noopener noreferrer">
+              <span className="reach_icon" aria-hidden="true">
                 ⬡
               </span>{" "}
               GitHub{" "}
-              <span className="social_arrow" aria-hidden="true">
+              <span className="reach_arrow" aria-hidden="true">
                 ↗
               </span>
             </a>
-            <a className="social_btn" href={`mailto:${siteConfig.contactEmail}`}>
-              <span className="social_icon" aria-hidden="true">
+            <a className="reach_link" href={`mailto:${siteConfig.contactEmail}`}>
+              <span className="reach_icon" aria-hidden="true">
                 @
               </span>{" "}
               Email{" "}
-              <span className="social_arrow" aria-hidden="true">
+              <span className="reach_arrow" aria-hidden="true">
                 ↗
               </span>
             </a>
