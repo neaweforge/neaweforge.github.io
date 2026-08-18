@@ -40,14 +40,14 @@ export function buildMeta({ matches, path, title, description, noindex }: PageMe
     { property: "og:url", content: url },
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Neawe Forge" },
-    // The served, crawled HTML is always the English render (see
-    // ROADMAP.md's Faz 9 hreflang decision — no separate TR URL exists).
+    // The served, crawled HTML is always the English render (deliberate,
+    // see the Faz 2.9 hreflang decision — no separate TR URL exists).
     // og:locale reflects what's actually on the page; :alternate tells
     // sharing platforms a Turkish version of this same content exists too,
     // without claiming a separate URL the way hreflang would.
     { property: "og:locale", content: "en_US" },
     { property: "og:locale:alternate", content: "tr_TR" },
-    // No og:image yet (deferred to Faz 12 with the logo/palette refresh) —
+    // No og:image yet (deferred to Aşama 4 — logo/palette refresh) —
     // "summary" is the correct twitter:card variant without one. Adding
     // "twitter:image" and switching this to "summary_large_image" later is
     // a two-line change here, not a redesign.

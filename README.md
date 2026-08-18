@@ -47,7 +47,7 @@ app/
     paths.ts                  ← Every internal URL and route id is generated from this one place
     site_config.ts             ← Contact address, social links, studio status text
     theme_lang.ts / theme_lang_context.tsx  ← Theme/language state + localStorage
-  styles/                     ← Per-page/component CSS, snake_case (see CONVENTIONS.md)
+  styles/                     ← Per-page/component CSS, snake_case
 public/
   CNAME, .nojekyll
   favicon.ico, favicon.svg, apple_touch_icon.png, icon_192.png, icon_512.png
@@ -79,20 +79,12 @@ npm install   # first time only
 npm run dev   # http://localhost:5173 — binds to localhost only
 ```
 
-For a from-scratch setup guide, including Node.js installation, see [KURULUM.md](KURULUM.md) (Turkish).
-
 Other commands:
 
 ```bash
 npm run build       # production build (build/client/)
 npm run typecheck   # React Router type generation + tsc
 ```
-
----
-
-## Naming Standard
-
-File/folder/URL/CSS class naming follows [CONVENTIONS.md](CONVENTIONS.md) (Turkish).
 
 ---
 

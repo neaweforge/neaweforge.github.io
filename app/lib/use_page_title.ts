@@ -16,8 +16,8 @@ interface PageMetaCopy {
 // Keeps the browser tab title (and, when provided, the description meta
 // tag) in sync with the active language after hydration. The
 // server-rendered versions (see seo.ts's buildMeta) always stay English —
-// that's what search crawlers and share previews actually see (see
-// ROADMAP.md's Faz 9 hreflang decision) — this only updates what a human
+// that's what search crawlers and share previews actually see (deliberate,
+// see the Faz 2.9 hreflang decision) — this only updates what a human
 // visitor's own browser shows once the page has loaded.
 export function usePageTitle({ title, description }: PageMetaCopy): void {
   const { lang } = useThemeLang();

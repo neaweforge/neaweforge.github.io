@@ -3,14 +3,14 @@ import type { LegalDoc } from "../legal_types";
 // Migrated verbatim from wordsandhammers/terms-of-service.html (old static
 // site) on 2026-08-02 — wording is not altered from the source.
 export const termsOfService: LegalDoc = {
-  version: "1.0",
+  version: "1.1",
   developer: "Neawe Forge (Sait KAPLAN)",
   application: "Words & Hammers",
   tr: {
     docTitleLine1: "Kullanım",
     docTitleLine2: "Koşulları",
     headerSub: "Kullanım Koşulları",
-    lastUpdated: "12.07.2026",
+    lastUpdated: "17.08.2026",
     sections: [
       {
         number: "01",
@@ -28,14 +28,18 @@ export const termsOfService: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: '"Words &amp; Hammers", sözcük tabanlı çevrim içi rekabetçi bir mobil oyundur. Kullanıcı kaydı, sıralama tablosu ve reklam destekli ücretsiz oynanış sunmaktadır.',
+            html: '"Words &amp; Hammers", sözcük tabanlı bir mobil bulmaca oyunudur ve reklam destekli olarak ücretsiz sunulur. Kullanıcı hesabı ve sıralama tablosu gibi çevrim içi özellikler ileride eklenmesi planlanan, henüz aktif olmayan işlevlerdir (bkz. Gizlilik Politikası §2.5).',
           },
         ],
       },
       {
         number: "03",
-        title: "Kullanıcı Hesabı",
+        title: "Kullanıcı Hesabı (Planlanan)",
         blocks: [
+          {
+            kind: "paragraph",
+            html: "Şu an uygulama, e-posta/şifre ile giriş gerektiren bir hesap sistemi içermez; yalnızca cihazınızda tutulan, kimlik doğrulaması gerektirmeyen anonim bir profil kullanılır. Aşağıdaki kurallar, planlanan bulut hesabı özelliği (bkz. Gizlilik Politikası §2.5) etkinleştirildiğinde geçerli olacaktır:",
+          },
           {
             kind: "list",
             items: [
@@ -81,7 +85,7 @@ export const termsOfService: LegalDoc = {
           {
             kind: "warn",
             title: "⚠ Sorumluluk Sınırlandırması — Lütfen Dikkatle Okuyun",
-            html: "Neawe Forge; (a) Supabase Inc. başta olmak üzere üçüncü taraf altyapı sağlayıcılarında meydana gelen ve makul özen yükümlülüğü kapsamında öngörülemeyen veya önlenemeyen güvenlik ihlalleri ve veri kayıplarından; (b) kullanıcının zayıf şifre seçimi veya hesap bilgilerini üçüncü kişilerle paylaşması nedeniyle oluşan yetkisiz erişimlerden; (c) ağ kesintilerinden; (d) mücbir sebeplerden sorumlu tutulamaz. Bu sınırlama, Neawe Forge'un kendi kastından veya ağır ihmalinden doğan zararlar için uygulanmaz ve 6098 sayılı Türk Borçlar Kanunu'nun emredici hükümlerini ortadan kaldırmaz.",
+            html: "Neawe Forge; (a) bulut hesap sistemi etkinleştirildiğinde kullanılacak olan Supabase Inc. başta olmak üzere üçüncü taraf altyapı sağlayıcılarında meydana gelebilecek ve makul özen yükümlülüğü kapsamında öngörülemeyen veya önlenemeyen güvenlik ihlalleri ve veri kayıplarından; (b) kullanıcının zayıf şifre seçimi veya hesap bilgilerini üçüncü kişilerle paylaşması nedeniyle oluşan yetkisiz erişimlerden; (c) ağ kesintilerinden; (d) mücbir sebeplerden sorumlu tutulamaz. Bu sınırlama, Neawe Forge'un kendi kastından veya ağır ihmalinden doğan zararlar için uygulanmaz ve 6098 sayılı Türk Borçlar Kanunu'nun emredici hükümlerini ortadan kaldırmaz.",
           },
         ],
       },
@@ -97,8 +101,12 @@ export const termsOfService: LegalDoc = {
       },
       {
         number: "08",
-        title: "Hesap Askıya Alma",
+        title: "Hesap Askıya Alma (Planlanan)",
         blocks: [
+          {
+            kind: "paragraph",
+            html: "Bulut hesap sistemi etkinleştirildiğinde, aşağıdaki durumlarda hesabınız askıya alınabilir:",
+          },
           {
             kind: "list",
             items: [
@@ -119,7 +127,7 @@ export const termsOfService: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: "Uygulama ücretsiz sunulmakta ve reklam geliriyle desteklenmektedir. AdMob reklamları Gizlilik Politikamızdaki rıza çerçevesinde kişiselleştirilebilir.",
+            html: "Uygulama ücretsiz sunulmakta ve reklam geliriyle desteklenmektedir. AdMob reklamları kişiselleştirilmiş veya kişiselleştirilmemiş olarak gösterilebilir; veri kullanımı hakkında detaylı bilgi için Gizlilik Politikamıza bakınız.",
           },
         ],
       },
@@ -154,7 +162,7 @@ export const termsOfService: LegalDoc = {
     docTitleLine1: "Terms of",
     docTitleLine2: "Service",
     headerSub: "Terms of Service",
-    lastUpdated: "12 July 2026",
+    lastUpdated: "17 August 2026",
     sections: [
       {
         number: "01",
@@ -172,14 +180,18 @@ export const termsOfService: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: '"Words &amp; Hammers" is a word-based competitive online mobile game with user registration, leaderboards, and ad-supported free gameplay.',
+            html: '"Words &amp; Hammers" is a word-based mobile puzzle game, offered free with ad support. Online features such as user accounts and leaderboards are planned for the future and are not yet active (see Privacy Policy §2.5).',
           },
         ],
       },
       {
         number: "03",
-        title: "User Account",
+        title: "User Account (Planned)",
         blocks: [
+          {
+            kind: "paragraph",
+            html: "The app currently does not include an email/password account system; it uses only an anonymous, device-local profile that requires no authentication. The rules below will apply once the planned cloud account feature (see Privacy Policy §2.5) is enabled:",
+          },
           {
             kind: "list",
             items: [
@@ -225,7 +237,7 @@ export const termsOfService: LegalDoc = {
           {
             kind: "warn",
             title: "⚠ Limitation of Liability — Please Read Carefully",
-            html: "Neawe Forge shall not be held liable for: (a) security incidents or data losses on third-party infrastructure, including Supabase Inc., that were not foreseeable or preventable within our duty of reasonable care; (b) unauthorized access resulting from a user's weak password choice or sharing of account credentials; (c) network outages; (d) force majeure events. This limitation does not apply to damages arising from Neawe Forge's own intentional misconduct or gross negligence.",
+            html: "Neawe Forge shall not be held liable for: (a) security incidents or data losses on third-party infrastructure — including Supabase Inc., which will be used once the cloud account system is enabled — that were not foreseeable or preventable within our duty of reasonable care; (b) unauthorized access resulting from a user's weak password choice or sharing of account credentials; (c) network outages; (d) force majeure events. This limitation does not apply to damages arising from Neawe Forge's own intentional misconduct or gross negligence.",
           },
         ],
       },
@@ -241,8 +253,12 @@ export const termsOfService: LegalDoc = {
       },
       {
         number: "08",
-        title: "Account Suspension",
+        title: "Account Suspension (Planned)",
         blocks: [
+          {
+            kind: "paragraph",
+            html: "Once the cloud account system is enabled, your account may be suspended under the following circumstances:",
+          },
           {
             kind: "list",
             items: ["Violation of these Terms", "Detection of fraud, cheating, or manipulation", "Behavior harmful to other users"],
@@ -259,7 +275,7 @@ export const termsOfService: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: "The app is free and supported by ad revenue. Ads may be personalized or non-personalized within the consent framework in our Privacy Policy.",
+            html: "The app is free and supported by ad revenue. AdMob ads may be shown personalized or non-personalized; see our Privacy Policy for details on data use.",
           },
         ],
       },

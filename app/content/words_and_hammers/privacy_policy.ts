@@ -6,14 +6,14 @@ import type { LegalDoc } from "../legal_types";
 // (§09 Children's Privacy has one extra sentence in EN that TR lacks in
 // the original source) — flagged, not silently fixed.
 export const privacyPolicy: LegalDoc = {
-  version: "1.0",
+  version: "1.1",
   developer: "Neawe Forge (Sait KAPLAN)",
   application: "Words & Hammers",
   tr: {
     docTitleLine1: "Gizlilik",
     docTitleLine2: "Politikası",
     headerSub: "Gizlilik Politikası",
-    lastUpdated: "12.07.2026",
+    lastUpdated: "17.08.2026",
     sections: [
       {
         number: "01",
@@ -45,7 +45,7 @@ export const privacyPolicy: LegalDoc = {
           { kind: "subtitle", html: "2.2 Reklam Verileri (Google AdMob)" },
           {
             kind: "paragraph",
-            html: "AdMob, kişiselleştirme amacıyla reklam tanımlayıcısı (IDFA/GAID), yaklaşık konum ve uygulama etkileşim verisi toplayabilir. İlk açılışta açık rızanız talep edilir.",
+            html: "AdMob, reklam kişiselleştirme amacıyla reklam tanımlayıcısı (IDFA/GAID), yaklaşık konum ve uygulama etkileşim verisi toplayabilir. Bu Gizlilik Politikası'nı ve Kullanım Koşulları'nı ilk açılışta onaylamanız bu işlemeyi de kapsar; reklam kişiselleştirmesine özel, ayrı bir onay ekranı şu an bulunmamaktadır.",
           },
           { kind: "subtitle", html: "2.3 Teknik / Log Verileri" },
           {
@@ -56,9 +56,14 @@ export const privacyPolicy: LegalDoc = {
               "Hizmet kullanım tarihi ve saati",
             ],
           },
+          { kind: "subtitle", html: "2.4 Beta Geri Bildirim Verileri" },
+          {
+            kind: "paragraph",
+            html: "Beta test süreci boyunca, bir bölümü tamamladıktan sonra isteğe bağlı bir anket sunulur. Anketi doldurup \"Gönder\"e basarsanız; kullanıcı adınız, bölüm istatistikleriniz (skor, yıldız, tamamlanma tarihi), verdiğiniz puan (varsa), zorluk değerlendirmeniz (varsa) ve yazdığınız serbest metin notu (varsa) cihazınızın mail uygulaması üzerinden <strong>support@neaweforge.com</strong> adresine gönderilir. Bu veri akışı yalnızca siz \"Gönder\"e bastığınızda gerçekleşir. Ayarlar sayfasından anketi tamamen kapatabilir veya bekleyen kayıtları iptal edebilirsiniz.",
+          },
           {
             kind: "subtitle",
-            html: "2.4 Planlanan Gelecek Özellikler (Bulut Hesabı, Sıralama Tablosu, Forge Point)",
+            html: "2.5 Planlanan Gelecek Özellikler (Bulut Hesabı, Sıralama Tablosu, Forge Point)",
           },
           {
             kind: "paragraph",
@@ -124,11 +129,12 @@ export const privacyPolicy: LegalDoc = {
           {
             kind: "list",
             items: [
-              "Kullanıcı hesabı oluşturma ve kimlik doğrulama <em>(planlanan — §2.4)</em>",
-              "Oyun içi sıralama tablosunun yönetimi <em>(planlanan — §2.4)</em>",
+              "Kullanıcı hesabı oluşturma ve kimlik doğrulama <em>(planlanan — §2.5)</em>",
+              "Oyun içi sıralama tablosunun yönetimi <em>(planlanan — §2.5)</em>",
               "Kişiselleştirilmiş veya kişiselleştirilmemiş reklam gösterimi",
               "Uygulama hatalarının tespiti ve giderilmesi",
               "Hizmet kalitesinin ölçülmesi",
+              "Beta sürecinde ürün geliştirme amacıyla geri bildirim toplanması ve değerlendirilmesi",
             ],
           },
         ],
@@ -160,6 +166,7 @@ export const privacyPolicy: LegalDoc = {
               ["Hesap silinmesi sonrası <em>(planlanan)</em>", "En fazla 30 gün"],
               ["Teknik log verileri", "En fazla 90 gün"],
               ["Reklam verileri", "AdMob politikasına tabi"],
+              ["Beta geri bildirim verileri", "Cihazınızda oyun verileriniz sıfırlanana kadar saklanır; otomatik bir süre sınırı yoktur"],
             ],
           },
         ],
@@ -198,7 +205,7 @@ export const privacyPolicy: LegalDoc = {
             headers: ["Veri Kategorisi", "Hukuki Dayanak"],
             rows: [
               ["Hesap verileri", "Sözleşmenin ifası (GDPR Madde 6/1-b)"],
-              ["Kişiselleştirilmiş reklamlar", "Açık rıza (GDPR Madde 6/1-a)"],
+              ["Reklamlar (kişiselleştirilmiş/kişiselleştirilmemiş)", "Google AdMob'un kendi rıza mekanizması ve varsayılan davranışı"],
               ["Log verileri", "Meşru menfaat (GDPR Madde 6/1-f)"],
             ],
           },
@@ -210,7 +217,7 @@ export const privacyPolicy: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: "Bu uygulama 13 yaşın altındaki kişilere yönelik değildir. 13 yaşın altındaki çocuklardan bilerek veri toplamıyoruz.",
+            html: "Words &amp; Hammers genel bir kelime bulmaca oyunudur ve belirli bir yaş grubuna özel olarak yönlendirilmemiştir; uygulama yaş doğrulaması yapmamaktadır, bu nedenle çocuk kullanıcılar tarafından da kullanılabilir. Çocuklardan kasıtlı olarak ek veya hassas veri toplanmaz; toplanan veriler bu Politika'nın 2. bölümünde açıklanan, oyunla sınırlı verilerle kısıtlıdır.",
           },
         ],
       },
@@ -220,7 +227,26 @@ export const privacyPolicy: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: "Uygulama şu anda herhangi bir kişisel verinizi yurt dışına aktarmamaktadır. Planlanan bulut hesabı özelliği (§2.4) etkinleştirildiğinde, hesap verileriniz Supabase Inc. aracılığıyla Avrupa Birliği ve/veya Amerika Birleşik Devletleri'ndeki sunucularda işlenebilecektir. Bu aktarım; 6698 sayılı Kanun'un 9. maddesi uyarınca Kişisel Verileri Koruma Kurulu'nun yeterlilik kararına, uygun güvencelere (Kurul onaylı standart sözleşme/taahhütname) veya ayrıca ve açıkça alınacak rızanıza dayandırılacaktır. AB kullanıcıları için ayrıca GDPR uyumlu Standard Contractual Clauses uygulanacaktır. Bu aktarım başlamadan önce, konuya özel bir onay ekranı ayrıca sunulacaktır.",
+            html: "Google AdMob, uygulamayı kullanırken aşağıdaki veri kategorilerini otomatik olarak toplar ve Google'ın (Amerika Birleşik Devletleri merkezli) küresel altyapısına aktarır (ayrıntılı SDK bazlı döküm için bkz. §2.2 ve §3):",
+          },
+          {
+            kind: "list",
+            items: [
+              "Reklam tanımlayıcısı (IDFA/GAID) — kimlikle bağlı, izleme amaçlı",
+              "Yaklaşık konum (IP üzerinden) — kimlikle bağlı",
+              "Görüntülenen reklamlar hakkında bilgi — kimlikle bağlı",
+              "Uygulama başlatma, dokunma ve reklam etkileşim verisi — kimlikle bağlı",
+              "Çökme logları, performans verisi (başlatma süresi, yanıt oranı, enerji kullanımı) ve diğer tanılama verileri — kimlikle bağlı değil",
+              "Kullanıcı kimliği beyanı — uygulama kodu Firebase Auth kullanmaz; bu beyan AdMob'un iç Firebase altyapısından kaynaklanıyor olabilir",
+            ],
+          },
+          {
+            kind: "paragraph",
+            html: "Bu aktarım, Google'ın kendi veri işleme sözleşmesi ve gizlilik politikası kapsamında gerçekleşir; 6698 sayılı Kanun'un 9. maddesi bağlamında uygun güvence mekanizmalarına tabidir.",
+          },
+          {
+            kind: "paragraph",
+            html: "Planlanan bulut hesabı özelliği (§2.5) etkinleştirildiğinde, hesap verileriniz Supabase Inc. aracılığıyla Avrupa Birliği ve/veya Amerika Birleşik Devletleri'ndeki sunucularda işlenebilecektir. Bu aktarım; 6698 sayılı Kanun'un 9. maddesi uyarınca Kişisel Verileri Koruma Kurulu'nun yeterlilik kararına, uygun güvencelere (Kurul onaylı standart sözleşme/taahhütname) veya ayrıca ve açıkça alınacak rızanıza dayandırılacaktır. AB kullanıcıları için ayrıca GDPR uyumlu Standard Contractual Clauses uygulanacaktır. Bu aktarım başlamadan önce, konuya özel bir onay ekranı ayrıca sunulacaktır.",
           },
         ],
       },
@@ -230,7 +256,7 @@ export const privacyPolicy: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: "Bu politika güncellenebilir. Sürüm numarasının ondalık kısmındaki artışlar (ör. 1.0 → 1.1) küçük açıklama veya dil düzeltmelerini; tam sayı kısmındaki artışlar (ör. 1.x → 2.0) ise veri işleme kapsamını genişleten maddi değişiklikleri (örneğin §2.4'te açıklanan özelliklerin etkinleştirilmesi) ifade eder. Maddi bir güncelleme yapıldığında, uygulama güncel politikayı yeniden onaylamanızı isteyecek ve onayınız tarih ve sürüm bilgisiyle birlikte kaydedilecektir. Diğer önemli değişiklikler uygulama içi bildirim ve/veya e-posta ile duyurulur.",
+            html: "Bu politika güncellenebilir. Sürüm numarasının ondalık kısmındaki artışlar (ör. 1.0 → 1.1) küçük açıklama veya dil düzeltmelerini; tam sayı kısmındaki artışlar (ör. 1.x → 2.0) ise veri işleme kapsamını genişleten maddi değişiklikleri (örneğin §2.5'te açıklanan özelliklerin etkinleştirilmesi) ifade eder. Maddi bir güncelleme yapıldığında, uygulama güncel politikayı yeniden onaylamanızı isteyecek ve onayınız tarih ve sürüm bilgisiyle birlikte kaydedilecektir. Diğer önemli değişiklikler uygulama içi bildirim ve/veya e-posta ile duyurulur.",
           },
         ],
       },
@@ -245,7 +271,7 @@ export const privacyPolicy: LegalDoc = {
     docTitleLine1: "Privacy",
     docTitleLine2: "Policy",
     headerSub: "Privacy Policy",
-    lastUpdated: "12 July 2026",
+    lastUpdated: "17 August 2026",
     sections: [
       {
         number: "01",
@@ -277,7 +303,7 @@ export const privacyPolicy: LegalDoc = {
           { kind: "subtitle", html: "2.2 Advertising Data (Google AdMob)" },
           {
             kind: "paragraph",
-            html: "AdMob may collect advertising identifiers (IDFA/GAID), approximate location, and app interaction data. Explicit consent is requested at first launch.",
+            html: "AdMob may collect advertising identifiers (IDFA/GAID), approximate location, and app interaction data for ad personalization. Accepting this Privacy Policy and the Terms of Service at first launch covers this processing; a separate, dedicated consent screen specific to ad personalization is not currently presented.",
           },
           { kind: "subtitle", html: "2.3 Technical / Log Data" },
           {
@@ -288,9 +314,14 @@ export const privacyPolicy: LegalDoc = {
               "Date and time of Service usage",
             ],
           },
+          { kind: "subtitle", html: "2.4 Beta Feedback Data" },
+          {
+            kind: "paragraph",
+            html: 'During the beta testing period, an optional survey is shown after completing a stage. If you fill it out and tap "Send", your username, stage statistics (score, stars, completion date), your rating (if given), your difficulty selection (if given), and any free-text note you write are sent to <strong>support@neaweforge.com</strong> via your device\'s mail app. This data flow only happens when you tap "Send". You can turn the survey off entirely or cancel pending records from the Settings page.',
+          },
           {
             kind: "subtitle",
-            html: "2.4 Planned Future Features (Cloud Account, Leaderboard, Forge Points)",
+            html: "2.5 Planned Future Features (Cloud Account, Leaderboard, Forge Points)",
           },
           {
             kind: "paragraph",
@@ -356,11 +387,12 @@ export const privacyPolicy: LegalDoc = {
           {
             kind: "list",
             items: [
-              "User account creation and authentication <em>(planned — §2.4)</em>",
-              "In-game leaderboard management <em>(planned — §2.4)</em>",
+              "User account creation and authentication <em>(planned — §2.5)</em>",
+              "In-game leaderboard management <em>(planned — §2.5)</em>",
               "Personalized or non-personalized ad delivery",
               "Error detection and resolution",
               "Measuring and improving service quality",
+              "Collecting and evaluating feedback for product development during the beta period",
             ],
           },
         ],
@@ -392,6 +424,7 @@ export const privacyPolicy: LegalDoc = {
               ["After deletion <em>(planned)</em>", "Maximum 30 days from request"],
               ["Technical log data", "Maximum 90 days"],
               ["Advertising data", "Subject to AdMob's own policy"],
+              ["Beta feedback data", "Stored on your device until your game data is reset; no automatic time limit"],
             ],
           },
         ],
@@ -430,7 +463,7 @@ export const privacyPolicy: LegalDoc = {
             headers: ["Data Category", "Legal Basis"],
             rows: [
               ["Account data", "Performance of contract (GDPR Art. 6/1-b)"],
-              ["Personalized ads", "Explicit consent (GDPR Art. 6/1-a)"],
+              ["Ads (personalized/non-personalized)", "Google AdMob's own consent mechanism and default behavior"],
               ["Log data", "Legitimate interests (GDPR Art. 6/1-f)"],
             ],
           },
@@ -442,7 +475,7 @@ export const privacyPolicy: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: "This Service is not directed at anyone under 13. We do not knowingly collect data from children under 13.",
+            html: "Words &amp; Hammers is a general-audience word puzzle game and is not specifically directed at any age group; the app does not perform age verification, so it may also be used by children. We do not intentionally collect any additional or sensitive data from children; the data collected is limited to what is described in Section 2 of this Policy.",
           },
         ],
       },
@@ -452,7 +485,26 @@ export const privacyPolicy: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: "The app does not currently transfer any personal data abroad. Once the planned cloud account feature (§2.4) is enabled, your account data may be processed on servers located in the EU and/or US via Supabase Inc. This transfer will rely on an adequacy decision, appropriate safeguards (a Board-approved standard contract or undertaking), or your separately and explicitly obtained consent, as required under Article 9 of Turkish Law No. 6698 (KVKK). GDPR-compliant Standard Contractual Clauses will also apply for EU users. A dedicated consent screen will be presented before this transfer begins.",
+            html: "Google AdMob automatically collects the following data categories while you use the app and transfers them to Google's (US-based) global infrastructure (for a detailed SDK-level breakdown, see §2.2 and §3):",
+          },
+          {
+            kind: "list",
+            items: [
+              "Advertising identifier (IDFA/GAID) — linked to identity, used for tracking",
+              "Approximate location (via IP) — linked to identity",
+              "Information about ads shown to you — linked to identity",
+              "App launch, tap, and ad interaction data — linked to identity",
+              "Crash logs, performance data (launch time, response rate, energy use), and other diagnostic data — not linked to identity",
+              "A user ID claim — the app code does not use Firebase Auth; this claim may originate from AdMob's internal Firebase infrastructure",
+            ],
+          },
+          {
+            kind: "paragraph",
+            html: "This transfer takes place under Google's own data processing agreement and privacy policy, and is subject to appropriate safeguard mechanisms under Article 9 of Turkish Law No. 6698 (KVKK).",
+          },
+          {
+            kind: "paragraph",
+            html: "Once the planned cloud account feature (§2.5) is enabled, your account data may be processed on servers located in the EU and/or US via Supabase Inc. This transfer will rely on an adequacy decision, appropriate safeguards (a Board-approved standard contract or undertaking), or your separately and explicitly obtained consent, as required under Article 9 of Turkish Law No. 6698 (KVKK). GDPR-compliant Standard Contractual Clauses will also apply for EU users. A dedicated consent screen will be presented before this transfer begins.",
           },
         ],
       },
@@ -462,7 +514,7 @@ export const privacyPolicy: LegalDoc = {
         blocks: [
           {
             kind: "paragraph",
-            html: "This policy may be updated. An increase in the decimal part of the version number (e.g. 1.0 → 1.1) reflects minor clarifications or wording fixes; an increase in the whole-number part (e.g. 1.x → 2.0) reflects a material change that expands the scope of data processing (for example, activating the features described in §2.4). For a material update, the app will ask you to re-accept the current policy, and your acceptance will be recorded together with its date and version. Other significant changes will be announced via in-app notification and/or email.",
+            html: "This policy may be updated. An increase in the decimal part of the version number (e.g. 1.0 → 1.1) reflects minor clarifications or wording fixes; an increase in the whole-number part (e.g. 1.x → 2.0) reflects a material change that expands the scope of data processing (for example, activating the features described in §2.5). For a material update, the app will ask you to re-accept the current policy, and your acceptance will be recorded together with its date and version. Other significant changes will be announced via in-app notification and/or email.",
           },
         ],
       },
