@@ -49,14 +49,13 @@ export const games: Game[] = [
     packageId: "com.neaweforge.wordsandhammers",
     status: "coming_soon",
     description: {
-      en: "Find and collect words hidden among the letters on the board, earn points, and spend them wisely along the way — the smartest strategy earns you the most points and takes you straight to the top of the leaderboard.",
-      tr: "Oyun alanındaki harfler arasından kelimeleri bul ve ilerle, puan topla, bir yandan da harca — en stratejik yaklaşım sana en çok puanı kazandıracak ve seni sıralamada en üstlere çıkaracak.",
+      en: "Find and collect words hidden among the letters on the board, earn points, and spend them wisely along the way — the smartest strategy earns you the highest score in every stage.",
+      tr: "Oyun alanındaki harfler arasından kelimeleri bul ve ilerle, puan topla, bir yandan da harca — en stratejik yaklaşım sana her bölümde en yüksek skoru kazandırır.",
     },
     techStack: [
       { label: "Flutter", url: "https://flutter.dev" },
       { label: "Dart", url: "https://dart.dev" },
       { label: "Flame", url: "https://flame-engine.org" },
-      { label: "Supabase", url: "https://supabase.com" },
     ],
     stores: {
       android: null,

@@ -111,7 +111,12 @@
 .settings_toggle { display: none; }
 
 /* ── Mobile: one icon button, controls move into a popover ── */
-@media (max-width: 760px) {
+/* 760px'te doğal içerik genişliğine (İngilizce etiketlerle ~700px) çok az
+   pay bırakıyordu — farklı tarayıcı/font render'larında masaüstü modu
+   hâlâ aktifken içerik sıkışıp tasarımsız/kontrolsüz satır kırılmasına yol
+   açabiliyordu (2026-08-27'de rapor edildi). 860px'e çekilerek gerçek
+   ihtiyacın üzerinde güvenli bir pay bırakıldı. */
+@media (max-width: 860px) {
   .nav_center {
     order: 3;
     width: 100%;
@@ -119,6 +124,16 @@
     flex-wrap: wrap;
   }
   .nav_divider { display: none; }
+  /* Desktop'ta divider ile logoya bağlı görünen link, mobilde kendi
+     satırına düşünce çerçevesiz/öksüz kalıyordu — sitenin geri kalanındaki
+     etiket/buton diliyle (bordered pill) tutarlı hale getirildi. */
+  .nav_center .nav_link {
+    border: 1px solid var(--ctrl-br);
+    padding: 6px 16px;
+  }
+  .nav_center .nav_link:hover {
+    border-color: var(--green);
+  }
 
   .settings_inline { display: none; }
   .settings_toggle {

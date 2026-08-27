@@ -6,14 +6,14 @@ import type { LegalDoc } from "../legal_types";
 // (§09 Children's Privacy has one extra sentence in EN that TR lacks in
 // the original source) — flagged, not silently fixed.
 export const privacyPolicy: LegalDoc = {
-  version: "1.1",
+  version: "1.2",
   developer: "Neawe Forge (Sait KAPLAN)",
   application: "Words & Hammers",
   tr: {
     docTitleLine1: "Gizlilik",
     docTitleLine2: "Politikası",
     headerSub: "Gizlilik Politikası",
-    lastUpdated: "17.08.2026",
+    lastUpdated: "23.08.2026",
     sections: [
       {
         number: "01",
@@ -40,14 +40,26 @@ export const privacyPolicy: LegalDoc = {
           { kind: "subtitle", html: "2.1 Cihaz İçi Veriler (Yerel Depolama)" },
           {
             kind: "paragraph",
-            html: "Uygulama şu anda kişisel verilerinizi herhangi bir sunucuya göndermemektedir. Oyun ilerlemeniz, ayarlarınız, dil ve tema tercihiniz yalnızca cihazınızda (<em>shared_preferences</em>) saklanır ve Neawe Forge'a iletilmez.",
+            html: "Uygulama şu anda kişisel verilerinizi herhangi bir sunucuya göndermemektedir. Oyun ilerlemeniz, ayarlarınız (ses, titreşim, satın alma onayı, anket tercihi) ve dil tercihiniz yalnızca cihazınızda (<em>shared_preferences</em>) saklanır ve Neawe Forge'a iletilmez.",
           },
           { kind: "subtitle", html: "2.2 Reklam Verileri (Google AdMob)" },
           {
             kind: "paragraph",
-            html: "AdMob, reklam kişiselleştirme amacıyla reklam tanımlayıcısı (IDFA/GAID), yaklaşık konum ve uygulama etkileşim verisi toplayabilir. Bu Gizlilik Politikası'nı ve Kullanım Koşulları'nı ilk açılışta onaylamanız bu işlemeyi de kapsar; reklam kişiselleştirmesine özel, ayrı bir onay ekranı şu an bulunmamaktadır.",
+            html: "AdMob, reklam gösterimi için reklam tanımlayıcısı, yaklaşık konum ve uygulama etkileşim verisi kullanabilir. Bu verilerin kapsamı platform ve bölgeye göre değişir:",
+          },
+          {
+            kind: "list",
+            items: [
+              "<strong>Apple cihazlarda (iOS):</strong> Uygulama App Tracking Transparency (ATT) izni talep etmez ve reklam tanımlayıcısına (IDFA) erişmez. Bu nedenle iOS'ta yalnızca kişiselleştirilmemiş (non-personalized) reklamlar gösterilir; kullanıcı izlenmez.",
+              "<strong>Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre'deki kullanıcılara:</strong> Kişiselleştirilmiş reklam gösterilmeden önce, Google'ın User Messaging Platform (UMP) altyapısı aracılığıyla ayrı ve spesifik bir rıza ekranı sunulur.",
+              "<strong>Diğer bölgelerdeki Android kullanıcılarına:</strong> Bu Gizlilik Politikası'nı ve Kullanım Koşulları'nı ilk açılışta onaylamanız reklam tanımlayıcısının (GAID) bu genel amaçla işlenmesini kapsar; reklam kişiselleştirmesine özel, ayrı bir onay ekranı bu bölgelerde şu an bulunmamaktadır.",
+            ],
           },
           { kind: "subtitle", html: "2.3 Teknik / Log Verileri" },
+          {
+            kind: "paragraph",
+            html: "Bu veriler Neawe Forge tarafından değil, Google AdMob SDK'si tarafından otomatik olarak toplanır ve Google altyapısında işlenir. Ayrıntılı döküm için bkz. §10.",
+          },
           {
             kind: "list",
             items: [
@@ -164,9 +176,10 @@ export const privacyPolicy: LegalDoc = {
             rows: [
               ["Hesap verileri <em>(planlanan)</em>", "Hesap aktif olduğu sürece"],
               ["Hesap silinmesi sonrası <em>(planlanan)</em>", "En fazla 30 gün"],
-              ["Teknik log verileri", "En fazla 90 gün"],
+              ["Teknik log verileri", "Google AdMob'un kendi politikasına tabi (bkz. §2.3, §10)"],
               ["Reklam verileri", "AdMob politikasına tabi"],
-              ["Beta geri bildirim verileri", "Cihazınızda oyun verileriniz sıfırlanana kadar saklanır; otomatik bir süre sınırı yoktur"],
+              ["Beta geri bildirim verileri (cihazda)", "Cihazınızda oyun verileriniz sıfırlanana kadar saklanır; otomatik bir süre sınırı yoktur"],
+              ["Beta geri bildirim verileri (e-posta kopyası)", "Tarafımıza e-posta ile ulaşan geri bildirim kayıtları, beta sürecinin bitiminden en fazla 90 gün sonra silinir"],
             ],
           },
         ],
@@ -205,7 +218,8 @@ export const privacyPolicy: LegalDoc = {
             headers: ["Veri Kategorisi", "Hukuki Dayanak"],
             rows: [
               ["Hesap verileri", "Sözleşmenin ifası (GDPR Madde 6/1-b)"],
-              ["Reklamlar (kişiselleştirilmiş/kişiselleştirilmemiş)", "Google AdMob'un kendi rıza mekanizması ve varsayılan davranışı"],
+              ["Kişiselleştirilmiş reklamlar (AEA/Birleşik Krallık/İsviçre)", "Açık rıza (GDPR Madde 6/1-a) — Google UMP SDK üzerinden alınır"],
+              ["Kişiselleştirilmemiş reklamlar (iOS ve rıza verilmeyen durumlar)", "Meşru menfaat (GDPR Madde 6/1-f)"],
               ["Log verileri", "Meşru menfaat (GDPR Madde 6/1-f)"],
             ],
           },
@@ -232,7 +246,7 @@ export const privacyPolicy: LegalDoc = {
           {
             kind: "list",
             items: [
-              "Reklam tanımlayıcısı (IDFA/GAID) — kimlikle bağlı, izleme amaçlı",
+              "Reklam tanımlayıcısı (Android GAID) — kimlikle bağlı, izleme amaçlı. <strong>iOS'ta uygulama App Tracking Transparency (ATT) izni talep etmediği için reklam tanımlayıcısına (IDFA) erişilmez; bu satır Android'e özgüdür.</strong>",
               "Yaklaşık konum (IP üzerinden) — kimlikle bağlı",
               "Görüntülenen reklamlar hakkında bilgi — kimlikle bağlı",
               "Uygulama başlatma, dokunma ve reklam etkileşim verisi — kimlikle bağlı",
@@ -271,7 +285,7 @@ export const privacyPolicy: LegalDoc = {
     docTitleLine1: "Privacy",
     docTitleLine2: "Policy",
     headerSub: "Privacy Policy",
-    lastUpdated: "17 August 2026",
+    lastUpdated: "23 August 2026",
     sections: [
       {
         number: "01",
@@ -298,14 +312,26 @@ export const privacyPolicy: LegalDoc = {
           { kind: "subtitle", html: "2.1 On-Device Data (Local Storage)" },
           {
             kind: "paragraph",
-            html: "The app does not currently send any personal data to a server. Your game progress, settings, and language/theme preferences are stored only on your device (<em>shared_preferences</em>) and are never transmitted to Neawe Forge.",
+            html: "The app does not currently send any personal data to a server. Your game progress, settings (sound, haptics, purchase confirmation, survey preference), and language preference are stored only on your device (<em>shared_preferences</em>) and are never transmitted to Neawe Forge.",
           },
           { kind: "subtitle", html: "2.2 Advertising Data (Google AdMob)" },
           {
             kind: "paragraph",
-            html: "AdMob may collect advertising identifiers (IDFA/GAID), approximate location, and app interaction data for ad personalization. Accepting this Privacy Policy and the Terms of Service at first launch covers this processing; a separate, dedicated consent screen specific to ad personalization is not currently presented.",
+            html: "AdMob may use advertising identifiers, approximate location, and app interaction data to deliver ads. The scope of this data depends on your platform and region:",
+          },
+          {
+            kind: "list",
+            items: [
+              "<strong>On Apple devices (iOS):</strong> The app does not request App Tracking Transparency (ATT) permission and does not access the advertising identifier (IDFA). As a result, only non-personalized ads are shown on iOS; you are not tracked.",
+              "<strong>Users in the European Economic Area, the United Kingdom, and Switzerland:</strong> Before any personalized ad is shown, a separate, specific consent screen is presented via Google's User Messaging Platform (UMP) infrastructure.",
+              "<strong>Android users in other regions:</strong> Accepting this Privacy Policy and the Terms of Service at first launch covers processing of the advertising identifier (GAID) for this general purpose; a separate, dedicated consent screen specific to ad personalization is not currently presented in these regions.",
+            ],
           },
           { kind: "subtitle", html: "2.3 Technical / Log Data" },
+          {
+            kind: "paragraph",
+            html: "This data is collected automatically by the Google AdMob SDK, not by Neawe Forge, and is processed on Google's infrastructure. See §10 for a detailed breakdown.",
+          },
           {
             kind: "list",
             items: [
@@ -422,9 +448,10 @@ export const privacyPolicy: LegalDoc = {
             rows: [
               ["Account data <em>(planned)</em>", "While the account is active"],
               ["After deletion <em>(planned)</em>", "Maximum 30 days from request"],
-              ["Technical log data", "Maximum 90 days"],
+              ["Technical log data", "Subject to Google AdMob's own policy (see §2.3, §10)"],
               ["Advertising data", "Subject to AdMob's own policy"],
-              ["Beta feedback data", "Stored on your device until your game data is reset; no automatic time limit"],
+              ["Beta feedback data (on-device)", "Stored on your device until your game data is reset; no automatic time limit"],
+              ["Beta feedback data (email copy)", "Feedback records that reach us by email are deleted no later than 90 days after the beta period ends"],
             ],
           },
         ],
@@ -463,7 +490,8 @@ export const privacyPolicy: LegalDoc = {
             headers: ["Data Category", "Legal Basis"],
             rows: [
               ["Account data", "Performance of contract (GDPR Art. 6/1-b)"],
-              ["Ads (personalized/non-personalized)", "Google AdMob's own consent mechanism and default behavior"],
+              ["Personalized ads (EEA/UK/Switzerland)", "Explicit consent (GDPR Art. 6/1-a) — obtained via Google's UMP SDK"],
+              ["Non-personalized ads (iOS and where no consent is given)", "Legitimate interests (GDPR Art. 6/1-f)"],
               ["Log data", "Legitimate interests (GDPR Art. 6/1-f)"],
             ],
           },
@@ -490,7 +518,7 @@ export const privacyPolicy: LegalDoc = {
           {
             kind: "list",
             items: [
-              "Advertising identifier (IDFA/GAID) — linked to identity, used for tracking",
+              "Advertising identifier (Android GAID) — linked to identity, used for tracking. <strong>On iOS, the app does not request App Tracking Transparency (ATT) permission and does not access the advertising identifier (IDFA); this line is Android-specific.</strong>",
               "Approximate location (via IP) — linked to identity",
               "Information about ads shown to you — linked to identity",
               "App launch, tap, and ad interaction data — linked to identity",
