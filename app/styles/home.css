@@ -119,7 +119,12 @@
   pointer-events: none;
 }
 .game_card_grid {
+  /* z-index lifts the content above .game_card::after's grid overlay, which
+     is painted after it in source order — otherwise the grid lines sit on
+     top of the screenshots. The overlay still shows through the transparent
+     info area; only the opaque screenshots cover it. */
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr;
   gap: 28px;
@@ -140,6 +145,50 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Kill the native image drag so it can't hijack the click-and-drag pan
+     (dragstart is also preventDefault'd in useDragScroll). */
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* ══ SCREENSHOT STRIP (2+ shots) ══ */
+/* Full-width horizontal gallery sitting above the game info. Touch pans it
+   natively; useDragScroll adds click-and-drag panning for a mouse; it is
+   focusable so arrow keys pan it too. Each frame is a scroll-snap stop. */
+.game_shot_strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+  cursor: grab;
+}
+.game_shot_strip::-webkit-scrollbar { height: 6px; }
+.game_shot_strip::-webkit-scrollbar-track { background: transparent; }
+.game_shot_strip::-webkit-scrollbar-thumb {
+  background: var(--border2);
+  border-radius: 3px;
+}
+.game_shot_strip:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+/* While a drag pan is in progress: free scrolling (snap would fight the
+   drag), and the grab-hand closes. Snap re-applies the moment the class is
+   removed, easing to the nearest frame. */
+.game_shot_strip.is_dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+.game_shot_strip .game_shot_frame {
+  flex: 0 0 auto;
+  width: clamp(150px, 44vw, 185px);
+  max-width: none;
+  margin: 0;
+  scroll-snap-align: start;
 }
 .game_shot_placeholder {
   width: 100%;
@@ -242,10 +291,7 @@
 
 @media (min-width: 760px) {
   .hero { padding: 100px 24px 80px; }
-  .game_card_grid {
-    grid-template-columns: 240px 1fr;
-    align-items: center;
-    padding: 40px 36px;
-  }
-  .game_shot_frame { max-width: 100%; }
+  /* Strip on top, info below — one column at every width. Only the padding
+     grows on wider screens. */
+  .game_card_grid { padding: 40px 36px; }
 }

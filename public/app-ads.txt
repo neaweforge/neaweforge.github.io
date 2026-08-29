@@ -1,0 +1,10 @@
+# app-ads.txt — Authorized Digital Sellers for Apps (IAB Tech Lab spec)
+# Declares which ad systems are authorized to sell ad inventory for the
+# Neawe Forge apps whose store listings point their developer website here.
+# Served from the domain root; AdMob crawls https://neaweforge.com/app-ads.txt
+# and re-verifies within ~24h of a review request.
+#
+# Words & Hammers — Google AdMob (no mediation networks). Add one line per
+# additional ad system if mediation is ever enabled, using the snippet that
+# network provides.
+google.com, pub-7392567671290930, DIRECT, f08c47fec0942fa0

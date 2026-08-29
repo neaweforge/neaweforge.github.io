@@ -61,6 +61,42 @@ export const games: Game[] = [
       android: null,
       ios: null,
     },
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/img/words_and_hammers/screenshot_01.webp",
+        alt: {
+          en: "Gameplay board — tracing a word through a grid of letters.",
+          tr: "Oynanış tahtası — harf ızgarasında bir kelimenin izini sürme.",
+        },
+      },
+      {
+        src: "/img/words_and_hammers/screenshot_02.webp",
+        alt: {
+          en: "Stage intro screen with themed level artwork and a start button.",
+          tr: "Temalı bölüm görseli ve başlat düğmesiyle bölüm giriş ekranı.",
+        },
+      },
+      {
+        src: "/img/words_and_hammers/screenshot_03.webp",
+        alt: {
+          en: "Hammer shop offering horizontal, vertical and diagonal hammers.",
+          tr: "Yatay, dikey ve çapraz çekiçler sunan çekiç dükkanı.",
+        },
+      },
+      {
+        src: "/img/words_and_hammers/screenshot_04.webp",
+        alt: {
+          en: "Player profile showing Forge Points and per-stage statistics.",
+          tr: "Forge Puanı ve bölüm bazlı istatistikleri gösteren oyuncu profili.",
+        },
+      },
+      {
+        src: "/img/words_and_hammers/screenshot_05.webp",
+        alt: {
+          en: "In-game tutorial welcoming the player and explaining the basics.",
+          tr: "Oyuncuyu karşılayan ve temel kuralları anlatan oyun içi eğitim.",
+        },
+      },
+    ],
   },
 ];
