@@ -30,6 +30,51 @@ export function effectiveLang(lang: Lang, navigatorLanguage: string): "en" | "tr
   return navigatorLanguage.toLowerCase().startsWith("tr") ? "tr" : "en";
 }
 
+// ── External store ──
+// localStorage is the actual source of truth here, not React state, so the
+// provider subscribes to it through useSyncExternalStore rather than copying
+// it into state from an effect. readStoredTheme/readStoredLang double as the
+// snapshot getters: both return a plain string, so React's identity check
+// settles immediately instead of looping.
+
+const listeners = new Set<() => void>();
+
+export function subscribeThemeLang(listener: () => void): () => void {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+}
+
+function emit(): void {
+  for (const listener of listeners) listener();
+}
+
+export function storeTheme(next: Theme): void {
+  localStorage.setItem(THEME_KEY, next);
+  document.documentElement.setAttribute("data-theme", next);
+  emit();
+}
+
+export function storeLang(next: Lang): void {
+  localStorage.setItem(LANG_KEY, next);
+  // Content visibility is keyed off html[lang] in base.css, not a body
+  // class — see the boot-script comment below for why.
+  document.documentElement.lang = effectiveLang(next, navigator.language);
+  emit();
+}
+
+// Prerender has no localStorage. These match the <html data-theme="auto"
+// lang="en"> baked into the static markup, so hydration starts from the same
+// values the server wrote and only then picks up the visitor's real choice.
+export function serverTheme(): Theme {
+  return "auto";
+}
+
+export function serverLang(): Lang {
+  return "auto";
+}
+
 /**
  * Inlined into <head> as a blocking script (see app/root.tsx) so the
  * previously-chosen theme/lang apply before first paint — no

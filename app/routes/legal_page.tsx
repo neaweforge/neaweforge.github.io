@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import type { Route } from "./+types/legal_page";
 import { games } from "../data/games";
 import { legalContent, isLegalDocType, type LegalDocType } from "../content/legal_content";
+import { withEmailSlots } from "../content/legal_email_slots";
 import { LegalDocView } from "../components/legal_doc_view";
 import { legalPath, mainContentId } from "../lib/paths";
 import { buildMeta } from "../lib/seo";
@@ -11,7 +12,11 @@ import "../styles/legal.css";
 export function loader({ params }: Route.LoaderArgs) {
   const { gameSlug, docType } = params;
   const game = games.find((g) => g.slug === gameSlug);
-  const doc = game && isLegalDocType(docType) ? legalContent[gameSlug]?.[docType] : undefined;
+  const found = game && isLegalDocType(docType) ? legalContent[gameSlug]?.[docType] : undefined;
+  // Strip the contact address here rather than in the view — this return
+  // value is what ends up serialized in the prerendered HTML and _.data.
+  // See content/legal_email_slots.ts.
+  const doc = found ? withEmailSlots(found) : undefined;
   return { game, doc };
 }
 

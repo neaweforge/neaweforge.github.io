@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-import type { Route } from "./+types/root";
 
 import "./styles/tokens.css";
 import "./styles/base.css";
@@ -19,7 +18,7 @@ import { organizationJsonLd } from "./lib/json_ld";
 // leaf route's own meta() automatically) — the Organization schema
 // describes the studio itself, not any one page, so it belongs here once
 // rather than repeated in every route file.
-export function meta(_: Route.MetaArgs) {
+export function meta() {
   return [{ "script:ld+json": organizationJsonLd() }];
 }
 
@@ -32,24 +31,22 @@ export function Layout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* Order matters: browsers use the last icon they support, not the
-            first. .ico first as the fallback every browser understands,
-            .svg last so anything that understands type="image/svg+xml"
-            (i.e. everything modern) prefers the scalable version over it. */}
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        {/* The emblem is a raster illustration (flame gradients), so there
+            is no SVG favicon — the .ico carries 16+32px renders and every
+            browser understands it. */}
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple_touch_icon.png" />
         <link rel="manifest" href="/site_manifest.json" />
-        {/* --display/--body/--mono in tokens.css name these families, but
-            naming a font doesn't load it — this is what actually fetches
-            Cinzel/Jost/JetBrains Mono. Without it every page silently falls
-            back to each variable's system-font alternate. Weights listed
-            here are exactly the ones the CSS uses (checked via grep) — at
-            most 2 per family, nothing speculative. */}
+        {/* --display/--body in tokens.css name these families, but naming a
+            font doesn't load it — this is what actually fetches Cinzel and
+            Jost. Without it every page silently falls back to each
+            variable's system-font alternate. Weights listed here are
+            exactly the ones the CSS uses (checked via grep) — at most 2 per
+            family, nothing speculative. */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Jost:wght@300;700&family=JetBrains+Mono:wght@700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Jost:wght@300;700&display=swap"
           rel="stylesheet"
         />
         <Meta />

@@ -1,26 +1,14 @@
-import { siteConfig } from "../lib/site_config";
+import { ContactEmail } from "./contact_email";
 
+// Deliberately minimal: the studio has no social accounts of its own, and
+// the founder's personal links live on the founder page rather than in
+// site-wide chrome. Email is the only contact channel the site offers.
 export function Footer() {
   return (
     <footer>
       <div className="footer_inner">
-        <div className="footer_copy">
-          <div>© 2026 Neawe Forge · Sait Kaplan</div>
-          <div>
-            <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
-          </div>
-        </div>
-        <div className="footer_social">
-          <a href={siteConfig.social.x} target="_blank" rel="noopener noreferrer">
-            <span aria-hidden="true">𝕏</span> Twitter
-          </a>
-          <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </a>
-          <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-        </div>
+        <div>© 2026 Neawe Forge</div>
+        <ContactEmail />
       </div>
     </footer>
   );

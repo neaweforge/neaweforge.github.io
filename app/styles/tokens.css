@@ -1,120 +1,134 @@
+/* Palette derived from the brand emblem (flame + bronze ring + charcoal
+   steel). Two accents only: --ember (flame, primary) and --gold (bronze,
+   secondary). The dark background matches the emblem asset pack's own
+   backdrop (#1a1d22) so og/app icons and in-page emblem renders blend. */
+
 /* ══ DARK THEME (default) ══ */
 :root {
-  --bg:         #0a0d0a;
-  --surface:    #111511;
-  --surface2:   #192019;
-  --surface3:   #1f271f;
-  --border:     #263026;
-  --border2:    #324232;
-  --green:      #5cb84a;
-  --green-dim:  #2e6626;
-  /* Can't be var(--green) directly — rgba()'s color argument doesn't accept
+  --bg:         #1a1d22;
+  --surface:    #20242a;
+  --surface2:   #272c33;
+  --surface3:   #2f353d;
+  --border:     #383f48;
+  --border2:    #4a525d;
+  --ember:      #f2822e;
+  --ember-dim:  #6e3512;
+  /* Can't be var(--ember) directly — rgba()'s color argument doesn't accept
      a custom property that already contains a hex string. Keep this RGB
-     triplet in sync with --green by hand whenever --green changes. */
-  --green-glow: rgba(92,184,74,.12);
-  --orange:     #d9621a;
-  --orange-dim: #7a3510;
-  --cyan:       #1eb8c4;
-  --cyan-dim:   #0e6e78;
-  --text:       #eef0ea;
-  --text-soft:  #a8b4a4;
-  --text-mute:  #7c9276;
+     triplet in sync with --ember by hand whenever --ember changes. */
+  --ember-glow: rgba(242,130,46,.14);
+  --gold:       #e3bf80;
+  --gold-dim:   #5c4728;
+  --text:       #f4efe6;
+  --text-soft:  #cfc7b9;
+  --text-mute:  #a89f8d;
   --display:    'Cinzel', 'Times New Roman', serif;
   --body:       'Jost', system-ui, sans-serif;
-  --mono:       'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
-  --shadow:     rgba(0,0,0,.4);
+  /* Type scale for small UI text. Nothing user-facing goes below --fs-2xs;
+     the old 9.5–11px micro sizes were unreadable on dense/high-DPI screens. */
+  --fs-2xs:     11px;
+  --fs-xs:      12px;
+  --fs-sm:      13px;
+  --fs-md:      14px;
+  --fs-base:    15px;
+  --fs-lg:      17px;
+  --shadow:     rgba(0,0,0,.45);
   /* Opaque, not translucent — a translucent fill's real on-screen color
-     depends on whatever surface sits behind it, which made its contrast
-     against the badge text unmeasurable in the abstract. Value computed by
-     blending the old rgba(92,184,74,.08) over --surface2 (its dominant
-     usage, the game card background) and then darkened until both badge
-     text colors (--green, --orange) clear 4.5:1 against it. */
-  --badge-bg:   #151f14;
-  --warn-bg:    #1a1208;
-  --warn-br:    #c87a18;
-  /* --ctrl-* mirrors existing surface/text/green tokens by design — aliased
-     with var() rather than holding its own copy of the hex, the same fix
-     applied to --ctrl-text below (see CONVENTIONS.md's single-source rule). */
+     depends on whatever surface sits behind it, which makes its contrast
+     against the badge text unmeasurable in the abstract. Tuned so both
+     badge text colors (--ember, --gold) clear 4.5:1 against it. */
+  --badge-bg:   #262119;
+  --warn-bg:    #2a1d10;
+  --warn-br:    #b86a1c;
+  --warn-text:  #d9b98f;
+  /* Dimming layer behind the lightbox. Intentionally neutral black in both
+     themes — a tinted scrim would shift the screenshot colors underneath. */
+  --scrim:      rgba(0,0,0,.82);
+  /* --ctrl-* mirrors existing surface/text/accent tokens by design — aliased
+     with var() rather than holding its own copy of the hex (see
+     conventions.md's single-source rule). */
   --ctrl-bg:    var(--surface2);
   --ctrl-br:    var(--border2);
-  /* Was its own hardcoded hex that happened to equal --text-mute's old
-     value — the two silently diverged the moment only one of them got a
-     contrast fix. Aliased so that can't happen again. */
   --ctrl-text:  var(--text-mute);
-  --ctrl-active-bg:   var(--green-dim);
-  --ctrl-active-br:   var(--green);
+  --ctrl-active-bg:   var(--ember-dim);
+  --ctrl-active-br:   var(--ember);
   --ctrl-active-text: var(--text);
-  /* "Kor Hattı" (Ember Seam) — the site's one recurring signature accent.
-     Used sparingly, only at a page's single biggest visual moment (hero
-     rule, game card top edge, legal doc header) — never as a default
-     border, or it stops meaning anything. */
-  --kor-hatti: linear-gradient(90deg, var(--orange), var(--green));
-  --kor-hatti-v: linear-gradient(180deg, var(--orange), var(--green));
+  /* Text placed on a solid --ember fill (e.g. CTA hover) — dark ink on
+     the bright flame in the dark theme, light ink on the deep flame in the
+     light theme. */
+  --on-ember:   var(--bg);
+  /* "Kor Hattı" (Ember Seam) — the site's one recurring signature accent:
+     flame fading into bronze, straight off the emblem. Used sparingly, only
+     at a page's single biggest visual moment (hero rule, game card top
+     edge, legal doc header) — never as a default border, or it stops
+     meaning anything. */
+  --kor-hatti: linear-gradient(90deg, var(--ember), var(--gold));
+  --kor-hatti-v: linear-gradient(180deg, var(--ember), var(--gold));
 }
 
 /* ══ LIGHT THEME ══ */
 [data-theme="light"] {
-  --bg:         #f3f6ef;
+  --bg:         #f6f1ea;
   --surface:    #ffffff;
-  --surface2:   #eaf0e5;
-  --surface3:   #dfebd8;
-  --border:     #c4d4bc;
-  --border2:    #b0c8a6;
-  --green:      #2e7708;
-  --green-dim:  #c8e8bc;
-  /* Can't be var(--green) directly — rgba()'s color argument doesn't accept
+  --surface2:   #f1eae0;
+  --surface3:   #e7ded0;
+  --border:     #d6cbba;
+  --border2:    #bfb09a;
+  --ember:      #9f430d;
+  --ember-dim:  #f7dcc6;
+  /* Can't be var(--ember) directly — rgba()'s color argument doesn't accept
      a custom property that already contains a hex string. Keep this RGB
-     triplet in sync with --green by hand whenever --green changes. */
-  --green-glow: rgba(46,119,8,.10);
-  --orange:     #ad490f;
-  --orange-dim: #f8d8c4;
-  --cyan:       #0b737e;
-  --cyan-dim:   #b4eaf0;
-  --text:       #0e1a10;
-  --text-soft:  #1e3020;
-  --text-mute:  #3e5a38;
+     triplet in sync with --ember by hand whenever --ember changes. */
+  --ember-glow: rgba(159,67,13,.12);
+  --gold:       #7a5a28;
+  --gold-dim:   #efe1c6;
+  --text:       #1a1d22;
+  --text-soft:  #3b3f45;
+  --text-mute:  #625848;
   --shadow:     rgba(0,0,0,.10);
-  --badge-bg:   #e2ecdb;
-  --warn-bg:    #fff5ec;
-  --warn-br:    #c87030;
+  --badge-bg:   #f3e7d6;
+  --warn-bg:    #fff4e8;
+  --warn-br:    #c06a24;
+  --warn-text:  #7a3c0a;
   --ctrl-bg:    var(--surface2);
   --ctrl-br:    var(--border);
   --ctrl-text:  var(--text-mute);
-  --ctrl-active-bg:   var(--green-dim);
-  --ctrl-active-br:   var(--green);
+  --ctrl-active-bg:   var(--ember-dim);
+  --ctrl-active-br:   var(--ember);
   --ctrl-active-text: var(--text);
+  --on-ember:   var(--surface);
 }
 
 @media (prefers-color-scheme: light) {
   [data-theme="auto"] {
-    --bg:         #f3f6ef;
+    --bg:         #f6f1ea;
     --surface:    #ffffff;
-    --surface2:   #eaf0e5;
-    --surface3:   #dfebd8;
-    --border:     #c4d4bc;
-    --border2:    #b0c8a6;
-    --green:      #2e7708;
-    --green-dim:  #c8e8bc;
-    /* Can't be var(--green) directly — rgba()'s color argument doesn't
+    --surface2:   #f1eae0;
+    --surface3:   #e7ded0;
+    --border:     #d6cbba;
+    --border2:    #bfb09a;
+    --ember:      #9f430d;
+    --ember-dim:  #f7dcc6;
+    /* Can't be var(--ember) directly — rgba()'s color argument doesn't
        accept a custom property that already contains a hex string. Keep
-       this RGB triplet in sync with --green by hand whenever it changes. */
-    --green-glow: rgba(46,119,8,.10);
-    --orange:     #ad490f;
-    --orange-dim: #f8d8c4;
-    --cyan:       #0b737e;
-    --cyan-dim:   #b4eaf0;
-    --text:       #0e1a10;
-    --text-soft:  #1e3020;
-    --text-mute:  #3e5a38;
+       this RGB triplet in sync with --ember by hand whenever it changes. */
+    --ember-glow: rgba(159,67,13,.12);
+    --gold:       #7a5a28;
+    --gold-dim:   #efe1c6;
+    --text:       #1a1d22;
+    --text-soft:  #3b3f45;
+    --text-mute:  #625848;
     --shadow:     rgba(0,0,0,.10);
-    --badge-bg:   #e2ecdb;
-    --warn-bg:    #fff5ec;
-    --warn-br:    #c87030;
+    --badge-bg:   #f3e7d6;
+    --warn-bg:    #fff4e8;
+    --warn-br:    #c06a24;
+    --warn-text:  #7a3c0a;
     --ctrl-bg:    var(--surface2);
     --ctrl-br:    var(--border);
     --ctrl-text:  var(--text-mute);
-    --ctrl-active-bg:   var(--green-dim);
-    --ctrl-active-br:   var(--green);
+    --ctrl-active-bg:   var(--ember-dim);
+    --ctrl-active-br:   var(--ember);
     --ctrl-active-text: var(--text);
+    --on-ember:   var(--surface);
   }
 }

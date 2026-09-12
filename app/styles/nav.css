@@ -20,8 +20,11 @@
   flex-shrink: 0;
 }
 .nav_logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--display);
-  font-size: 15px;
+  font-size: var(--fs-base);
   font-weight: 700;
   color: var(--text);
   text-decoration: none;
@@ -29,24 +32,28 @@
   flex-shrink: 0;
   white-space: nowrap;
 }
-.nav_logo .forge { color: var(--green); }
+.nav_emblem {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+.nav_logo .forge { color: var(--ember); }
 .nav_center {
   display: flex;
   align-items: center;
   gap: 2px;
 }
 .nav_link {
-  font-size: 10.5px;
+  font-size: var(--fs-sm);
   font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+  letter-spacing: .02em;
   color: var(--text-mute);
   text-decoration: none;
   padding: 6px 12px;
   transition: color .15s;
   white-space: nowrap;
 }
-.nav_link:hover { color: var(--green); }
+.nav_link:hover { color: var(--ember); }
 .nav_right {
   display: flex;
   flex-wrap: wrap;
@@ -60,8 +67,8 @@
   background: var(--ctrl-bg);
   border: 1px solid var(--ctrl-br);
   color: var(--ctrl-text);
-  font-size: 10px;
-  letter-spacing: .1em;
+  font-size: var(--fs-xs);
+  letter-spacing: .06em;
   font-weight: 700;
   text-transform: uppercase;
   padding: 4px 10px;
@@ -89,9 +96,9 @@
   gap: 8px;
 }
 .settings_label {
-  font-size: 9.5px;
+  font-size: var(--fs-xs);
   font-weight: 700;
-  letter-spacing: .12em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--text-mute);
   white-space: nowrap;
@@ -111,11 +118,11 @@
 .settings_toggle { display: none; }
 
 /* ── Mobile: one icon button, controls move into a popover ── */
-/* 760px'te doğal içerik genişliğine (İngilizce etiketlerle ~700px) çok az
-   pay bırakıyordu — farklı tarayıcı/font render'larında masaüstü modu
-   hâlâ aktifken içerik sıkışıp tasarımsız/kontrolsüz satır kırılmasına yol
-   açabiliyordu (2026-08-27'de rapor edildi). 860px'e çekilerek gerçek
-   ihtiyacın üzerinde güvenli bir pay bırakıldı. */
+/* Breakpoint is 860px, not 760px: the bar's natural content width is around
+   700px with English labels, which left almost no slack — under a different
+   browser or font render the desktop layout was still active while the
+   content had already started wrapping uncontrollably. 860px leaves real
+   headroom over the measured need. */
 @media (max-width: 860px) {
   .nav_center {
     order: 3;
@@ -124,15 +131,15 @@
     flex-wrap: wrap;
   }
   .nav_divider { display: none; }
-  /* Desktop'ta divider ile logoya bağlı görünen link, mobilde kendi
-     satırına düşünce çerçevesiz/öksüz kalıyordu — sitenin geri kalanındaki
-     etiket/buton diliyle (bordered pill) tutarlı hale getirildi. */
+  /* On desktop the divider visually ties these links to the logo; once they
+     wrap onto their own row they lose that anchor, so they take the same
+     bordered-pill treatment the rest of the site uses for labels/buttons. */
   .nav_center .nav_link {
     border: 1px solid var(--ctrl-br);
     padding: 6px 16px;
   }
   .nav_center .nav_link:hover {
-    border-color: var(--green);
+    border-color: var(--ember);
   }
 
   .settings_inline { display: none; }
@@ -175,7 +182,7 @@
   .settings_panel .ctrl_btn {
     min-height: 44px;
     padding: 0 14px;
-    font-size: 11px;
+    font-size: var(--fs-sm);
   }
   .settings_panel .ctrl_icon { min-width: 44px; }
 }

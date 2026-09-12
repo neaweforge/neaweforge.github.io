@@ -64,7 +64,7 @@ html[lang="tr"] .tr_inline { display: inline; }
   background: var(--ctrl-active-bg);
   color: var(--ctrl-active-text);
   padding: 12px 20px;
-  font-size: 12px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;

@@ -21,13 +21,20 @@ interface PageMetaCopy {
 // visitor's own browser shows once the page has loaded.
 export function usePageTitle({ title, description }: PageMetaCopy): void {
   const { lang } = useThemeLang();
+  // Pulled apart before the effect so the dependency list holds the strings
+  // themselves. Callers build these objects inline, so depending on the
+  // objects would re-run the effect on every render.
+  const { en: titleEn, tr: titleTr } = title;
+  const descriptionEn = description?.en;
+  const descriptionTr = description?.tr;
 
   useEffect(() => {
     const active = effectiveLang(lang, navigator.language);
-    document.title = active === "tr" ? title.tr : title.en;
-    if (description) {
+    document.title = active === "tr" ? titleTr : titleEn;
+    const text = active === "tr" ? descriptionTr : descriptionEn;
+    if (text !== undefined) {
       const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute("content", active === "tr" ? description.tr : description.en);
+      if (meta) meta.setAttribute("content", text);
     }
-  }, [lang, title.en, title.tr, description?.en, description?.tr]);
+  }, [lang, titleEn, titleTr, descriptionEn, descriptionTr]);
 }

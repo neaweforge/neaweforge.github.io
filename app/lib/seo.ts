@@ -24,6 +24,11 @@ interface PageMetaInput {
   noindex?: boolean;
 }
 
+const ogImageUrl = absoluteUrl("/og_image.png");
+const ogImageWidth = 1200;
+const ogImageHeight = 630;
+const ogImageAlt = "Neawe Forge emblem — a steel N wreathed in flame inside a bronze ring";
+
 // Single source for every route's <title>, meta description, canonical
 // link, and Open Graph/Twitter Card tags — a route's meta() only supplies
 // its own title/description/path, everything else stays consistent site-wide.
@@ -47,11 +52,16 @@ export function buildMeta({ matches, path, title, description, noindex }: PageMe
     // without claiming a separate URL the way hreflang would.
     { property: "og:locale", content: "en_US" },
     { property: "og:locale:alternate", content: "tr_TR" },
-    // No og:image yet (deferred to Aşama 4 — logo/palette refresh) —
-    // "summary" is the correct twitter:card variant without one. Adding
-    // "twitter:image" and switching this to "summary_large_image" later is
-    // a two-line change here, not a redesign.
-    { name: "twitter:card", content: "summary" },
+    // One site-wide share image (the emblem on the brand backdrop) — pages
+    // don't get their own. PNG rather than WebP: share-card fetchers on
+    // messaging apps still don't reliably decode WebP.
+    { property: "og:image", content: ogImageUrl },
+    { property: "og:image:width", content: String(ogImageWidth) },
+    { property: "og:image:height", content: String(ogImageHeight) },
+    { property: "og:image:alt", content: ogImageAlt },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:image", content: ogImageUrl },
+    { name: "twitter:image:alt", content: ogImageAlt },
   ];
   if (noindex) {
     tags.push({ name: "robots", content: "noindex" });

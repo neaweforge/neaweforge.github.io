@@ -32,7 +32,8 @@ app/
   root.tsx                    ← <html>/<body> shell, boot script, global style imports
   routes.ts                   ← Route definitions
   routes/
-    home.tsx                  ← Home page (hero + game showcase)
+    home.tsx                  ← Home page (hero, games, studio, contact)
+    game_page.tsx              ← A game's own page (:gameSlug)
     founder.tsx                ← Founder page
     legal_page.tsx             ← Single dynamic route serving every game's legal docs (:gameSlug/:docType)
     not_found.tsx               ← 404
@@ -45,24 +46,30 @@ app/
     words_and_hammers/         ← Each game's own folder with EN+TR legal text
   lib/
     paths.ts                  ← Every internal URL and route id is generated from this one place
-    site_config.ts             ← Contact address, social links, studio status text
+    site_config.ts             ← Contact address, the founder's personal links, studio status text
+    contact.ts                 ← Builds the contact address at runtime so it never ships in the static HTML
     theme_lang.ts / theme_lang_context.tsx  ← Theme/language state + localStorage
   styles/                     ← Per-page/component CSS, snake_case
 public/
   CNAME, .nojekyll
-  favicon.ico, favicon.svg, apple_touch_icon.png, icon_192.png, icon_512.png
+  favicon.ico, apple_touch_icon.png, icon_192.png, icon_512.png, og_image.png
+  img/brand/                  ← Emblem renders (WebP) used in the nav and hero
   site_manifest.json          ← Name/icon for Android "add to home screen" — not a PWA, no service worker
 scripts/
   postbuild.mjs                ← Post-build: copies 404.html, verifies CNAME/.nojekyll, removes unused files
 ```
 
-### Legal Document URLs
+### Game URLs
 
-Each app is defined by a `slug` in `app/data/games.ts`; its legal pages are generated automatically at:
+Each app is defined by a `slug` in `app/data/games.ts`; its pages are generated automatically:
 
-| App | Privacy Policy | Terms of Service |
-| --- | --- | --- |
-| Words & Hammers | `https://neaweforge.com/words_and_hammers/privacy_policy/` | `https://neaweforge.com/words_and_hammers/terms_of_service/` |
+| Page | URL |
+| --- | --- |
+| Game | `https://neaweforge.com/words_and_hammers/` |
+| Privacy Policy | `https://neaweforge.com/words_and_hammers/privacy_policy/` |
+| Terms of Service | `https://neaweforge.com/words_and_hammers/terms_of_service/` |
+
+The two legal URLs are registered with the app stores and must keep working exactly as they are. The game page sits one level above them and is matched by a separate route, so adding it left them untouched.
 
 ### Adding a New Game
 
@@ -84,7 +91,10 @@ Other commands:
 ```bash
 npm run build       # production build (build/client/)
 npm run typecheck   # React Router type generation + tsc
+npm run lint        # ESLint (flat config, eslint.config.js)
 ```
+
+CI runs `typecheck` and `lint` before `build`, so a type or lint error stops the deploy. `build` does not typecheck on its own — Vite strips types without checking them.
 
 ---
 

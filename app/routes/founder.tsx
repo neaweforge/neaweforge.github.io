@@ -1,5 +1,6 @@
 import type { Route } from "./+types/founder";
 import { siteConfig } from "../lib/site_config";
+import { ContactEmail } from "../components/contact_email";
 import { mainContentId, founderPath } from "../lib/paths";
 import { buildMeta } from "../lib/seo";
 import { usePageTitle } from "../lib/use_page_title";
@@ -57,7 +58,7 @@ export default function Founder() {
             <span className="tr_inline">Bana Ulaş</span>
           </h2>
           <div className="social_links">
-            <a className="reach_link" href={siteConfig.social.x} target="_blank" rel="noopener noreferrer">
+            <a className="reach_link" href={siteConfig.founderSocial.x} target="_blank" rel="noopener noreferrer">
               <span className="reach_icon" aria-hidden="true">
                 𝕏
               </span>{" "}
@@ -66,7 +67,7 @@ export default function Founder() {
                 ↗
               </span>
             </a>
-            <a className="reach_link" href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">
+            <a className="reach_link" href={siteConfig.founderSocial.linkedin} target="_blank" rel="noopener noreferrer">
               <span className="reach_icon" aria-hidden="true">
                 in
               </span>{" "}
@@ -75,7 +76,7 @@ export default function Founder() {
                 ↗
               </span>
             </a>
-            <a className="reach_link" href={siteConfig.social.github} target="_blank" rel="noopener noreferrer">
+            <a className="reach_link" href={siteConfig.founderSocial.github} target="_blank" rel="noopener noreferrer">
               <span className="reach_icon" aria-hidden="true">
                 ⬡
               </span>{" "}
@@ -84,7 +85,7 @@ export default function Founder() {
                 ↗
               </span>
             </a>
-            <a className="reach_link" href={`mailto:${siteConfig.contactEmail}`}>
+            <ContactEmail className="reach_link">
               <span className="reach_icon" aria-hidden="true">
                 @
               </span>{" "}
@@ -92,7 +93,7 @@ export default function Founder() {
               <span className="reach_arrow" aria-hidden="true">
                 ↗
               </span>
-            </a>
+            </ContactEmail>
           </div>
         </div>
 

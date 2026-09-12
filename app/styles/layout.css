@@ -21,24 +21,25 @@
   margin: 0 auto;
   padding: 80px 24px;
 }
+/* Eyebrow + title pair. The eyebrow is one of the few places uppercase is
+   still used — it's a label, not a heading. */
 .section_eyebrow {
-  font-size: 10px;
-  letter-spacing: .24em;
+  font-size: var(--fs-xs);
+  letter-spacing: .2em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--ember);
   font-weight: 700;
   margin-bottom: 8px;
 }
 .section_title {
-  font-family: var(--body);
-  font-size: clamp(20px, 3.2vw, 26px);
+  font-family: var(--display);
+  font-size: clamp(24px, 3.4vw, 32px);
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 40px;
-  padding-bottom: 12px;
+  margin-bottom: 36px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--border2);
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  letter-spacing: .02em;
 }
 
 @media (max-width: 480px) {
@@ -52,24 +53,93 @@
 .back_link {
   display: inline-block;
   margin-top: 8px;
-  font-size: 11px;
+  font-size: var(--fs-sm);
   font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  letter-spacing: .02em;
   color: var(--text-mute);
   text-decoration: none;
 }
-.back_link:hover { color: var(--green); }
+.back_link:hover { color: var(--ember); }
 
 /* ══ "KOR HATTI" (EMBER SEAM) ══ */
-/* The one recurring signature accent — a 2px orange→green gradient line.
+/* The one recurring signature accent — a 2px flame→bronze gradient line.
    Apply only at a page's single biggest visual moment; see the token
-   comment in tokens.css. */
+   comment in tokens.css. The vertical variant has no class of its own:
+   its only user paints --kor-hatti-v onto a pseudo-element it already
+   has (legal.css's .warn_box::before). */
 .kor_hatti_h {
   width: 48px;
   height: 2px;
   background: var(--kor-hatti);
 }
-.kor_hatti_v {
-  background: var(--kor-hatti-v);
+
+/* ══ SHARED CONTROLS ══ */
+/* Buttons, text links and tech chips appear on more than one route, so
+   they live in this globally-imported file rather than a page's own. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--body);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: 1px solid;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s, box-shadow .2s;
+}
+.btn_primary {
+  background: var(--ember-dim);
+  border-color: var(--ember);
+  color: var(--ctrl-active-text);
+}
+.btn_primary:hover {
+  background: var(--ember);
+  color: var(--on-ember);
+  box-shadow: 0 0 32px var(--ember-glow);
+}
+.btn_secondary {
+  background: transparent;
+  border-color: var(--border2);
+  color: var(--text-soft);
+}
+.btn_secondary:hover {
+  border-color: var(--ember);
+  color: var(--text);
+}
+.text_link {
+  display: inline-block;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--ember);
+  text-decoration: none;
+}
+.text_link:hover { text-decoration: underline; }
+
+.game_tech_label {
+  font-size: var(--fs-xs);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  font-weight: 700;
+  margin-right: 4px;
+}
+.tech_chip {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--text-soft);
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  padding: 3px 9px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.tech_chip:hover {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+  color: var(--text);
 }

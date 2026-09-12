@@ -13,23 +13,22 @@
   line-height: 1.1;
 }
 .founder_role {
-  font-size: 11px;
+  font-size: var(--fs-sm);
   font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--orange);
+  letter-spacing: .04em;
+  color: var(--gold);
   margin-top: 6px;
 }
 .founder_bio {
-  font-size: 14.5px;
+  font-size: var(--fs-md);
   color: var(--text-soft);
   font-weight: 300;
   line-height: 1.85;
 }
 .label_eyebrow {
-  font-size: 10px;
+  font-size: var(--fs-xs);
   font-weight: 700;
-  letter-spacing: .2em;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--text-mute);
   margin-bottom: 10px;
@@ -49,10 +48,9 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 10.5px;
+  font-size: var(--fs-sm);
   font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  letter-spacing: .02em;
   color: var(--text-soft);
   background: var(--surface2);
   border: 1px solid var(--border2);
@@ -62,26 +60,25 @@
   white-space: nowrap;
 }
 .reach_link:hover {
-  background: var(--green-dim);
-  border-color: var(--green);
+  background: var(--ember-dim);
+  border-color: var(--ember);
   color: var(--ctrl-active-text);
 }
 .reach_icon { font-style: normal; line-height: 1; }
-.reach_arrow { color: var(--green); font-size: 12px; }
+.reach_arrow { color: var(--ember); font-size: var(--fs-xs); }
 
 /* ══ CURRENTLY ══ */
 /* Deliberately not a card, not a timeline — a label and one line of plain
    text, in the normal reading flow (not a sidebar). */
 .founder_currently_label {
-  font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--ember);
 }
 .founder_currently_text {
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   color: var(--text-soft);
   font-weight: 300;
   line-height: 1.7;

@@ -1,10 +1,12 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useSyncExternalStore, type ReactNode } from "react";
 import {
-  THEME_KEY,
-  LANG_KEY,
-  effectiveLang,
   readStoredLang,
   readStoredTheme,
+  serverLang,
+  serverTheme,
+  storeLang,
+  storeTheme,
+  subscribeThemeLang,
   type Lang,
   type Theme,
 } from "./theme_lang";
@@ -19,34 +21,15 @@ interface ThemeLangContextValue {
 const ThemeLangContext = createContext<ThemeLangContextValue | null>(null);
 
 export function ThemeLangProvider({ children }: { children: ReactNode }) {
-  // Prerender/build time has no localStorage — these defaults match the
-  // <html data-theme="auto"> baked into the static markup. The effect
-  // below syncs them with whatever the boot script (or a prior visit)
-  // already applied, right after hydration.
-  const [theme, setThemeState] = useState<Theme>("auto");
-  const [lang, setLangState] = useState<Lang>("auto");
-
-  useEffect(() => {
-    setThemeState(readStoredTheme());
-    setLangState(readStoredLang());
-  }, []);
-
-  function setTheme(next: Theme) {
-    setThemeState(next);
-    localStorage.setItem(THEME_KEY, next);
-    document.documentElement.setAttribute("data-theme", next);
-  }
-
-  function setLang(next: Lang) {
-    setLangState(next);
-    localStorage.setItem(LANG_KEY, next);
-    // Content visibility is keyed off html[lang] in base.css, not a body
-    // class — see theme_lang.ts's boot-script comment for why.
-    document.documentElement.lang = effectiveLang(next, navigator.language);
-  }
+  // The stored preference is external state that React doesn't own, so it's
+  // read through useSyncExternalStore rather than mirrored into useState from
+  // an effect — that kept a second copy of the truth and made every visit
+  // render twice. See the store in theme_lang.ts.
+  const theme = useSyncExternalStore(subscribeThemeLang, readStoredTheme, serverTheme);
+  const lang = useSyncExternalStore(subscribeThemeLang, readStoredLang, serverLang);
 
   return (
-    <ThemeLangContext.Provider value={{ theme, lang, setTheme, setLang }}>
+    <ThemeLangContext.Provider value={{ theme, lang, setTheme: storeTheme, setLang: storeLang }}>
       {children}
     </ThemeLangContext.Provider>
   );

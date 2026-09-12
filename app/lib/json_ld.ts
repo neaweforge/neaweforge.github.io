@@ -1,21 +1,23 @@
 import type { Game } from "../data/games";
-import { siteConfig } from "./site_config";
-import { absoluteUrl, homePath } from "./paths";
+import { absoluteUrl, gamePath, homePath } from "./paths";
 
 // Organization schema — describes the studio itself, not any one page.
 // Rendered from root.tsx's meta() so it's on every route, not just home.
+//
+// No `sameAs`: that property asserts profiles belonging to this
+// organization, and the studio has none. The accounts listed on the founder
+// page are personal ones, so claiming them here would be a false statement
+// about the entity. Add it back if the studio ever opens its own accounts.
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Neawe Forge",
     url: absoluteUrl(homePath),
-    // icon_512.png, not favicon.ico/svg — Google's structured-data
-    // guidelines require a raster image (PNG/JPEG/WebP) for Organization's
-    // logo; .ico isn't a supported format there and .svg is explicitly
-    // discouraged, even though both are otherwise valid favicons.
+    // icon_512.png, not favicon.ico — Google's structured-data guidelines
+    // require a raster image (PNG/JPEG/WebP) for Organization's logo;
+    // .ico isn't a supported format there.
     logo: absoluteUrl("/icon_512.png"),
-    sameAs: [siteConfig.social.x, siteConfig.social.linkedin, siteConfig.social.github],
   };
 }
 
@@ -40,7 +42,8 @@ interface SoftwareApplicationSchema {
 // SoftwareApplication schema for one game — built entirely from games.ts
 // so it can never drift from what's actually on the page. Fields with no
 // backing data (installUrl before a store link exists, pricing that was
-// never entered) are omitted rather than guessed.
+// never entered) are omitted rather than guessed. `url` points at the
+// game's own page, which is the canonical address for the app.
 export function softwareApplicationJsonLd(game: Game): SoftwareApplicationSchema {
   const schema: SoftwareApplicationSchema = {
     "@context": "https://schema.org",
@@ -48,7 +51,7 @@ export function softwareApplicationJsonLd(game: Game): SoftwareApplicationSchema
     name: game.name,
     applicationCategory: "GameApplication",
     description: game.description.en,
-    url: absoluteUrl(homePath),
+    url: absoluteUrl(gamePath(game.slug)),
   };
 
   const os = operatingSystems(game);

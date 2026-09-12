@@ -1,4 +1,6 @@
+import { useEffect, useRef } from "react";
 import type { LegalBlock, LegalDoc, LegalDocLanguageContent } from "../content/legal_types";
+import { contactEmailAddress, mailtoHref } from "../lib/contact";
 
 // This component renders LegalBlock.html via dangerouslySetInnerHTML.
 // That is only safe because every string it ever receives comes from our
@@ -13,6 +15,11 @@ const metaLabels = {
   tr: { version: "Sürüm", lastUpdated: "Son Güncelleme", developer: "Geliştirici", application: "Uygulama" },
 } as const;
 
+// The contact address arrives already replaced by empty placeholder spans
+// (content/legal_email_slots.ts, applied in the route's loader). The effect
+// in LegalDocView fills those in with a real mailto link once the page is
+// running in a browser.
+
 function LegalBlockView({ block }: { block: LegalBlock }) {
   switch (block.kind) {
     case "subtitle":
@@ -23,7 +30,6 @@ function LegalBlockView({ block }: { block: LegalBlock }) {
       return (
         <ul>
           {block.items.map((item, i) => (
-            // eslint-disable-next-line react/no-array-index-key
             <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
           ))}
         </ul>
@@ -44,10 +50,8 @@ function LegalBlockView({ block }: { block: LegalBlock }) {
           )}
           <tbody>
             {block.rows.map((row, rowIndex) => (
-              // eslint-disable-next-line react/no-array-index-key
               <tr key={rowIndex}>
                 {row.map((cell, cellIndex) => (
-                  // eslint-disable-next-line react/no-array-index-key
                   <td key={cellIndex} dangerouslySetInnerHTML={{ __html: cell }} />
                 ))}
               </tr>
@@ -75,9 +79,23 @@ interface LegalDocViewProps {
 
 export function LegalDocView({ doc, lang, content }: LegalDocViewProps) {
   const labels = metaLabels[lang];
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // Fill every email slot with the real mailto link once the page runs in a
+  // browser. The slots live inside dangerouslySetInnerHTML subtrees, which
+  // React never reconciles, so this DOM write persists across re-renders.
+  useEffect(() => {
+    const slots = rootRef.current?.querySelectorAll<HTMLSpanElement>(".email_slot");
+    slots?.forEach((slot) => {
+      const link = document.createElement("a");
+      link.href = mailtoHref();
+      link.textContent = contactEmailAddress();
+      slot.replaceChildren(link);
+    });
+  }, [content]);
 
   return (
-    <>
+    <div className="legal_doc" ref={rootRef}>
       <div className="doc_header">
         <div className="doc_title">
           {content.docTitleLine1}
@@ -104,12 +122,11 @@ export function LegalDocView({ doc, lang, content }: LegalDocViewProps) {
               {section.title}
             </h2>
             {section.blocks.map((block, blockIndex) => (
-              // eslint-disable-next-line react/no-array-index-key
               <LegalBlockView key={blockIndex} block={block} />
             ))}
           </div>
         );
       })}
-    </>
+    </div>
   );
 }

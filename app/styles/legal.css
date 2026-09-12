@@ -5,12 +5,12 @@ body { line-height: 1.75; }
 /* ── PAGE HEADER (brand/app name + doc-type subtitle) ── */
 header {
   background: var(--surface);
-  border-bottom: 3px solid var(--green);
+  border-bottom: 3px solid var(--ember);
   padding: 48px 24px 40px;
   text-align: center;
 }
 .header_eyebrow {
-  font-size: 10px;
+  font-size: var(--fs-xs);
   letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--text-mute);
@@ -25,14 +25,13 @@ header h1 {
   line-height: 1.05;
   letter-spacing: .04em;
 }
-header h1 .hammers { color: var(--green); }
 .header_rule {
   width: 44px; height: 2px;
   background: var(--kor-hatti);
   margin: 16px auto;
 }
 .header_sub {
-  font-size: 12.5px;
+  font-size: var(--fs-sm);
   color: var(--text-mute);
   font-weight: 300;
   letter-spacing: .04em;
@@ -57,10 +56,9 @@ header h1 .hammers { color: var(--green); }
 .tab_btn {
   padding: 12px 22px;
   font-family: var(--body);
-  font-size: 11px;
+  font-size: var(--fs-sm);
   font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+  letter-spacing: .02em;
   color: var(--text-mute);
   text-decoration: none;
   border-bottom: 2px solid transparent;
@@ -69,10 +67,10 @@ header h1 .hammers { color: var(--green); }
   transition: all .18s;
   white-space: nowrap;
 }
-.tab_btn:hover { color: var(--green); }
+.tab_btn:hover { color: var(--ember); }
 .tab_btn.active {
-  color: var(--green);
-  border-bottom-color: var(--orange);
+  color: var(--ember);
+  border-bottom-color: var(--gold);
 }
 
 /* ── DOC HEADER (version/date/developer table + big colored title) ── */
@@ -96,9 +94,9 @@ header h1 .hammers { color: var(--green); }
   line-height: 1.1;
   letter-spacing: .04em;
 }
-.doc_title span { color: var(--green); }
+.doc_title span { color: var(--ember); }
 .doc_meta {
-  font-size: 11.5px;
+  font-size: var(--fs-xs);
   color: var(--text-mute);
   text-align: right;
   line-height: 1.9;
@@ -121,7 +119,7 @@ header h1 .hammers { color: var(--green); }
 .legal_section_heavy { margin-bottom: 56px; }
 .section_title {
   font-family: var(--body);
-  font-size: 13px;
+  font-size: var(--fs-base);
   font-weight: 700;
   color: var(--text);
   padding-bottom: 9px;
@@ -130,45 +128,43 @@ header h1 .hammers { color: var(--green); }
   display: flex;
   align-items: center;
   gap: 14px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  letter-spacing: .02em;
 }
 .section_num {
   font-family: var(--body);
-  font-size: 11px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: .16em;
-  color: var(--green);
+  color: var(--ember);
   flex-shrink: 0;
   white-space: nowrap;
 }
 .sub_title {
-  font-size: 12px;
+  font-size: var(--fs-sm);
   font-weight: 700;
-  color: var(--green);
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  color: var(--ember);
+  letter-spacing: .02em;
   margin: 20px 0 8px;
 }
 
-.legal_section p { margin-bottom: 12px; color: var(--text-soft); font-size: 15px; font-weight: 300; }
+.legal_section p { margin-bottom: 12px; color: var(--text-soft); font-size: var(--fs-base); font-weight: 300; }
 .legal_section ul { padding-left: 0; margin: 8px 0 14px; list-style: none; }
 .legal_section ul li {
   padding: 4px 0 4px 20px;
   position: relative;
   color: var(--text-soft);
-  font-size: 15px;
+  font-size: var(--fs-base);
   font-weight: 300;
 }
-.legal_section ul li::before { content: "—"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.legal_section ul li::before { content: "—"; position: absolute; left: 0; color: var(--ember); font-weight: 700; }
 
 /* ── INFO BOX ── */
 .info_box {
   background: var(--surface2);
-  border-left: 3px solid var(--cyan);
+  border-left: 3px solid var(--gold);
   padding: 12px 16px;
   margin: 14px 0;
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   color: var(--text-soft);
   font-weight: 300;
   font-style: italic;
@@ -193,39 +189,35 @@ header h1 .hammers { color: var(--green); }
   background: var(--kor-hatti-v);
 }
 .warn_title {
-  font-size: 10.5px;
+  font-size: var(--fs-xs);
   font-weight: 700;
-  color: var(--orange);
+  color: var(--ember);
   text-transform: uppercase;
   letter-spacing: .12em;
   margin-bottom: 7px;
 }
-.warn_box p { color: #c8a882; font-size: 13.5px; margin: 0; font-style: normal; }
-[data-theme="light"] .warn_box p { color: #7a3808; }
-@media (prefers-color-scheme: light) {
-  [data-theme="auto"] .warn_box p { color: #7a3808; }
-}
+.warn_box p { color: var(--warn-text); font-size: var(--fs-sm); margin: 0; font-style: normal; }
 
 /* ── TABLE ── */
 .legal_table {
   width: 100%;
   border-collapse: collapse;
   margin: 14px 0 20px;
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   display: block;
   overflow-x: auto;
 }
 .legal_table thead, .legal_table tbody, .legal_table tr { display: table; width: 100%; table-layout: fixed; }
 .legal_table th {
   background: var(--surface3);
-  color: var(--green);
+  color: var(--ember);
   font-weight: 700;
-  font-size: 9.5px;
-  letter-spacing: .14em;
+  font-size: var(--fs-xs);
+  letter-spacing: .1em;
   text-transform: uppercase;
   padding: 9px 12px;
   text-align: left;
-  border-bottom: 1px solid var(--green-dim);
+  border-bottom: 1px solid var(--ember-dim);
 }
 .legal_table td {
   padding: 9px 12px;
@@ -233,23 +225,24 @@ header h1 .hammers { color: var(--green); }
   color: var(--text-soft);
   font-weight: 300;
   vertical-align: top;
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   word-break: break-word;
 }
-.legal_table a { color: var(--cyan); text-decoration: underline; }
+.legal_table a { color: var(--gold); text-decoration: underline; }
+/* Filled in after hydration by legal_doc_view.tsx — see its email-slot note. */
+.email_slot a { color: var(--gold); }
 
 /* ── BACK TO TOP ── */
 .back_to_top {
   display: inline-block;
   margin-top: 8px;
-  font-size: 11px;
+  font-size: var(--fs-sm);
   font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  letter-spacing: .02em;
   color: var(--text-mute);
   text-decoration: none;
 }
-.back_to_top:hover { color: var(--green); }
+.back_to_top:hover { color: var(--ember); }
 
 @media (max-width: 600px) {
   .doc_header { flex-direction: column; align-items: flex-start; }

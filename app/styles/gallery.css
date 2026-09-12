@@ -1,0 +1,204 @@
+/* Screenshot gallery — imported by components/game_gallery.tsx so the
+   styles travel with the component to every page that renders it. */
+
+/* ══ GALLERY ══ */
+/* min-width: 0 is load-bearing: as a grid item this box defaults to
+   min-width: auto, which refuses to shrink below the strip's full content
+   width. Without it the strip never gets a scrollable overflow — it just
+   grows past the card and gets clipped by .game_card's overflow: hidden,
+   so nothing scrolls and the arrows do nothing. */
+.gallery {
+  position: relative;
+  min-width: 0;
+}
+/* Frames are buttons (click to enlarge). `position: relative` on the strip
+   makes each frame's offsetLeft relative to the strip, which the arrow /
+   dot navigation in game_gallery.tsx relies on. */
+.game_shot_strip {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  /* Deliberately no scroll-snap. Frames are much narrower than the strip, so
+     most frames' snap positions sit past the maximum scroll offset; the snap
+     engine then overrode every programmatic scrollTo (pulling it to an
+     unreachable snap point and, with smooth behavior, back to zero), which
+     left the arrows and dots doing nothing. Native momentum scrolling on
+     touch is unaffected. */
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+  cursor: grab;
+}
+.game_shot_strip::-webkit-scrollbar { height: 6px; }
+.game_shot_strip::-webkit-scrollbar-track { background: transparent; }
+.game_shot_strip::-webkit-scrollbar-thumb {
+  background: var(--border2);
+  border-radius: 3px;
+}
+.game_shot_strip.is_dragging { cursor: grabbing; }
+.game_shot_frame {
+  flex: 0 0 auto;
+  width: clamp(150px, 44vw, 185px);
+  aspect-ratio: 390 / 844;
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+  font: inherit;
+  color: inherit;
+}
+.game_shot_frame:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+}
+.game_shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Kill the native image drag so it can't hijack the click-and-drag pan
+     (dragstart is also preventDefault'd in useDragScroll). */
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+.game_shot_placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  border: 1px dashed var(--border2);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--surface2) 0 8px,
+    var(--surface3) 8px 16px
+  );
+}
+.gallery_controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+.gallery_arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ctrl-bg);
+  border: 1px solid var(--ctrl-br);
+  color: var(--text-soft);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color .15s, color .15s;
+}
+.gallery_arrow:hover:not(:disabled) {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+.gallery_arrow:disabled {
+  opacity: .35;
+  cursor: default;
+}
+.gallery_dots {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+/* 24px hit target around an 8px dot. */
+.gallery_dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery_dot::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border2);
+  transition: background .15s, transform .15s;
+}
+.gallery_dot:hover::before { background: var(--text-mute); }
+.gallery_dot.active::before {
+  background: var(--ember);
+  transform: scale(1.25);
+}
+.gallery_count {
+  font-size: var(--fs-xs);
+  color: var(--text-mute);
+  font-variant-numeric: tabular-nums;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* Lightbox — native <dialog>, so focus trapping and Esc come from the
+   browser. The dialog is stretched to the viewport and stays transparent;
+   the visible frame is the inner body. */
+.gallery_dialog {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  color: var(--text);
+}
+.gallery_dialog::backdrop { background: var(--scrim); }
+.gallery_dialog_body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+}
+.gallery_dialog_frame {
+  height: min(78dvh, 844px);
+  aspect-ratio: 390 / 844;
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  overflow: hidden;
+}
+.gallery_dialog_frame .game_shot { pointer-events: auto; }
+.gallery_dialog_bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gallery_dialog_bar .gallery_count { margin-left: 0; }
+.gallery_close {
+  font-family: var(--body);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  background: var(--ctrl-bg);
+  border: 1px solid var(--ctrl-br);
+  color: var(--text);
+  padding: 8px 14px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+.gallery_close:hover { border-color: var(--ember); }

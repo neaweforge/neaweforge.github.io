@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useMatches } from "react-router";
-import { founderPath, founderRouteId, homePath, legalPageRouteId } from "../lib/paths";
+import { navCopy } from "../content/site_copy";
+import { brandEmblemSmall, homePath, homeSectionPath, legalPageRouteId, type HomeSection } from "../lib/paths";
+import { Localized } from "./localized";
 import { SettingsControls } from "./settings_controls";
+
+const navSections: HomeSection[] = ["games", "studio", "contact"];
 
 export function Nav() {
   const matches = useMatches();
@@ -10,10 +14,7 @@ export function Nav() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   // Legal pages must stay minimal — brand + controls only, no nav links —
   // so they render cleanly when opened standalone inside an app's webview.
-  // The founder page's own nav shouldn't link back to itself either.
-  const hideNavCenter = matches.some(
-    (match) => match.id === legalPageRouteId || match.id === founderRouteId,
-  );
+  const hideNavCenter = matches.some((match) => match.id === legalPageRouteId);
 
   useEffect(() => {
     if (!panelOpen) return;
@@ -40,16 +41,20 @@ export function Nav() {
   return (
     <nav className="nav" aria-label="Main navigation / Ana gezinme">
       <Link to={homePath} className="nav_logo">
-        Neawe <span className="forge">Forge</span>
+        <img className="nav_emblem" src={brandEmblemSmall} alt="" width={32} height={32} decoding="async" />
+        <span>
+          Neawe <span className="forge">Forge</span>
+        </span>
       </Link>
       {!hideNavCenter && (
         <>
           <span className="nav_divider" />
           <div className="nav_center">
-            <Link className="nav_link" to={founderPath}>
-              <span className="en_inline">Founder</span>
-              <span className="tr_inline">Kurucu</span>
-            </Link>
+            {navSections.map((section) => (
+              <Link key={section} className="nav_link" to={homeSectionPath(section)}>
+                <Localized inline text={navCopy[section]} />
+              </Link>
+            ))}
           </div>
         </>
       )}

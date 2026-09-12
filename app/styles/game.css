@@ -1,0 +1,108 @@
+/* Game detail page — imported directly by game_page.tsx. The shared
+   .content wrapper on <main> already caps the reading width. */
+
+.game_hero { margin-bottom: 48px; }
+.game_hero .back_link { margin: 0 0 20px; }
+.game_hero_title {
+  font-family: var(--display);
+  font-size: clamp(34px, 6vw, 56px);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.05;
+  letter-spacing: .03em;
+}
+.game_hero_tagline {
+  font-size: var(--fs-lg);
+  color: var(--gold);
+  font-weight: 300;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+.game_hero .kor_hatti_h { margin: 22px 0; }
+.game_hero_desc {
+  font-size: var(--fs-base);
+  color: var(--text-soft);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.game_section { margin-bottom: 48px; }
+.game_section .section_title { margin-bottom: 24px; }
+
+/* ══ FEATURES ══ */
+.feature_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 20px;
+}
+.feature {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--ember);
+  padding: 20px;
+}
+.feature_title {
+  font-family: var(--display);
+  font-size: clamp(17px, 2vw, 19px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: .02em;
+  margin-bottom: 8px;
+}
+.feature_body {
+  font-size: var(--fs-md);
+  color: var(--text-soft);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ══ STORES ══ */
+.store_row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.store_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--ember-dim);
+  color: var(--ember);
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  transition: background .15s, border-color .15s;
+}
+.store_link:hover { background: var(--badge-bg); border-color: var(--ember); }
+.store_link.soon {
+  border-color: var(--border2);
+  color: var(--text-mute);
+  cursor: default;
+}
+.store_note {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.store_arrow { font-size: var(--fs-sm); }
+
+/* ══ LEGAL ══ */
+.legal_row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* ══ TECH ══ */
+.game_tech_row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
