@@ -1,22 +1,23 @@
-import { Link } from "react-router";
 import type { Route } from "./+types/home";
 import { games } from "../data/games";
 import { contactCopy, gamesCopy, heroCopy, studioCopy } from "../content/site_copy";
 import { ContactEmail } from "../components/contact_email";
 import { GameCard } from "../components/game_card";
 import { Localized } from "../components/localized";
-import { brandEmblemLarge, founderPath, homePath, homeSectionId, mainContentId } from "../lib/paths";
+import { brandEmblemLarge, homePath, homeSectionId, mainContentId } from "../lib/paths";
 import { buildMeta } from "../lib/seo";
 import { usePageTitle } from "../lib/use_page_title";
 import "../styles/home.css";
 
+// Just the name — the "Independent Game Studio" subtitle is already right
+// there in the hero badge, so it's noise in a browser tab.
 const title = {
-  en: "Neawe Forge — Independent Game Studio",
-  tr: "Neawe Forge — Bağımsız Oyun Stüdyosu",
+  en: "Neawe Forge",
+  tr: "Neawe Forge",
 };
 const description = {
-  en: "Neawe Forge is an independent studio making mobile games by hand. Words & Hammers is out now on the App Store, with Android on the way.",
-  tr: "Neawe Forge, mobil oyunları elle döven bağımsız bir stüdyo. Words & Hammers App Store'da yayında, Android sürümü yolda.",
+  en: "Neawe Forge is a small, independent studio making fun, educational and simple games. Our first game, Words & Hammers, is available on the App Store and Play Store.",
+  tr: "Neawe Forge, eğlenceli, eğitici ve sade oyunlar yapan küçük, bağımsız bir stüdyo. İlk oyunumuz Words & Hammers, App Store'da ve Play Store'da.",
 };
 
 // Only the Organization schema (added by root) belongs here now — each
@@ -28,7 +29,6 @@ export function meta({ matches }: Route.MetaArgs) {
 
 export default function Home() {
   usePageTitle({ title, description });
-  const released = games.find((game) => game.status === "released");
 
   return (
     <main id={mainContentId} tabIndex={-1}>
@@ -45,12 +45,6 @@ export default function Home() {
         <div className="kor_hatti_h" />
         <Localized className="hero_slogan" text={heroCopy.slogan} />
         <Localized className="hero_desc" text={heroCopy.description} />
-        {released && (
-          <p className="hero_forging">
-            <Localized inline className="hero_forging_label" text={heroCopy.outNowLabel} />
-            <span className="hero_forging_name">{released.name}</span>
-          </p>
-        )}
         <div className="hero_actions">
           <a href={`#${homeSectionId.games}`} className="btn btn_primary">
             <Localized inline text={heroCopy.primaryCta}>
@@ -79,12 +73,6 @@ export default function Home() {
         <Localized as="h2" className="section_title" text={studioCopy.title} />
         <div className="studio_body">
           <Localized className="studio_text" text={studioCopy.body} />
-          <Link to={founderPath} className="text_link">
-            <Localized inline text={studioCopy.founderLink}>
-              {" "}
-              <span aria-hidden="true">→</span>
-            </Localized>
-          </Link>
         </div>
       </section>
 
@@ -96,13 +84,6 @@ export default function Home() {
             <Localized className="contact_text" text={contactCopy.body} />
             <ContactEmail className="btn btn_primary">
               <Localized inline text={contactCopy.emailCta} />
-            </ContactEmail>
-          </div>
-          <div className="contact_block contact_beta">
-            <Localized as="h3" className="contact_block_title" text={contactCopy.betaTitle} />
-            <Localized className="contact_text" text={contactCopy.betaBody} />
-            <ContactEmail className="btn btn_secondary" subject={contactCopy.betaSubject.en}>
-              <Localized inline text={contactCopy.betaCta} />
             </ContactEmail>
           </div>
         </div>

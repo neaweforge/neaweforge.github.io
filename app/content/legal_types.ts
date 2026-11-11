@@ -1,6 +1,6 @@
 export type LegalDocType = "privacy_policy" | "terms_of_service";
 
-const legalDocTypes: readonly LegalDocType[] = ["privacy_policy", "terms_of_service"];
+export const legalDocTypes: readonly LegalDocType[] = ["privacy_policy", "terms_of_service"];
 
 export function isLegalDocType(value: string): value is LegalDocType {
   return (legalDocTypes as readonly string[]).includes(value);

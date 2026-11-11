@@ -67,19 +67,9 @@
   color: var(--text-soft);
   font-weight: 300;
   max-width: 520px;
-  margin: 0 auto 22px;
+  margin: 0 auto 32px;
   line-height: 1.8;
 }
-.hero_forging {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: var(--fs-sm);
-  margin-bottom: 28px;
-}
-.hero_forging_label { color: var(--text-mute); }
-.hero_forging_label::after { content: ':'; }
-.hero_forging_name { color: var(--gold); font-weight: 700; }
 .hero_actions {
   display: flex;
   flex-wrap: wrap;
@@ -142,52 +132,10 @@
   font-weight: 300;
 }
 
-/* ══ STATUS / TECH ══ */
-.game_status {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.status_badge {
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: 7px 14px;
-  border: 1px solid;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.status_badge.store {
-  color: var(--ember);
-  border-color: var(--ember-dim);
-  background: var(--badge-bg);
-  transition: background .15s;
-}
-.status_badge.store:hover { background: var(--ember-glow); }
-.status_badge.soon { cursor: default; }
-.badge_soon_tag {
-  color: var(--gold);
-  font-weight: 700;
-}
-.status_badge.legal {
-  color: var(--gold);
-  border-color: var(--gold-dim);
-  background: var(--badge-bg);
-  transition: background .15s;
-}
-.status_badge.legal:hover { background: var(--gold-dim); }
-
-.game_tech {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
+/* Store buttons: see components/store_buttons.tsx / styles/store_buttons.css.
+   On the home card the badge pair sits centred under the description; the
+   game page keeps the default left alignment. */
+.game_card .store_buttons { justify-content: center; }
 
 /* ══ STUDIO ══ */
 /* Full-bleed band: drops .section's width cap so the background reaches the
@@ -229,13 +177,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
-}
-.contact_block_title {
-  font-family: var(--display);
-  font-size: clamp(18px, 2.2vw, 21px);
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: .02em;
 }
 .contact_text {
   font-size: var(--fs-base);

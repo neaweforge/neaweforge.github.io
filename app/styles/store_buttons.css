@@ -1,0 +1,48 @@
+/* Store badges — imported by components/store_buttons.tsx so the same
+   sizing travels with the component to every page that renders it.
+
+   Every badge shows at the same visible height, 40px: Apple's minimum
+   on-screen badge height, and Google asks its badge not to be smaller than
+   the other stores'. The official files can't be cropped or altered, and
+   Google's PNGs (646x250) carry transparent padding that differs per
+   language, so the padding is cancelled with negative margins instead:
+     EN: artwork rows 41-208, columns 41-604 → 168px of 250 visible;
+         img height 250 × 40/168 = 59.52px, margin 41 × 40/168 = 9.76px.
+     TR: artwork rows 29-220, full width → 192px of 250 visible;
+         img height 250 × 40/192 = 52.08px, vertical margin 29 × 40/192 = 6.04px.
+   Gap 16px ≥ the clear space both stores ask for (a quarter of the badge
+   height, 10px). Left-aligned by default; the home card centres the pair
+   (styles/home.css). */
+.store_buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.store_badge {
+  display: inline-block;
+  line-height: 0;
+}
+.store_badge_img { width: auto; max-width: none; }
+.store_badge_img.ios_en,
+.store_badge_img.ios_tr { height: 40px; }
+.store_badge_img.android_en { height: 59.52px; margin: -9.76px; }
+.store_badge_img.android_tr { height: 52.08px; margin: -6.04px 0; }
+.store_badge:focus-visible { outline: 2px solid var(--ember); outline-offset: 4px; }
+
+/* A store without a link yet: plain text, no badge artwork. */
+.store_soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-mute);
+  font-size: var(--fs-md);
+  font-weight: 700;
+}
+.store_soon_name { white-space: nowrap; }
+.store_soon_note {
+  font-size: var(--fs-xs);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}

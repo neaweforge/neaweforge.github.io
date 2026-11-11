@@ -14,7 +14,7 @@
 
 /* ══ SECTION SCAFFOLD ══ */
 /* Shared by any full-content page's in-page sections (home's Games block
-   today, Founder later). Not used by legal pages, which have their own
+   today). Not used by legal pages, which have their own
    header/doc-* system. */
 .section {
   max-width: 960px;
@@ -118,14 +118,6 @@
 }
 .text_link:hover { text-decoration: underline; }
 
-.game_tech_label {
-  font-size: var(--fs-xs);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--text-mute);
-  font-weight: 700;
-  margin-right: 4px;
-}
 .tech_chip {
   font-size: var(--fs-xs);
   font-weight: 700;

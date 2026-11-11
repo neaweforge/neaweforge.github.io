@@ -5,9 +5,9 @@ import { absoluteUrl, gamePath, homePath } from "./paths";
 // Rendered from root.tsx's meta() so it's on every route, not just home.
 //
 // No `sameAs`: that property asserts profiles belonging to this
-// organization, and the studio has none. The accounts listed on the founder
-// page are personal ones, so claiming them here would be a false statement
-// about the entity. Add it back if the studio ever opens its own accounts.
+// organization, and the studio has none. Personal accounts must never be
+// listed here — that would be a false statement about the entity. Add it
+// back if the studio ever opens its own accounts.
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",

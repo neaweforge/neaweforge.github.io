@@ -8,7 +8,6 @@ import { games } from "../data/games";
 // generated files and the links pointing at them can never drift apart.
 
 export const homePath = "/";
-export const founderPath = "/founder/";
 
 // In-page sections of the home page. The nav links to these from every
 // route, so the hash form is built here rather than typed at call sites.
@@ -43,7 +42,7 @@ export function legalPath(gameSlug: string, docType: LegalDocType): string {
 // prerendered file (see react-router.config.ts) but not a page a search
 // engine should ever be sent to.
 export function contentPaths(): string[] {
-  const paths = [homePath, founderPath];
+  const paths = [homePath];
   for (const game of games) {
     paths.push(gamePath(game.slug));
     paths.push(legalPath(game.slug, "privacy_policy"));
@@ -66,11 +65,32 @@ export function absoluteUrl(path: string): string {
   return `${siteUrl}${path}`;
 }
 
-// React Router's own route identifier (app/routes.ts file path without
-// extension) — a different thing from the URL paths above. Nav.tsx matches
-// this against useMatches() to decide when to hide its links; centralized
-// here so the id string only has to be right in one place.
-export const legalPageRouteId = "routes/legal_page";
+// React Router route ids — a different thing from the URL paths above.
+// app/routes.ts registers one literal route per real page, so the game page
+// and legal page modules each serve several routes and every route needs
+// its own id. Nav.tsx checks isLegalRouteId() against useMatches() to decide
+// when to hide its links; built here so the id shape lives in one place.
+const legalRouteIdPrefix = "legal_page/";
+
+export function gameRouteId(gameSlug: string): string {
+  return `game_page/${gameSlug}`;
+}
+
+export function legalRouteId(gameSlug: string, docType: LegalDocType): string {
+  return `${legalRouteIdPrefix}${gameSlug}/${docType}`;
+}
+
+export function isLegalRouteId(routeId: string): boolean {
+  return routeId.startsWith(legalRouteIdPrefix);
+}
+
+// The literal routes carry no :params, so a loader reads which game (and
+// which document) it serves from its own URL: /<slug>/ → [slug],
+// /<slug>/<docType>/ → [slug, docType]. Only the leading segments are read,
+// so a trailing data-request segment changes nothing.
+export function pathSegments(url: string): string[] {
+  return new URL(url).pathname.split("/").filter(Boolean);
+}
 
 // The skip link's target: every route's top-level <main> carries this id
 // plus tabIndex={-1} so the skip link's #-navigation actually moves focus

@@ -24,3 +24,13 @@ footer {
   text-decoration: none;
 }
 .footer_inner a:hover { color: var(--ember); text-decoration: underline; }
+/* Store trademark credit: its own full-width row under copyright and
+   contact, centred, small and quiet — legal notice, not content. */
+.footer_trademarks {
+  flex-basis: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  letter-spacing: 0;
+}

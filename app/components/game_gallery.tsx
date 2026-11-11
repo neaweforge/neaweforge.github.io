@@ -81,6 +81,18 @@ export function GameGallery({ shots, gameName }: GameGalleryProps) {
     if (open === null && dialog.open) dialog.close();
   }, [open]);
 
+  // showModal() makes the rest of the document inert for interaction, but
+  // it doesn't stop the page underneath from scrolling on its own — the
+  // body has to be locked by hand while the lightbox is open.
+  useEffect(() => {
+    if (open === null) return;
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = overflow;
+    };
+  }, [open]);
+
   function scrollToPage(index: number) {
     const strip = stripRef.current;
     if (!strip || pages < 2) return;

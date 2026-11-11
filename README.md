@@ -1,6 +1,6 @@
 # neaweforge.com
 
-Official developer hub for **Neawe Forge** — a brand-wide site for an independent mobile game studio, covering studio introduction, founder profile, and legal documents.
+Official developer hub for **Neawe Forge** — a brand-wide site for an independent mobile game studio, covering studio introduction, game pages, and legal documents.
 
 🌐 **Live site:** [https://neaweforge.com](https://neaweforge.com)
 
@@ -10,7 +10,6 @@ Official developer hub for **Neawe Forge** — a brand-wide site for an independ
 
 - **Studio introduction** — who Neawe Forge is and what it builds (home page)
 - **Games** — a showcase of released and in-development games
-- **Founder** — a short, studio-focused profile of the founder (`/founder/`)
 - **Legal center** — privacy policy and terms of service for each app
 
 **English / Turkish** language switching and **dark / light / auto** theme selection are both supported.
@@ -30,12 +29,11 @@ Deployment runs through GitHub Actions via `.github/workflows/deploy.yml`: every
 ```text
 app/
   root.tsx                    ← <html>/<body> shell, boot script, global style imports
-  routes.ts                   ← Route definitions
+  routes.ts                   ← Route definitions: one literal route per real page, generated from games.ts; every unknown URL reaches the 404
   routes/
     home.tsx                  ← Home page (hero, games, studio, contact)
-    game_page.tsx              ← A game's own page (:gameSlug)
-    founder.tsx                ← Founder page
-    legal_page.tsx             ← Single dynamic route serving every game's legal docs (:gameSlug/:docType)
+    game_page.tsx              ← A game's own page (/<slug>/)
+    legal_page.tsx             ← Every game's legal docs (/<slug>/<doc_type>/)
     not_found.tsx               ← 404
   components/                 ← Nav, Footer, GameCard, settings panel, legal doc renderer
   data/
@@ -46,7 +44,7 @@ app/
     words_and_hammers/         ← Each game's own folder with EN+TR legal text
   lib/
     paths.ts                  ← Every internal URL and route id is generated from this one place
-    site_config.ts             ← Contact address, the founder's personal links, studio status text
+    site_config.ts             ← Contact address
     contact.ts                 ← Builds the contact address at runtime so it never ships in the static HTML
     theme_lang.ts / theme_lang_context.tsx  ← Theme/language state + localStorage
   styles/                     ← Per-page/component CSS, snake_case
@@ -69,7 +67,7 @@ Each app is defined by a `slug` in `app/data/games.ts`; its pages are generated 
 | Privacy Policy | `https://neaweforge.com/words_and_hammers/privacy_policy/` |
 | Terms of Service | `https://neaweforge.com/words_and_hammers/terms_of_service/` |
 
-The two legal URLs are registered with the app stores and must keep working exactly as they are. The game page sits one level above them and is matched by a separate route, so adding it left them untouched.
+The two legal URLs are registered with the app stores and must keep working exactly as they are. The game page sits one level above them on its own route, so adding it left them untouched. Routes are literal (no `:gameSlug` catch-all): a dynamic segment would also match unknown addresses, including the prerendered `/404`, and GitHub Pages would serve a "game not found" page instead of the real 404.
 
 ### Adding a New Game
 

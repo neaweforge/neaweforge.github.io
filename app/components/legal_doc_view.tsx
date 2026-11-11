@@ -11,8 +11,8 @@ import { contactEmailAddress, mailtoHref } from "../lib/contact";
 // sanitizer first.
 
 const metaLabels = {
-  en: { version: "Version", lastUpdated: "Last Updated", developer: "Developer", application: "Application" },
-  tr: { version: "Sürüm", lastUpdated: "Son Güncelleme", developer: "Geliştirici", application: "Uygulama" },
+  en: { version: "Version", lastUpdated: "Last updated", developer: "Developer", application: "Application" },
+  tr: { version: "Sürüm", lastUpdated: "Son güncelleme", developer: "Geliştirici", application: "Uygulama" },
 } as const;
 
 // The contact address arrives already replaced by empty placeholder spans

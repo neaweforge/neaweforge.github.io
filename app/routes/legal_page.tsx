@@ -4,20 +4,27 @@ import { games } from "../data/games";
 import { legalContent, isLegalDocType, type LegalDocType } from "../content/legal_content";
 import { withEmailSlots } from "../content/legal_email_slots";
 import { LegalDocView } from "../components/legal_doc_view";
-import { legalPath, mainContentId } from "../lib/paths";
+import { legalPath, mainContentId, pathSegments } from "../lib/paths";
 import { buildMeta } from "../lib/seo";
 import { usePageTitle } from "../lib/use_page_title";
 import "../styles/legal.css";
 
-export function loader({ params }: Route.LoaderArgs) {
-  const { gameSlug, docType } = params;
+// routes.ts registers this module once per game and document type, so both
+// always resolve; a miss means routes.ts, games.ts and legal_content.ts
+// drifted apart, and the prerender fails loudly instead of shipping a
+// "Not found" page at a URL that may already be submitted to an app store.
+export function loader({ request }: Route.LoaderArgs) {
+  const [gameSlug = "", docSegment = ""] = pathSegments(request.url);
   const game = games.find((g) => g.slug === gameSlug);
-  const found = game && isLegalDocType(docType) ? legalContent[gameSlug]?.[docType] : undefined;
+  const docType = isLegalDocType(docSegment) ? docSegment : undefined;
+  const found = game && docType ? legalContent[game.slug]?.[docType] : undefined;
+  if (!game || !docType || !found) {
+    throw new Error(`legal_page: no legal document for "${gameSlug}/${docSegment}" (routes.ts and legal_content.ts drifted apart).`);
+  }
   // Strip the contact address here rather than in the view — this return
   // value is what ends up serialized in the prerendered HTML and _.data.
   // See content/legal_email_slots.ts.
-  const doc = found ? withEmailSlots(found) : undefined;
-  return { game, doc };
+  return { game, docType, doc: withEmailSlots(found) };
 }
 
 // Description templates, keyed by doc type rather than by game — a new
@@ -35,24 +42,12 @@ function legalDescription(docType: LegalDocType, gameName: string): { en: string
   };
 }
 
-export function meta({ loaderData, params, matches }: Route.MetaArgs) {
-  const docType = isLegalDocType(params.docType) ? params.docType : undefined;
-  const path = docType ? legalPath(params.gameSlug, docType) : `/${params.gameSlug}/${params.docType}/`;
-
-  if (!loaderData?.game || !loaderData?.doc || !docType) {
-    return buildMeta({
-      matches,
-      path,
-      title: "Not Found",
-      description: "The requested legal document doesn't exist.",
-      noindex: true,
-    });
-  }
-
-  const { game, doc } = loaderData;
+export function meta({ loaderData, matches }: Route.MetaArgs) {
+  if (!loaderData) return [];
+  const { game, docType, doc } = loaderData;
   return buildMeta({
     matches,
-    path,
+    path: legalPath(game.slug, docType),
     title: `${game.name} — ${doc.en.headerSub}`,
     description: legalDescription(docType, game.name).en,
   });
@@ -63,26 +58,13 @@ const docTabs: { docType: LegalDocType; en: string; tr: string }[] = [
   { docType: "terms_of_service", en: "Terms of Service", tr: "Kullanım Koşulları" },
 ];
 
-export default function LegalPage({ loaderData, params }: Route.ComponentProps) {
-  const { game, doc } = loaderData;
-  const docType = isLegalDocType(params.docType) ? params.docType : undefined;
+export default function LegalPage({ loaderData }: Route.ComponentProps) {
+  const { game, docType, doc } = loaderData;
 
-  usePageTitle(
-    game && doc && docType
-      ? {
-          title: { en: `${game.name} — ${doc.en.headerSub}`, tr: `${game.name} — ${doc.tr.headerSub}` },
-          description: legalDescription(docType, game.name),
-        }
-      : { title: { en: "Not Found", tr: "Bulunamadı" } },
-  );
-
-  if (!game || !doc) {
-    return (
-      <main className="content" id={mainContentId} tabIndex={-1}>
-        <p>Not found / Bulunamadı</p>
-      </main>
-    );
-  }
+  usePageTitle({
+    title: { en: `${game.name} — ${doc.en.headerSub}`, tr: `${game.name} — ${doc.tr.headerSub}` },
+    description: legalDescription(docType, game.name),
+  });
 
   return (
     <main id={mainContentId} tabIndex={-1}>
@@ -113,8 +95,8 @@ export default function LegalPage({ loaderData, params }: Route.ComponentProps) 
         {docTabs.map((tab) => (
           <Link
             key={tab.docType}
-            className={`tab_btn${tab.docType === params.docType ? " active" : ""}`}
-            to={legalPath(params.gameSlug, tab.docType)}
+            className={`tab_btn${tab.docType === docType ? " active" : ""}`}
+            to={legalPath(game.slug, tab.docType)}
           >
             <span className="en_inline">{tab.en}</span>
             <span className="tr_inline">{tab.tr}</span>

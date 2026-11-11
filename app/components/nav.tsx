@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useMatches } from "react-router";
 import { navCopy } from "../content/site_copy";
-import { brandEmblemSmall, homePath, homeSectionPath, legalPageRouteId, type HomeSection } from "../lib/paths";
+import { brandEmblemSmall, homePath, homeSectionPath, isLegalRouteId, type HomeSection } from "../lib/paths";
 import { Localized } from "./localized";
 import { SettingsControls } from "./settings_controls";
 
@@ -14,7 +14,7 @@ export function Nav() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   // Legal pages must stay minimal — brand + controls only, no nav links —
   // so they render cleanly when opened standalone inside an app's webview.
-  const hideNavCenter = matches.some((match) => match.id === legalPageRouteId);
+  const hideNavCenter = matches.some((match) => isLegalRouteId(match.id));
 
   useEffect(() => {
     if (!panelOpen) return;

@@ -60,35 +60,35 @@ export const games: Game[] = [
     packageId: "com.neaweforge.wordsandhammers",
     status: "released",
     tagline: {
-      en: "Find the words, swing the hammers, top your best score.",
-      tr: "Kelimeleri bul, çekiçleri salla, en iyi skorunu geç.",
+      en: "Find the words among the letters, break the ones you don't need, and climb toward your best score step by step.",
+      tr: "Harflerin arasından kelimeleri bul, gereksiz harfleri kır, en iyi puanına adım adım ilerle.",
     },
     description: {
-      en: "Find and collect words hidden among the letters on the board, earn points, and spend them wisely along the way — the smartest strategy earns you the highest score in every stage.",
-      tr: "Oyun alanındaki harfler arasından kelimeleri bul ve ilerle, puan topla, bir yandan da harca — en stratejik yaklaşım sana her bölümde en yüksek skoru kazandırır.",
+      en: "Find the target words among letters that are the same for everyone. Break the letters you don't need with hammers and keep going. Remember: every hammer costs points and every word earns them — the smartest strategy scores the most.",
+      tr: "Herkes için aynı olan harflerin arasından istenen kelimeleri bul. Çekiçlerle gereksiz harfleri kır ve ilerle. Unutma: her çekiç puan götürür, her kelime puan getirir. En iyi stratejiyi kuran, en çok puanı kapar.",
     },
     // Each entry corresponds to something visible in the screenshots and the
     // description above — nothing here is aspirational.
     features: [
       {
-        title: { en: "Trace words on the board", tr: "Tahtada kelimeleri ara" },
+        title: { en: "Find the words on the board", tr: "Oyun alanında kelimeleri bul" },
         body: {
-          en: "Words hide among the letters on the grid. Trace one to collect it and earn points toward your stage score.",
-          tr: "Kelimeler ızgaradaki harflerin arasına saklanır. Birini bulup izini sürerek topla ve bölüm skoruna puan kazan.",
+          en: "Words hide on the grid. Trace one from its first letter to its last, complete it and earn points. Every letter counts.",
+          tr: "Kelimeler ızgarada gizli. İlk harften son harfe kadar izini sür, kelimeyi tamamla ve puanı kap. Her harf değerli.",
         },
       },
       {
-        title: { en: "Spend points on hammers", tr: "Puanını çekiçlere harca" },
+        title: { en: "Use the hammers", tr: "Çekiçleri kullan" },
         body: {
-          en: "The shop sells horizontal, vertical and diagonal hammers. Points spent on the right hammer at the right moment open up the board.",
-          tr: "Dükkanda yatay, dikey ve çapraz çekiçler var. Doğru anda doğru çekiç, tahtayı açan hamle olur.",
+          en: "Basic or special, it doesn't matter: break the letters you don't need with hammers and open the way to new words. The right hammer, in the right place, at the right moment changes everything.",
+          tr: "Basit ya da özel, fark etmez: çekiçlerle gereksiz harfleri kır, yeni kelimelere yol aç. Doğru anda, doğru yerde, doğru çekiç her şeyi değiştirir.",
         },
       },
       {
-        title: { en: "Chase a higher score", tr: "Daha yüksek skorun peşinde" },
+        title: { en: "Best strategy, highest score", tr: "En iyi strateji, en yüksek puan" },
         body: {
-          en: "Every stage tracks its own score, stars and completion. Your profile keeps the running total of Forge Points.",
-          tr: "Her bölüm kendi skorunu, yıldızını ve tamamlanma durumunu tutar. Profilinde toplam Forge Puanın birikir.",
+          en: "The right words and the right hammers bring the best result — and the best result takes you one step higher. Every stage's score and stars, and your total Forge Points, build up on your profile.",
+          tr: "Doğru kelimeler ve doğru çekiçler en iyi sonucu getirir; en iyi sonuç da seni bir adım yukarı taşır. Her bölümün puanı, yıldızı ve toplam Forge Puanın profilinde birikir.",
         },
       },
     ],
@@ -122,14 +122,14 @@ export const games: Game[] = [
         src: "/img/words_and_hammers/screenshot_03.webp",
         alt: {
           en: "Hammer shop offering horizontal, vertical and diagonal hammers.",
-          tr: "Yatay, dikey ve çapraz çekiçler sunan çekiç dükkanı.",
+          tr: "Yatay, dikey ve çapraz çekiçler sunan çekiç dükkânı.",
         },
       },
       {
         src: "/img/words_and_hammers/screenshot_04.webp",
         alt: {
           en: "Player profile showing Forge Points and per-stage statistics.",
-          tr: "Forge Puanı ve bölüm bazlı istatistikleri gösteren oyuncu profili.",
+          tr: "Forge Puanını ve bölümlere göre istatistikleri gösteren oyuncu profili.",
         },
       },
       {

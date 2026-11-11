@@ -28,12 +28,26 @@
 
 .game_section { margin-bottom: 48px; }
 .game_section .section_title { margin-bottom: 24px; }
+.section_intro {
+  font-size: var(--fs-base);
+  color: var(--text-soft);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
 
 /* ══ FEATURES ══ */
+/* One column on phones, two from 560px. An odd card out (the third of
+   three today) spans the whole row instead of sitting alone in the left
+   column, so the block always closes as a full rectangle. */
 .feature_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
+}
+@media (min-width: 560px) {
+  .feature_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feature:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 .feature {
   background: var(--surface2);
@@ -56,39 +70,7 @@
   line-height: 1.7;
 }
 
-/* ══ STORES ══ */
-.store_row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.store_link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--surface2);
-  border: 1px solid var(--ember-dim);
-  color: var(--ember);
-  padding: 12px 20px;
-  text-decoration: none;
-  font-size: var(--fs-md);
-  font-weight: 700;
-  transition: background .15s, border-color .15s;
-}
-.store_link:hover { background: var(--badge-bg); border-color: var(--ember); }
-.store_link.soon {
-  border-color: var(--border2);
-  color: var(--text-mute);
-  cursor: default;
-}
-.store_note {
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.store_arrow { font-size: var(--fs-sm); }
+/* Store buttons: see components/store_buttons.tsx / styles/store_buttons.css. */
 
 /* ══ LEGAL ══ */
 .legal_row {
@@ -103,6 +85,4 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
 }

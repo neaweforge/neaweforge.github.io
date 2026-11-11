@@ -1,30 +1,31 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/game_page";
 import { games, type Game } from "../data/games";
-import { gamePageCopy, gamesCopy } from "../content/site_copy";
+import { gamePageCopy } from "../content/site_copy";
 import { GameGallery } from "../components/game_gallery";
 import { Localized } from "../components/localized";
-import { gamePath, homeSectionPath, legalPath, mainContentId } from "../lib/paths";
+import { StoreButtons } from "../components/store_buttons";
+import { gamePath, homeSectionPath, legalPath, mainContentId, pathSegments } from "../lib/paths";
 import { buildMeta } from "../lib/seo";
 import { softwareApplicationJsonLd } from "../lib/json_ld";
 import { usePageTitle } from "../lib/use_page_title";
 import "../styles/game.css";
 
-export function loader({ params }: Route.LoaderArgs) {
-  return { game: games.find((candidate) => candidate.slug === params.gameSlug) };
+// routes.ts registers this module once per game in games.ts, so the slug
+// always resolves; a miss means the two lists drifted apart, and the
+// prerender fails loudly instead of shipping an empty page.
+export function loader({ request }: Route.LoaderArgs) {
+  const [gameSlug] = pathSegments(request.url);
+  const game = games.find((candidate) => candidate.slug === gameSlug);
+  if (!game) {
+    throw new Error(`game_page: no game in games.ts for "${gameSlug}" (routes.ts and games.ts drifted apart).`);
+  }
+  return { game };
 }
 
-export function meta({ loaderData, params, matches }: Route.MetaArgs) {
-  const game = loaderData?.game;
-  if (!game) {
-    return buildMeta({
-      matches,
-      path: gamePath(params.gameSlug),
-      title: "Not Found",
-      description: "The requested game doesn't exist.",
-      noindex: true,
-    });
-  }
+export function meta({ loaderData, matches }: Route.MetaArgs) {
+  if (!loaderData) return [];
+  const { game } = loaderData;
   return [
     ...buildMeta({
       matches,
@@ -36,26 +37,6 @@ export function meta({ loaderData, params, matches }: Route.MetaArgs) {
     // page — this is the canonical URL for the app now.
     { "script:ld+json": softwareApplicationJsonLd(game) },
   ];
-}
-
-function StoreLink({ url, name, note }: { url: string | null; name: string; note?: React.ReactNode }) {
-  if (!url) {
-    return (
-      <span className="store_link soon">
-        <span className="store_name">{name}</span>
-        <Localized inline className="store_note" text={gamesCopy.soon} />
-      </span>
-    );
-  }
-  return (
-    <a className="store_link" href={url} target="_blank" rel="noopener noreferrer">
-      <span className="store_name">{name}</span>
-      {note}
-      <span className="store_arrow" aria-hidden="true">
-        ↗
-      </span>
-    </a>
-  );
 }
 
 function GameDetail({ game }: { game: Game }) {
@@ -93,14 +74,13 @@ function GameDetail({ game }: { game: Game }) {
 
       <section className="game_section">
         <Localized as="h2" className="section_title" text={gamePageCopy.availability} />
-        <div className="store_row">
-          <StoreLink url={game.stores.ios} name="App Store" />
-          <StoreLink url={game.stores.android} name="Google Play" />
-        </div>
+        <Localized className="section_intro" text={gamePageCopy.availabilityIntro} />
+        <StoreButtons ios={game.stores.ios} android={game.stores.android} />
       </section>
 
       <section className="game_section">
         <Localized as="h2" className="section_title" text={gamePageCopy.legalTitle} />
+        <Localized className="section_intro" text={gamePageCopy.legalIntro} />
         <div className="legal_row">
           <a className="text_link" href={legalPath(game.slug, "privacy_policy")}>
             <Localized inline text={gamePageCopy.privacyPolicy} />
@@ -111,32 +91,30 @@ function GameDetail({ game }: { game: Game }) {
         </div>
       </section>
 
-      <footer className="game_tech_row">
-        <Localized inline className="game_tech_label" text={gamePageCopy.builtWith} />
-        {game.techStack.map((tech) => (
-          <a key={tech.label} className="tech_chip" href={tech.url} target="_blank" rel="noopener noreferrer">
-            {tech.label}
-          </a>
-        ))}
-      </footer>
+      <section className="game_section">
+        <Localized as="h2" className="section_title" text={gamePageCopy.techDetailsTitle} />
+        <div className="game_tech_row">
+          {game.techStack.map((tech) => (
+            <a key={tech.label} className="tech_chip" href={tech.url} target="_blank" rel="noopener noreferrer">
+              {tech.label}
+            </a>
+          ))}
+        </div>
+      </section>
     </>
   );
 }
 
 export default function GamePage({ loaderData }: Route.ComponentProps) {
   const { game } = loaderData;
-  usePageTitle(
-    game
-      ? {
-          title: { en: `${game.name} — Neawe Forge`, tr: `${game.name} — Neawe Forge` },
-          description: game.description,
-        }
-      : { title: { en: "Not Found", tr: "Bulunamadı" } },
-  );
+  usePageTitle({
+    title: { en: `${game.name} — Neawe Forge`, tr: `${game.name} — Neawe Forge` },
+    description: game.description,
+  });
 
   return (
     <main className="content" id={mainContentId} tabIndex={-1}>
-      {game ? <GameDetail game={game} /> : <Localized as="h1" text={gamePageCopy.notFound} />}
+      <GameDetail game={game} />
     </main>
   );
 }

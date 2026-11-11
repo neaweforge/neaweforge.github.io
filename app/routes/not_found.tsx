@@ -1,12 +1,12 @@
 import type { Route } from "./+types/not_found";
-import { mainContentId } from "../lib/paths";
+import { homePath, mainContentId } from "../lib/paths";
 import { buildMeta } from "../lib/seo";
 import { usePageTitle } from "../lib/use_page_title";
 
 const title = { en: "404 — Neawe Forge", tr: "404 — Neawe Forge" };
 const description = {
   en: "The page you're looking for doesn't exist. Return to the Neawe Forge homepage.",
-  tr: "Aradığınız sayfa bulunamadı. Neawe Forge ana sayfasına dönebilirsiniz.",
+  tr: "Aradığın sayfa bulunamadı. Neawe Forge ana sayfasına dönebilirsin.",
 };
 
 export function meta({ matches }: Route.MetaArgs) {
@@ -17,14 +17,14 @@ export default function NotFound() {
   usePageTitle({ title, description });
   return (
     <main className="content" id={mainContentId} tabIndex={-1}>
-      <h1 className="en_content">404 — Page Not Found</h1>
-      <h1 className="tr_content">404 — Sayfa Bulunamadı</h1>
-      <a className="back_link" href="/">
+      <h1 className="en_content">404 — Page not found</h1>
+      <h1 className="tr_content">404 — Sayfa bulunamadı</h1>
+      <a className="back_link" href={homePath}>
         <span className="en_inline">
-          <span aria-hidden="true">←</span> Studio Hub
+          <span aria-hidden="true">←</span> Home page
         </span>
         <span className="tr_inline">
-          <span aria-hidden="true">←</span> Ana Sayfa
+          <span aria-hidden="true">←</span> Ana sayfa
         </span>
       </a>
     </main>
