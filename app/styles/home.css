@@ -137,6 +137,44 @@
    game page keeps the default left alignment. */
 .game_card .store_buttons { justify-content: center; }
 
+/* ══ ANNOUNCEMENTS ══ */
+/* Same card language as the contact block; the ember edge marks each entry
+   as a dated note rather than a call to action. */
+.announcement_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.announcement {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--ember);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.announcement_date {
+  font-size: var(--fs-xs);
+  letter-spacing: .06em;
+  color: var(--text-mute);
+}
+.announcement_title {
+  font-family: var(--display);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text);
+}
+.announcement_body {
+  font-size: var(--fs-base);
+  color: var(--text-soft);
+  font-weight: 300;
+  line-height: 1.75;
+}
+
 /* ══ STUDIO ══ */
 /* Full-bleed band: drops .section's width cap so the background reaches the
    viewport edges, then recreates the same content column with padding.
@@ -192,6 +230,7 @@
 }
 @media (max-width: 480px) {
   .section_alt { padding-inline: 16px; }
+  .announcement { padding: 16px; }
   /* The dots already show position; the numeric counter is decorative
      (aria-hidden) and is the first thing to give up its space here. */
   .game_shot_strip + .gallery_controls .gallery_count { display: none; }

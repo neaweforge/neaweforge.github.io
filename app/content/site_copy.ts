@@ -7,6 +7,9 @@ import type { LocalizedText } from "../data/games";
 
 export const navCopy = {
   games: { en: "Games", tr: "Oyunlar" },
+  // "News" rather than "Announcements": the desktop bar has little width to
+  // spare in English (see nav.css), and the long word would eat it.
+  announcements: { en: "News", tr: "Duyurular" },
   studio: { en: "Studio", tr: "Stüdyo" },
   contact: { en: "Contact", tr: "İletişim" },
 } satisfies Record<string, LocalizedText>;
@@ -54,6 +57,11 @@ export const galleryCopy = {
   next: { en: "Next screenshot", tr: "Sonraki ekran görüntüsü" },
   enlarge: { en: "Enlarge screenshot", tr: "Ekran görüntüsünü büyüt" },
   close: { en: "Close", tr: "Kapat" },
+} satisfies Record<string, LocalizedText>;
+
+export const announcementsCopy = {
+  eyebrow: { en: "News", tr: "Duyurular" },
+  title: { en: "From the forge", tr: "Ocaktan haberler" },
 } satisfies Record<string, LocalizedText>;
 
 export const studioCopy = {

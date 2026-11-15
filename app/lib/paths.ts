@@ -13,6 +13,7 @@ export const homePath = "/";
 // route, so the hash form is built here rather than typed at call sites.
 export const homeSectionId = {
   games: "games",
+  announcements: "announcements",
   studio: "studio",
   contact: "contact",
 } as const;

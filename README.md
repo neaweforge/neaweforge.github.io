@@ -31,19 +31,21 @@ app/
   root.tsx                    ← <html>/<body> shell, boot script, global style imports
   routes.ts                   ← Route definitions: one literal route per real page, generated from games.ts; every unknown URL reaches the 404
   routes/
-    home.tsx                  ← Home page (hero, games, studio, contact)
+    home.tsx                  ← Home page (hero, games, news, studio, contact)
     game_page.tsx              ← A game's own page (/<slug>/)
     legal_page.tsx             ← Every game's legal docs (/<slug>/<doc_type>/)
     not_found.tsx               ← 404
   components/                 ← Nav, Footer, GameCard, settings panel, legal doc renderer
   data/
     games.ts                  ← Single source of truth for games — adding a game needs no route/prerender changes
+    announcements.ts          ← Dated studio announcements shown on the home page, newest first — a new one is one entry
   content/
     legal_types.ts             ← Legal content types
     legal_content.ts            ← Maps games.ts to legal content; the build fails if a game is missing content
     words_and_hammers/         ← Each game's own folder with EN+TR legal text
   lib/
     paths.ts                  ← Every internal URL and route id is generated from this one place
+    format_date.ts             ← Announcement dates in EN and TR from fixed month names (no Intl, so prerender and hydration match)
     site_config.ts             ← Contact address
     contact.ts                 ← Builds the contact address at runtime so it never ships in the static HTML
     theme_lang.ts / theme_lang_context.tsx  ← Theme/language state + localStorage

@@ -5,7 +5,7 @@ import { brandEmblemSmall, homePath, homeSectionPath, isLegalRouteId, type HomeS
 import { Localized } from "./localized";
 import { SettingsControls } from "./settings_controls";
 
-const navSections: HomeSection[] = ["games", "studio", "contact"];
+const navSections: HomeSection[] = ["games", "announcements", "studio", "contact"];
 
 export function Nav() {
   const matches = useMatches();

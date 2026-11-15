@@ -1,10 +1,12 @@
 import type { Route } from "./+types/home";
+import { announcements } from "../data/announcements";
 import { games } from "../data/games";
-import { contactCopy, gamesCopy, heroCopy, studioCopy } from "../content/site_copy";
+import { announcementsCopy, contactCopy, gamesCopy, heroCopy, studioCopy } from "../content/site_copy";
 import { ContactEmail } from "../components/contact_email";
 import { GameCard } from "../components/game_card";
 import { Localized } from "../components/localized";
 import { brandEmblemLarge, homePath, homeSectionId, mainContentId } from "../lib/paths";
+import { localizedDate } from "../lib/format_date";
 import { buildMeta } from "../lib/seo";
 import { usePageTitle } from "../lib/use_page_title";
 import "../styles/home.css";
@@ -66,6 +68,22 @@ export default function Home() {
             <GameCard key={game.slug} game={game} />
           ))}
         </div>
+      </section>
+
+      <section id={homeSectionId.announcements} className="section">
+        <Localized as="div" className="section_eyebrow" text={announcementsCopy.eyebrow} />
+        <Localized as="h2" className="section_title" text={announcementsCopy.title} />
+        <ol className="announcement_list">
+          {announcements.map((item) => (
+            <li key={`${item.date} ${item.title.en}`} className="announcement">
+              <time className="announcement_date" dateTime={item.date}>
+                <Localized inline text={localizedDate(item.date)} />
+              </time>
+              <Localized as="h3" className="announcement_title" text={item.title} />
+              <Localized className="announcement_body" text={item.body} />
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section id={homeSectionId.studio} className="section section_alt">
