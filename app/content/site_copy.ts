@@ -47,7 +47,7 @@ export const gamePageCopy = {
     en: "You can find the game's legal documents here.",
     tr: "Oyunun yasal belgelerine buradan ulaşabilirsin.",
   },
-  privacyPolicy: { en: "Privacy Policy", tr: "Gizlilik Politikası" },
+  privacyPolicy: { en: "Privacy Notice", tr: "Aydınlatma Metni" },
   termsOfService: { en: "Terms of Service", tr: "Kullanım Koşulları" },
   techDetailsTitle: { en: "Technical details", tr: "Teknik ayrıntılar" },
 } satisfies Record<string, LocalizedText>;

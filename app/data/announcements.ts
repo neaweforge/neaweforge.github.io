@@ -20,7 +20,7 @@ export const announcements: Announcement[] = [
     },
   },
   {
-    date: "2026-09-19",
+    date: "2026-10-02",
     title: { en: "Words & Hammers is on Play Store", tr: "Words & Hammers Play Store'da" },
     body: {
       en: "Version 1.0.1 of our first game, Words & Hammers, is now out on Play Store too. For now it's available in Türkiye only.",

@@ -80,6 +80,12 @@
 }
 
 /* ══ TECH ══ */
+/* Voluntary AI disclosure under the tech chips (Game.aiUse). */
+.game_ai_note {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
 .game_tech_row {
   display: flex;
   flex-wrap: wrap;

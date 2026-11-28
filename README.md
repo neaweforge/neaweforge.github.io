@@ -10,7 +10,7 @@ Official developer hub for **Neawe Forge** — a brand-wide site for an independ
 
 - **Studio introduction** — who Neawe Forge is and what it builds (home page)
 - **Games** — a showcase of released and in-development games
-- **Legal center** — privacy policy and terms of service for each app
+- **Legal center** — privacy notice and terms of service for each app
 
 **English / Turkish** language switching and **dark / light / auto** theme selection are both supported.
 
@@ -66,7 +66,7 @@ Each app is defined by a `slug` in `app/data/games.ts`; its pages are generated 
 | Page | URL |
 | --- | --- |
 | Game | `https://neaweforge.com/words_and_hammers/` |
-| Privacy Policy | `https://neaweforge.com/words_and_hammers/privacy_policy/` |
+| Privacy Notice | `https://neaweforge.com/words_and_hammers/privacy_policy/` |
 | Terms of Service | `https://neaweforge.com/words_and_hammers/terms_of_service/` |
 
 The two legal URLs are registered with the app stores and must keep working exactly as they are. The game page sits one level above them on its own route, so adding it left them untouched. Routes are literal (no `:gameSlug` catch-all): a dynamic segment would also match unknown addresses, including the prerendered `/404`, and GitHub Pages would serve a "game not found" page instead of the real 404.

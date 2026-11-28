@@ -37,7 +37,7 @@ header h1 {
   letter-spacing: .04em;
 }
 
-/* ── DOC TABS (switch between this app's Privacy Policy / Terms) ── */
+/* ── DOC TABS (switch between this app's Privacy Notice / Terms) ── */
 /* Exactly 2 tabs today (docTabs in legal_page.tsx) — they fit every real
    viewport, so no horizontal scroll container is needed. overflow-x: auto
    used to sit here as a narrow-screen safety net, but it made the bar

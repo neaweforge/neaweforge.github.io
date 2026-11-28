@@ -100,6 +100,7 @@ function GameDetail({ game }: { game: Game }) {
             </a>
           ))}
         </div>
+        {game.aiUse && <Localized className="section_intro game_ai_note" text={game.aiUse} />}
       </section>
     </>
   );

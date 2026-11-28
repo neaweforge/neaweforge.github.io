@@ -48,6 +48,10 @@ export interface Game {
       actually does — no speculative or planned features. */
   features: GameFeature[];
   techStack: TechBadge[];
+  /** Voluntary AI disclosure: where AI was used in making the game, the same
+      text as the game's own in-app notice. Generic on purpose (no tool names).
+      Optional — a game without it shows no line. */
+  aiUse?: LocalizedText;
   stores: GameStoreLinks;
   /** Empty until real screenshots exist — the card renders a placeholder frame until then. */
   screenshots: GameScreenshot[];
@@ -97,6 +101,10 @@ export const games: Game[] = [
       { label: "Dart", url: "https://dart.dev" },
       { label: "Flame", url: "https://flame-engine.org" },
     ],
+    aiUse: {
+      en: "Some images were created with AI tools. AI-assisted coding tools were used in development, and AI-assisted translation for the English texts. Design, decisions, review and testing are the developer's own.",
+      tr: "Bazı görseller yapay zekâ araçlarıyla üretildi. Geliştirmede yapay zekâ destekli kodlama araçlarından, İngilizce metinlerde yapay zekâ destekli çeviriden yararlanıldı. Tasarım, kararlar, denetim ve test geliştiriciye aittir.",
+    },
     stores: {
       android: "https://play.google.com/store/apps/details?id=com.neaweforge.wordsandhammers",
       // Country-scoped URL on purpose: the release is Turkey-only for now,

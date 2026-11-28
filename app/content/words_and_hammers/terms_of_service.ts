@@ -1,309 +1,352 @@
 import type { LegalDoc } from "../legal_types";
 
-// Migrated verbatim from wordsandhammers/terms-of-service.html (old static
-// site) on 2026-08-02 — wording is not altered from the source.
+// Version 2.0, rewritten for the Words & Hammers 1.0.2 legal update. The
+// Turkish text governs; English is a translation. lastUpdated is the day the
+// text went live on the site, the same day as the app release.
 export const termsOfService: LegalDoc = {
-  version: "1.1",
+  version: "2.0",
   developer: "Neawe Forge (Sait KAPLAN)",
   application: "Words & Hammers",
   tr: {
     docTitleLine1: "Kullanım",
     docTitleLine2: "Koşulları",
     headerSub: "Kullanım Koşulları",
-    lastUpdated: "17.08.2026",
+    lastUpdated: "28.11.2026",
     sections: [
       {
         number: "01",
-        title: "Taraflar ve Kabul",
+        title: "Taraflar ve kabul",
         blocks: [
           {
             kind: "paragraph",
-            html: 'Bu Kullanım Koşulları, Neawe Forge (Sait KAPLAN) ile "Words &amp; Hammers" uygulamasını kullanan kişi arasındaki hukuki ilişkiyi düzenler. İlk açılışta onay ekranında kabul etmeniz halinde bağlayıcı olur. <strong>Kabul etmiyorsanız uygulamayı kullanmayınız.</strong> Bu Koşullar zaman zaman güncellenebilir; maddi bir değişiklik yapıldığında uygulama, güncel Koşulları yeniden onaylamanızı isteyecek ve onayınız tarih ve sürüm bilgisiyle birlikte kaydedilecektir.',
-          },
-        ],
+            html: "Bu Kullanım Koşulları, Words &amp; Hammers'ı Neawe Forge adıyla geliştiren ve yayınlayan Sait KAPLAN (\"biz\") ile oyunu kullanan sizin aranızdaki sözleşmeyi oluşturur ve ilişkiyi düzenler. Koşullar, ilk açılıştaki onay ekranında kabul ettiğinizde geçerli olur; kabul ettiğiniz sürüm ve tarih cihazınızda kaydedilir. Kabul etmezseniz oyunu oynayamazsınız."
+          }
+        ]
       },
       {
         number: "02",
-        title: "Hizmet Tanımı",
+        title: "Oyun",
         blocks: [
           {
             kind: "paragraph",
-            html: '"Words &amp; Hammers", sözcük tabanlı bir mobil bulmaca oyunudur ve reklam destekli olarak ücretsiz sunulur. Kullanıcı hesabı ve sıralama tablosu gibi çevrim içi özellikler ileride eklenmesi planlanan, henüz aktif olmayan işlevlerdir (bkz. Gizlilik Politikası §2.5).',
-          },
-        ],
+            html: "Words &amp; Hammers ücretsiz bir kelime bulmaca oyunudur. Oyun internetsiz oynanır; hesap, sunucu ve sıralama yoktur, oyun verileriniz yalnızca cihazınızda saklanır. İnternet yalnızca şunlar için gerekir: yasal metinleri onaylamadan önce okumak (oyunun ilk açılışında ve bir güncellemeyle metinler esaslı olarak değiştiğinde), isteğe bağlı ödüllü reklam, bölüm değerlendirmesi göndermek ve bağlantıları açmak."
+          }
+        ]
       },
       {
         number: "03",
-        title: "Kullanıcı Hesabı (Planlanan)",
+        title: "Yaş",
         blocks: [
           {
             kind: "paragraph",
-            html: "Şu an uygulama, e-posta/şifre ile giriş gerektiren bir hesap sistemi içermez; yalnızca cihazınızda tutulan, kimlik doğrulaması gerektirmeyen anonim bir profil kullanılır. Aşağıdaki kurallar, planlanan bulut hesabı özelliği (bkz. Gizlilik Politikası §2.5) etkinleştirildiğinde geçerli olacaktır:",
-          },
-          {
-            kind: "list",
-            items: [
-              "Kayıt sırasında doğru ve güncel bilgi sağlamak zorundasınız.",
-              "Hesap güvenliğiniz tamamen size aittir; şifrenizi kimseyle paylaşmayın.",
-              "Başkasının hesabına yetkisiz erişim kesinlikle yasaktır.",
-              "Hesabınızı başkasına devredemezsiniz.",
-              "Şüpheli hesap etkinliklerini derhal bildirin.",
-            ],
-          },
-        ],
+            html: "Oyun yetişkinler için tasarlanmıştır. İlk açılışta doğum yılınızı doğru bildirmeniz gerekir. 18 yaşından küçükseniz bu Koşulları veliniz ya da vasinizle birlikte okumalısınız; oyunu ancak onların izniyle ve gözetiminde oynayabilirsiniz."
+          }
+        ]
       },
       {
         number: "04",
-        title: "Kullanıcı Yükümlülükleri",
+        title: "Oyun içi öğeler",
         blocks: [
           {
-            kind: "list",
-            items: [
-              "Uygulamayı hack, cheat, bot veya otomasyon araçlarıyla manipüle etmek",
-              "Diğer kullanıcılara zarar verecek içerik üretmek",
-              "Kötü amaçlı yazılım veya zararlı kod yaymak",
-              "Sistemi aşırı yükleyecek talepler göndermek",
-              "Yürürlükteki yasaları ihlal etmek",
-            ],
-          },
-        ],
+            kind: "paragraph",
+            html: "Zümrüt, Forge Puanı ve çekiçler yalnızca oyun içinde geçerlidir; gerçek para değerleri yoktur, paraya çevrilemez, satılamaz ve başkasına devredilemez. Bunlar gerçek parayla satılmaz: zümrüt bölümleri oynayarak ve dükkândaki sandıktan, Forge Puanı bölümleri oynayarak kazanılır; çekiçler sandıktan çıkar ya da zümrütle alınır."
+          }
+        ]
       },
       {
         number: "05",
-        title: "Fikri Mülkiyet",
-        blocks: [
-          {
-            kind: "paragraph",
-            html: "Uygulamanın tüm içerikleri Neawe Forge'a ait olup fikri mülkiyet mevzuatıyla korunmaktadır. Kullanıcılara yalnızca kişisel, ticari olmayan kullanım için sınırlı lisans verilmektedir.",
-          },
-        ],
-      },
-      {
-        number: "06",
-        title: "Sorumluluk Sınırlandırması",
-        blocks: [
-          {
-            kind: "warn",
-            title: "⚠ Sorumluluk Sınırlandırması — Lütfen Dikkatle Okuyun",
-            html: "Neawe Forge; (a) bulut hesap sistemi etkinleştirildiğinde kullanılacak olan Supabase Inc. başta olmak üzere üçüncü taraf altyapı sağlayıcılarında meydana gelebilecek ve makul özen yükümlülüğü kapsamında öngörülemeyen veya önlenemeyen güvenlik ihlalleri ve veri kayıplarından; (b) kullanıcının zayıf şifre seçimi veya hesap bilgilerini üçüncü kişilerle paylaşması nedeniyle oluşan yetkisiz erişimlerden; (c) ağ kesintilerinden; (d) mücbir sebeplerden sorumlu tutulamaz. Bu sınırlama, Neawe Forge'un kendi kastından veya ağır ihmalinden doğan zararlar için uygulanmaz ve 6098 sayılı Türk Borçlar Kanunu'nun emredici hükümlerini ortadan kaldırmaz.",
-          },
-        ],
-      },
-      {
-        number: "07",
-        title: "Hizmet Kesintisi ve Değişiklik",
-        blocks: [
-          {
-            kind: "paragraph",
-            html: "Geliştirici, önceden bildirimde bulunmaksızın uygulamayı durdurma, değiştirme ya da sonlandırma hakkını saklı tutar. Uygulamaya bulut hesabı, sıralama tablosu veya oyun içi puan sistemi gibi yeni işlevler eklenmesi halinde, bu Koşullar ve Gizlilik Politikası güncellenecek ve söz konusu işlevlerin kullanımı için ayrıca ve önceden onayınız istenecektir.",
-          },
-        ],
-      },
-      {
-        number: "08",
-        title: "Hesap Askıya Alma (Planlanan)",
-        blocks: [
-          {
-            kind: "paragraph",
-            html: "Bulut hesap sistemi etkinleştirildiğinde, aşağıdaki durumlarda hesabınız askıya alınabilir:",
-          },
-          {
-            kind: "list",
-            items: [
-              "Bu Koşulların ihlali",
-              "Sahtekârlık, hile veya manipülasyon tespiti",
-              "Diğer kullanıcılara zarar verici davranışlar",
-            ],
-          },
-          {
-            kind: "paragraph",
-            html: "Şu an için: Ayarlar &gt; Verilerimi Sil (uygulama içi) ile ilerlemenizi ve verilerinizi cihazınızdan anında silebilirsiniz. Bulut hesap sistemi etkinleştirildiğinde, hesabınızı kendiniz silmek için: <strong>Ayarlar &gt; Hesabı Sil</strong> (uygulama içi) veya bu site üzerinde yayınlanacak hesap silme sayfası üzerinden de talepte bulunabilirsiniz.",
-          },
-        ],
-      },
-      {
-        number: "09",
         title: "Reklamlar",
         blocks: [
           {
             kind: "paragraph",
-            html: "Uygulama ücretsiz sunulmakta ve reklam geliriyle desteklenmektedir. AdMob reklamları kişiselleştirilmiş veya kişiselleştirilmemiş olarak gösterilebilir; veri kullanımı hakkında detaylı bilgi için Gizlilik Politikamıza bakınız.",
+            html: "Oyun reklamla desteklenir. Dükkânda bazı ödüller için isteğe bağlı ödüllü reklam izleyebilirsiniz; oyunda başka reklam yoktur. Reklamlar kişiselleştirilmez; 18 yaşından küçük oyuncular için çocuklara uygun içerikle sınırlanır. Günde en çok 25, saatte en çok 10 reklam izlenebilir; ilk iki reklamdan sonra reklamlar arasında 4 dakika beklenir, 10 dakika reklam izlenmezse ilk iki reklam yeniden beklemesizdir. Ödül, Google reklamın tamamlandığını bildirdiğinde verilir; reklam yüklenemezse ya da yarıda bırakılırsa ödül verilmez. Reklamları Google AdMob gösterir; işlenen veriler Aydınlatma Metni'ndedir."
+          }
+        ]
+      },
+      {
+        number: "06",
+        title: "Kullanım kuralları",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Oyunu kullanırken:"
           },
-        ],
+          {
+            kind: "list",
+            items: [
+              "oyunu değiştirmeyin, değiştirilmiş sürümünü dağıtmayın, oyuna tersine mühendislik uygulamayın ve kodunu çözmeye çalışmayın (kanunun açıkça izin verdiği hâller saklıdır);",
+              "reklam ödüllerini otomasyon araçlarıyla ya da başka bir hileyle elde etmeye çalışmayın;",
+              "kullanıcı adınızda hakaret içeren, başkasının haklarını ihlal eden ya da yasalara aykırı ifadeler kullanmayın;",
+              "oyunu yürürlükteki yasalara aykırı biçimde kullanmayın."
+            ]
+          }
+        ]
+      },
+      {
+        number: "07",
+        title: "İçerik hakları",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Oyunun bölümleri, kelime tanımları, sözlüğün derlemesi, görselleri, adı ve logosu üzerindeki haklar, mevzuatın tanıdığı ölçüde bize aittir; bazı görseller yapay zekâ araçlarıyla üretilmiştir (oyunda Ayarlar → Hakkında → Yapay zekâ kullanımı). Size oyunu kişisel ve ticari olmayan amaçla kullanmanız için sınırlı, münhasır olmayan ve devredilemez bir kullanım hakkı veririz. Bu içerikler iznimiz olmadan kopyalanamaz, çoğaltılamaz ya da dağıtılamaz."
+          }
+        ]
+      },
+      {
+        number: "08",
+        title: "Güncellemeler ve veri kaybı",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Oyun geliştirme aşamasındadır. Oyunu iyileştirmek için yapılan güncellemelerde sistem değişebilir; bu nedenle oyun içi ilerleme ve öğeler sıfırlanabilir, cihazınızdaki veriler silinebilir ya da yeni sürümde kullanılamaz hâle gelebilir. Bunu önceden uygulama içinde duyururuz."
+          }
+        ]
+      },
+      {
+        number: "09",
+        title: "Cihaz güvenliği ve yerel kayıt",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Oyun verileriniz yalnızca cihazınızda saklanır; yedeğiniz yoksa cihaz kaybında ya da silmede geri getirilemez. Verilerinizin güvenliği cihazınızın güvenliğine de bağlıdır. Cihazınızın kaybolması, çalınması, başkalarının erişimine açık bırakılması ya da cihazınızdaki başka yazılımlar yoluyla verilerinize erişilmesi nedeniyle oluşan zararlardan, kusurumuz olmadıkça sorumlu değiliz."
+          },
+          {
+            kind: "paragraph",
+            html: "Oyun içindeki Ayarlar → Verileri Sıfırla bütün oyun verilerinizi cihazınızdan kalıcı olarak siler; bu işlem geri alınamaz."
+          }
+        ]
       },
       {
         number: "10",
-        title: "Uygulanacak Hukuk",
+        title: "Sorumluluk",
         blocks: [
           {
             kind: "paragraph",
-            html: "Bu Koşullar Türkiye Cumhuriyeti hukukuna tabidir. Uyuşmazlıklarda <strong>İstanbul Mahkemeleri ve İcra Daireleri</strong> yetkilidir.",
-          },
-        ],
+            html: "Oyunu ücretsiz ve olduğu gibi sunarız; her cihazda kesintisiz ve hatasız çalışacağını garanti edemeyiz. Kanunun izin verdiği ölçüde, oyunun kullanılmasından ya da kullanılamamasından doğan dolaylı zararlardan sorumlu değiliz. Bu sınırlama, kastımızla ya da ağır kusurumuzla verdiğimiz zararları ve kanunun sınırlanmasına izin vermediği sorumluluklarımızı kapsamaz."
+          }
+        ]
       },
       {
         number: "11",
-        title: "Değişiklikler ve Sürümleme",
+        title: "Oyunun değişmesi ve sona ermesi",
         blocks: [
           {
             kind: "paragraph",
-            html: "Bu Koşullar güncellenebilir. Sürüm numarasının ondalık kısmındaki artışlar (ör. 1.0 → 1.1) küçük açıklama veya dil düzeltmelerini; tam sayı kısmındaki artışlar (ör. 1.x → 2.0) ise haklarınızı veya yükümlülüklerinizi etkileyen maddi değişiklikleri ifade eder ve yeniden onayınızı gerektirir. Diğer değişiklikler uygulama içi bildirimle duyurulur.",
-          },
-        ],
+            html: "Oyunu geliştirebilir, özelliklerini değiştirebilir ya da kaldırabiliriz. Oyunu mağazalardan kaldırmaya ve geliştirmeyi bırakmaya karar verirsek bunu en az 30 gün önce uygulama içinde ya da neaweforge.com'da duyururuz. Oyun internetsiz çalıştığı için cihazınızdaki oyun bundan sonra da çalışabilir; ancak yeniden indirilemez ve güncelleme almaz."
+          }
+        ]
       },
       {
         number: "12",
-        title: "İletişim",
-        blocks: [{ kind: "paragraph", html: "Sorularınız için: <strong>support@neaweforge.com</strong>" }],
+        title: "Koşulların değişmesi",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Bu Koşulları güncelleyebiliriz. Sürüm numarasının ondalık kısmındaki artış (ör. 2.0 → 2.1) küçük açıklama ya da dil düzeltmelerini, tam sayı kısmındaki artış (ör. 2.x → 3.0) haklarınızı ya da yükümlülüklerinizi etkileyen esaslı değişiklikleri gösterir. Esaslı değişiklikler, oyunun yeni sürümünü ilk açtığınızda gösterilir; yeni Koşulları kabul edene kadar oyuna devam edemezsiniz, cihazınızdaki oyun verileriniz ise silinmez. Kabul ettiğiniz sürüm ve tarih cihazınızda kaydedilir."
+          }
+        ]
       },
-    ],
+      {
+        number: "13",
+        title: "Uygulanacak hukuk ve uyuşmazlıklar",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Bu Koşullara Türk hukuku uygulanır. Tüketici uyuşmazlıklarında, kanundaki parasal sınırlar içinde tüketici hakem heyetleri, bu sınırların üzerinde tüketici mahkemeleri yetkilidir."
+          }
+        ]
+      },
+      {
+        number: "14",
+        title: "Dil",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Bu Koşulların iki sürümü arasında fark olursa Türkçe sürüm esastır; İngilizce sürüm yalnızca bilgi amaçlıdır."
+          }
+        ]
+      },
+      {
+        number: "15",
+        title: "İletişim",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Sorularınız için: support@neaweforge.com"
+          }
+        ]
+      }
+    ]
   },
   en: {
     docTitleLine1: "Terms of",
     docTitleLine2: "Service",
     headerSub: "Terms of Service",
-    lastUpdated: "17 August 2026",
+    lastUpdated: "28.11.2026",
     sections: [
       {
         number: "01",
-        title: "Parties and Acceptance",
+        title: "Parties and acceptance",
         blocks: [
           {
             kind: "paragraph",
-            html: 'These Terms govern the relationship between Neawe Forge (Sait KAPLAN) and any user of "Words &amp; Hammers". Accepting on the first-launch consent screen makes them legally binding. <strong>If you do not agree, do not use the application.</strong> These Terms may be updated from time to time; for material changes, the app will ask you to re-accept the current Terms, and your acceptance will be recorded together with its date and version.',
-          },
-        ],
+            html: "These Terms of Service form an agreement and govern the relationship between you, the user of the game, and Sait KAPLAN, who develops and publishes Words &amp; Hammers under the name Neawe Forge (\"we\"). The Terms apply once you accept them on the consent screen at first launch; the version and date you accepted are recorded on your device. If you do not accept them, you cannot play the game."
+          }
+        ]
       },
       {
         number: "02",
-        title: "Service Description",
+        title: "The game",
         blocks: [
           {
             kind: "paragraph",
-            html: '"Words &amp; Hammers" is a word-based mobile puzzle game, offered free with ad support. Online features such as user accounts and leaderboards are planned for the future and are not yet active (see Privacy Policy §2.5).',
-          },
-        ],
+            html: "Words &amp; Hammers is a free word puzzle game. The game is played offline; there are no accounts, servers or leaderboards, and your game data is stored only on your device. An internet connection is needed only to read the legal texts before you accept them (at the game's first launch, and when an update changes them materially), for optional rewarded ads, for sending stage feedback and for opening links."
+          }
+        ]
       },
       {
         number: "03",
-        title: "User Account (Planned)",
+        title: "Age",
         blocks: [
           {
             kind: "paragraph",
-            html: "The app currently does not include an email/password account system; it uses only an anonymous, device-local profile that requires no authentication. The rules below will apply once the planned cloud account feature (see Privacy Policy §2.5) is enabled:",
-          },
-          {
-            kind: "list",
-            items: [
-              "You must provide accurate and current information during registration.",
-              "You are solely responsible for your account security; never share your password.",
-              "Unauthorized access to another user's account is strictly prohibited.",
-              "You may not transfer your account to another person.",
-              "Report any suspicious account activity immediately.",
-            ],
-          },
-        ],
+            html: "The game is designed for adults. You must give your correct birth year at first launch. If you are under 18, you must read these Terms together with your parent or legal guardian, and you may play the game only with their permission and under their supervision."
+          }
+        ]
       },
       {
         number: "04",
-        title: "User Obligations",
+        title: "In-game items",
         blocks: [
           {
-            kind: "list",
-            items: [
-              "Manipulate the app using hacks, cheats, bots, or automation tools",
-              "Produce content harmful to other users",
-              "Distribute malware or malicious code",
-              "Send requests that overload the system",
-              "Violate any applicable laws",
-            ],
-          },
-        ],
+            kind: "paragraph",
+            html: "Emeralds, Forge Points and hammers are valid only within the game; they have no real-money value and cannot be exchanged for money, sold or transferred to anyone else. They are not sold for real money: emeralds are earned by playing stages and from the chest in the Shop, Forge Points by playing stages; hammers come from the chest or are bought with emeralds."
+          }
+        ]
       },
       {
         number: "05",
-        title: "Intellectual Property",
+        title: "Ads",
         blocks: [
           {
             kind: "paragraph",
-            html: "All content in \"Words &amp; Hammers\" is owned by Neawe Forge and protected by intellectual property law. Users receive a limited, non-transferable license for personal, non-commercial use only.",
-          },
-        ],
+            html: "The game is supported by ads. In the Shop you can watch optional rewarded ads for some rewards; there are no other ads in the game. Ads are not personalized; for players under 18 they are limited to content suitable for children. You can watch at most 25 ads a day and at most 10 ads an hour; after the first two ads, you wait 4 minutes between ads, and if you watch no ad for 10 minutes, the first two ads are again without a wait. The reward is given when Google reports that the ad has been completed; if an ad fails to load or is left unfinished, no reward is given. Ads are shown by Google AdMob; the data processed is described in the Privacy Notice."
+          }
+        ]
       },
       {
         number: "06",
-        title: "Limitation of Liability",
-        blocks: [
-          {
-            kind: "warn",
-            title: "⚠ Limitation of Liability — Please Read Carefully",
-            html: "Neawe Forge shall not be held liable for: (a) security incidents or data losses on third-party infrastructure — including Supabase Inc., which will be used once the cloud account system is enabled — that were not foreseeable or preventable within our duty of reasonable care; (b) unauthorized access resulting from a user's weak password choice or sharing of account credentials; (c) network outages; (d) force majeure events. This limitation does not apply to damages arising from Neawe Forge's own intentional misconduct or gross negligence.",
-          },
-        ],
-      },
-      {
-        number: "07",
-        title: "Service Changes",
+        title: "Rules of use",
         blocks: [
           {
             kind: "paragraph",
-            html: "The Developer reserves the right to suspend, modify, or discontinue the application without prior notice. If new functionality is added — such as a cloud account, online leaderboard, or in-game point system — these Terms and the Privacy Policy will be updated, and your separate, prior consent will be requested before that functionality is used.",
-          },
-        ],
-      },
-      {
-        number: "08",
-        title: "Account Suspension (Planned)",
-        blocks: [
-          {
-            kind: "paragraph",
-            html: "Once the cloud account system is enabled, your account may be suspended under the following circumstances:",
+            html: "When using the game:"
           },
           {
             kind: "list",
-            items: ["Violation of these Terms", "Detection of fraud, cheating, or manipulation", "Behavior harmful to other users"],
-          },
+            items: [
+              "do not modify the game, distribute modified versions of it, or reverse engineer it or try to decompile its code, except where the law expressly allows;",
+              "do not try to obtain ad rewards with automation tools or any other cheat;",
+              "do not use insulting, unlawful expressions or expressions that infringe others' rights in your username;",
+              "do not use the game in breach of applicable law."
+            ]
+          }
+        ]
+      },
+      {
+        number: "07",
+        title: "Content rights",
+        blocks: [
           {
             kind: "paragraph",
-            html: "Currently: Settings &gt; Delete My Data (in-app) instantly removes your progress and data from your device. Once the cloud account system is enabled, you will be able to delete your account via <strong>Settings &gt; Delete Account</strong> in-app, or through the account-deletion page that will be published on this site.",
-          },
-        ],
+            html: "The rights in the game's stages, word definitions, the compilation of its dictionary, images, name and logo belong to us to the extent the law recognizes them; some images were created with AI tools (in the game: Settings → About → Use of AI). We grant you a limited, non-exclusive, non-transferable right to use the game for personal, non-commercial purposes. This content may not be copied, reproduced or distributed without our permission."
+          }
+        ]
+      },
+      {
+        number: "08",
+        title: "Updates and loss of data",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "The game is in development. Updates made to improve the game may change the system; as a result, in-game progress and items may be reset, data on your device may be deleted or may become unusable in the new version. We announce this in the app in advance."
+          }
+        ]
       },
       {
         number: "09",
-        title: "Advertising",
+        title: "Device security and local storage",
         blocks: [
           {
             kind: "paragraph",
-            html: "The app is free and supported by ad revenue. AdMob ads may be shown personalized or non-personalized; see our Privacy Policy for details on data use.",
+            html: "Your game data is stored only on your device; without a backup, it cannot be recovered if the device is lost or the data is deleted. The security of your data also depends on the security of your device. Unless we are at fault, we are not liable for damage arising from your device being lost, stolen or left accessible to others, or from your data being accessed through other software on your device."
           },
-        ],
+          {
+            kind: "paragraph",
+            html: "Settings → Reset Data in the game permanently deletes all your game data from your device; this cannot be undone."
+          }
+        ]
       },
       {
         number: "10",
-        title: "Governing Law",
+        title: "Liability",
         blocks: [
           {
             kind: "paragraph",
-            html: "These Terms are governed by Turkish law. Disputes are subject to <strong>Istanbul Courts and Enforcement Offices</strong>.",
-          },
-        ],
+            html: "We provide the game free of charge and as is; we cannot guarantee that it will work without interruption or errors on every device. To the extent permitted by law, we are not liable for indirect damage arising from the use of, or inability to use, the game. This limitation does not cover damage we cause intentionally or through gross negligence, or any liability that the law does not allow to be limited."
+          }
+        ]
       },
       {
         number: "11",
-        title: "Amendments and Versioning",
+        title: "Changes to and end of the game",
         blocks: [
           {
             kind: "paragraph",
-            html: "These Terms may be updated. An increase in the decimal part of the version number (e.g. 1.0 → 1.1) reflects minor clarifications or wording fixes; an increase in the whole-number part (e.g. 1.x → 2.0) reflects a material change affecting your rights or obligations and requires your renewed acceptance. Other changes are announced via in-app notification.",
-          },
-        ],
+            html: "We may develop the game and change or remove its features. If we decide to remove the game from the stores and stop developing it, we will announce it at least 30 days in advance in the app or on neaweforge.com. Because the game works offline, the game on your device may keep working after that; however, it can no longer be downloaded again and will not receive updates."
+          }
+        ]
       },
       {
         number: "12",
-        title: "Contact",
-        blocks: [{ kind: "paragraph", html: "For questions: <strong>support@neaweforge.com</strong>" }],
+        title: "Changes to these Terms",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "We may update these Terms. An increase in the decimal part of the version number (e.g. 2.0 → 2.1) marks minor clarifications or language corrections; an increase in the whole number (e.g. 2.x → 3.0) marks material changes that affect your rights or obligations. Material changes are shown when you first open a new version of the game; you cannot continue playing until you accept the new Terms, but your game data on your device is not deleted. The version and date you accepted are recorded on your device."
+          }
+        ]
       },
-    ],
-  },
+      {
+        number: "13",
+        title: "Governing law and disputes",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "These Terms are governed by Turkish law. In consumer disputes, consumer arbitration committees have jurisdiction within the monetary limits set by law, and consumer courts above those limits."
+          }
+        ]
+      },
+      {
+        number: "14",
+        title: "Language",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "In case of any conflict between the two versions of these Terms, the Turkish version prevails; the English version is provided for information only."
+          }
+        ]
+      },
+      {
+        number: "15",
+        title: "Contact",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "For questions: support@neaweforge.com"
+          }
+        ]
+      }
+    ]
+  }
 };

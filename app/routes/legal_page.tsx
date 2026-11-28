@@ -32,8 +32,8 @@ export function loader({ request }: Route.LoaderArgs) {
 function legalDescription(docType: LegalDocType, gameName: string): { en: string; tr: string } {
   if (docType === "privacy_policy") {
     return {
-      en: `Privacy Policy for ${gameName} — how Neawe Forge collects, uses, and protects your data.`,
-      tr: `${gameName} Gizlilik Politikası — Neawe Forge verilerinizi nasıl topluyor, kullanıyor ve koruyor.`,
+      en: `Privacy Notice (privacy policy) for ${gameName} — how Neawe Forge processes your personal data.`,
+      tr: `${gameName} Aydınlatma Metni (gizlilik politikası) — Neawe Forge kişisel verilerinizi nasıl işliyor.`,
     };
   }
   return {
@@ -54,7 +54,7 @@ export function meta({ loaderData, matches }: Route.MetaArgs) {
 }
 
 const docTabs: { docType: LegalDocType; en: string; tr: string }[] = [
-  { docType: "privacy_policy", en: "Privacy Policy", tr: "Gizlilik Politikası" },
+  { docType: "privacy_policy", en: "Privacy Notice", tr: "Aydınlatma Metni" },
   { docType: "terms_of_service", en: "Terms of Service", tr: "Kullanım Koşulları" },
 ];
 
@@ -76,7 +76,7 @@ export default function LegalPage({ loaderData }: Route.ComponentProps) {
           {/* Visually the heading only ever shows the game name — the doc
               type is already restated right below in .header_sub. This
               hidden span just makes the *type* part of the <h1>'s
-              accessible name too ("Words & Hammers — Privacy Policy"),
+              accessible name too ("Words & Hammers — Privacy Notice"),
               since the visible .header_sub line is marked aria-hidden
               below to avoid announcing the same words twice. */}
           <span className="sr_only en_content"> — {doc.en.headerSub}</span>

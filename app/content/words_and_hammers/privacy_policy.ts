@@ -1,556 +1,650 @@
 import type { LegalDoc } from "../legal_types";
 
-// Migrated verbatim from wordsandhammers/privacy-policy.html (old static
-// site) on 2026-08-02 — wording is not altered from the source. See the
-// Phase 4 report for the one EN/TR asymmetry found during migration
-// (§09 Children's Privacy has one extra sentence in EN that TR lacks in
-// the original source) — flagged, not silently fixed.
+// Version 2.0, rewritten for the Words & Hammers 1.0.2 legal update. The
+// Turkish text governs; English is a translation. lastUpdated is the day the
+// text went live on the site, the same day as the app release.
 export const privacyPolicy: LegalDoc = {
-  version: "1.2",
+  version: "2.0",
   developer: "Neawe Forge (Sait KAPLAN)",
   application: "Words & Hammers",
   tr: {
-    docTitleLine1: "Gizlilik",
-    docTitleLine2: "Politikası",
-    headerSub: "Gizlilik Politikası",
-    lastUpdated: "23.08.2026",
+    docTitleLine1: "Aydınlatma",
+    docTitleLine2: "Metni",
+    headerSub: "Aydınlatma Metni",
+    lastUpdated: "28.11.2026",
     sections: [
       {
         number: "01",
-        title: "Genel Bakış ve Veri Sorumlusu",
+        title: "Veri sorumlusu",
         blocks: [
           {
             kind: "paragraph",
-            html: 'Bu Gizlilik Politikası, Neawe Forge (Sait KAPLAN) tarafından geliştirilen "Words &amp; Hammers" mobil uygulamasının kişisel verilerinizi nasıl topladığını, kullandığını, sakladığını ve koruduğunu açıklamaktadır.',
+            html: "Bu Aydınlatma Metni, Words &amp; Hammers'ın gizlilik politikasıdır."
           },
           {
-            kind: "table",
-            rows: [
-              ["Veri Sorumlusu", "Neawe Forge (Sait KAPLAN)"],
-              ["İletişim", "support@neaweforge.com"],
-              ["Mevzuat", "6698 sayılı KVKK · GDPR (AB kullanıcıları) · Google Play &amp; App Store politikaları"],
-            ],
-          },
-        ],
+            kind: "paragraph",
+            html: "Words &amp; Hammers'ı Neawe Forge adıyla Sait KAPLAN geliştirir ve yayınlar; bu metinde \"biz\" olarak anılırız. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) uyarınca veri sorumlusu Sait KAPLAN'dır. Bize support@neaweforge.com adresinden ulaşabilirsiniz."
+          }
+        ]
       },
       {
         number: "02",
-        title: "Toplanan Kişisel Veriler",
+        title: "Kısaca",
         blocks: [
-          { kind: "subtitle", html: "2.1 Cihaz İçi Veriler (Yerel Depolama)" },
-          {
-            kind: "paragraph",
-            html: "Uygulama şu anda kişisel verilerinizi herhangi bir sunucuya göndermemektedir. Oyun ilerlemeniz, ayarlarınız (ses, titreşim, satın alma onayı, anket tercihi) ve dil tercihiniz yalnızca cihazınızda (<em>shared_preferences</em>) saklanır ve Neawe Forge'a iletilmez.",
-          },
-          { kind: "subtitle", html: "2.2 Reklam Verileri (Google AdMob)" },
-          {
-            kind: "paragraph",
-            html: "AdMob, reklam gösterimi için reklam tanımlayıcısı, yaklaşık konum ve uygulama etkileşim verisi kullanabilir. Bu verilerin kapsamı platform ve bölgeye göre değişir:",
-          },
           {
             kind: "list",
             items: [
-              "<strong>Apple cihazlarda (iOS):</strong> Uygulama App Tracking Transparency (ATT) izni talep etmez ve reklam tanımlayıcısına (IDFA) erişmez. Bu nedenle iOS'ta yalnızca kişiselleştirilmemiş (non-personalized) reklamlar gösterilir; kullanıcı izlenmez.",
-              "<strong>Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre'deki kullanıcılara:</strong> Kişiselleştirilmiş reklam gösterilmeden önce, Google'ın User Messaging Platform (UMP) altyapısı aracılığıyla ayrı ve spesifik bir rıza ekranı sunulur.",
-              "<strong>Diğer bölgelerdeki Android kullanıcılarına:</strong> Bu Gizlilik Politikası'nı ve Kullanım Koşulları'nı ilk açılışta onaylamanız reklam tanımlayıcısının (GAID) bu genel amaçla işlenmesini kapsar; reklam kişiselleştirmesine özel, ayrı bir onay ekranı bu bölgelerde şu an bulunmamaktadır.",
-            ],
-          },
-          { kind: "subtitle", html: "2.3 Teknik / Log Verileri" },
-          {
-            kind: "paragraph",
-            html: "Bu veriler Neawe Forge tarafından değil, Google AdMob SDK'si tarafından otomatik olarak toplanır ve Google altyapısında işlenir. Ayrıntılı döküm için bkz. §10.",
-          },
-          {
-            kind: "list",
-            items: [
-              "IP adresi · Cihaz modeli · İşletim sistemi sürümü",
-              "Uygulama hata logları ve çökme raporları",
-              "Hizmet kullanım tarihi ve saati",
-            ],
-          },
-          { kind: "subtitle", html: "2.4 Beta Geri Bildirim Verileri" },
-          {
-            kind: "paragraph",
-            html: "Beta test süreci boyunca, bir bölümü tamamladıktan sonra isteğe bağlı bir anket sunulur. Anketi doldurup \"Gönder\"e basarsanız; kullanıcı adınız, bölüm istatistikleriniz (skor, yıldız, tamamlanma tarihi), verdiğiniz puan (varsa), zorluk değerlendirmeniz (varsa) ve yazdığınız serbest metin notu (varsa) cihazınızın mail uygulaması üzerinden <strong>support@neaweforge.com</strong> adresine gönderilir. Bu veri akışı yalnızca siz \"Gönder\"e bastığınızda gerçekleşir. Ayarlar sayfasından anketi tamamen kapatabilir veya bekleyen kayıtları iptal edebilirsiniz.",
-          },
-          {
-            kind: "subtitle",
-            html: "2.5 Planlanan Gelecek Özellikler (Bulut Hesabı, Sıralama Tablosu, Forge Point)",
-          },
-          {
-            kind: "paragraph",
-            html: 'Neawe Forge, ileride "Words &amp; Hammers" uygulamasına isteğe bağlı bir bulut hesabı, çevrim içi sıralama tablosu ve "Forge Point" adlı oyun içi puan sistemi eklemeyi planlamaktadır. Bu bölümde açıklanan işleme faaliyetleri <strong>henüz aktif değildir</strong>. Etkinleştirildiğinde:',
-          },
-          {
-            kind: "list",
-            items: [
-              "<strong>E-posta adresi ve kullanıcı adı</strong> — kimlik doğrulama ve hesap tanımlaması için Supabase altyapısında saklanacaktır",
-              "<strong>Şifre</strong> — yalnızca bcrypt hash olarak saklanacak; düz metin hiçbir zaman kaydedilmeyecektir",
-              "<strong>Kullanıcı adınız ve Forge Point puanınız</strong> — sıralama tablosunda diğer kullanıcılara görünür olacaktır",
-              "<strong>Profil avatarınız</strong> — önceden tanımlı bir avatar setinden seçilecektir; serbest fotoğraf yükleme bu aşamada sunulmayacaktır",
-            ],
-          },
-          {
-            kind: "paragraph",
-            html: "Forge Point'in gerçek para karşılığı bir değeri yoktur; satılamaz, devredilemez ve gerçek paraya çevrilemez. Neawe Forge bu puanları dilediği zaman düzenleyebilir veya sıfırlayabilir.",
-          },
-          {
-            kind: "info",
-            html: "Bu özellikler etkinleştirilmeden önce bu Gizlilik Politikası güncellenecek ve uygulama içinde konuya özel, ayrı bir onayınız istenecektir. Onayınız olmadan bu bölümde açıklanan hiçbir veri işlenmeye başlanmayacaktır.",
-          },
-        ],
+              "Oyun internetsiz oynanır; yasal metinleri onaylamadan önce okumak için (oyunun ilk açılışında ve bir güncellemeyle metinler esaslı olarak değiştiğinde) internet gerekir. Oyun verileriniz yalnızca cihazınızda saklanır ve bize gönderilmez.",
+              "Hesap, sunucu ve sıralama yoktur.",
+              "Reklamlar isteğe bağlıdır. Dükkânda bir ödül için reklam izlemeyi seçmezseniz reklam sistemi hiç başlamaz ve Google'a veri gitmez.",
+              "Bölüm değerlendirmelerini yalnızca siz göndermeyi seçerseniz e-postayla alırız.",
+              "Ayarlar → Verileri Sıfırla ile cihazdaki bütün oyun verilerinizi anında silebilirsiniz."
+            ]
+          }
+        ]
       },
       {
         number: "03",
-        title: "Üçüncü Taraf Hizmet Sağlayıcılar",
+        title: "İşlenen veriler, amaçları ve hukuki sebepleri",
         blocks: [
           {
             kind: "table",
-            headers: ["Hizmet", "Amaç", "Politika", "Durum"],
+            headers: [
+              "İşleme faaliyeti",
+              "Veriler",
+              "Amaç",
+              "Hukuki sebep (KVKK md. 5)",
+              "Nerede durur, kime gider"
+            ],
             rows: [
               [
-                "Google AdMob",
-                "Reklam gösterimi",
-                '<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>',
-                "Aktif",
+                "Oyunun cihazda çalışması",
+                "Kullanıcı adı, dört haneli etiket, avatar, cihazda üretilen rastgele oyuncu numarası, dil bölgesi, kayıt tarihi; bölüm ilerlemesi (puanlar, yıldızlar, oynayış sayısı, bulunan kelimelerin yolları); zümrüt, Forge Puanı ve çekiçler; ayarlar (ses, titreşim, tema, renk körlüğü modu, konfor seviyesi, satın alma onayı, değerlendirme anketi); oyun içi tanıtımların gösterilip gösterilmediği",
+                "Oyunu sunmak",
+                "Sözleşmenin kurulması veya ifası (md. 5/2-c)",
+                "Yalnızca cihazınızda; bize gönderilmez. Cihaz yedeğiniz açıksa yedeğinize girebilir (aşağıda 08)"
               ],
               [
-                "Google Play Services",
-                "Platform hizmetleri",
-                '<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>',
-                "Aktif",
+                "Yaş sorusu",
+                "Doğum yılı",
+                "Oyunu yaşınıza uygun ayarlarla sunmak (aşağıda 04)",
+                "Sözleşmenin kurulması veya ifası (md. 5/2-c)",
+                "Yalnızca cihazınızda; doğum yılınız hiçbir yere gönderilmez"
               ],
               [
-                "Supabase Inc.",
-                "Kimlik doğrulama, kullanıcı veritabanı (planlanan bulut hesabı özelliği)",
-                '<a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">supabase.com/privacy</a>',
-                "Planlanan — henüz aktif değil",
+                "Onay ve sürüm kaydı",
+                "Kabul ettiğiniz Kullanım Koşulları'nın ve gösterilen Aydınlatma Metni'nin sürümü ve tarihi, onayın verildiği uygulama sürümü, iki belgenin açıldığı an; her uygulama sürümünün cihazınızda ilk açıldığı an; reklam ve geri bildirim bilgi kartlarının gösterildiği ve seçildiği an",
+                "Bilgilendirmenin ve kabulün yapıldığını gösterebilmek",
+                "Hukuki yükümlülüğün yerine getirilmesi (md. 5/2-ç) ve bir hakkın tesisi, kullanılması veya korunması (md. 5/2-e)",
+                "Yalnızca cihazınızda; bize gönderilmez. Bir uyuşmazlıkta kanıt olarak cihazınızdaki kayda bakılır"
               ],
-            ],
+              [
+                "Ödüllü reklam",
+                "Google'ın işlediği veriler: IP adresi ve ona dayalı yaklaşık konum, cihaz ve işletim sistemi bilgileri, uygulama bilgileri, reklam etkileşimleri, sıklık sınırı ve kötüye kullanımı önleme için kullanılan tanımlayıcılar, reklam sisteminin hata ve performans verileri. Cihazınızda reklam sayacı (günlük izleme sayısı, art arda izlenen reklam sayısı, son reklamın anı, son bir saatte izlenen reklamların anları)",
+                "İstediğiniz ödüllü reklamı göstermek ve ödülü vermek; reklam sıklığını sınırlamak",
+                "İstenen reklamı göstermek ve ödülü vermek: sözleşmenin kurulması veya ifası (md. 5/2-c); reklam sıklığını sınırlamak ve kötüye kullanımı önlemek: meşru menfaat (md. 5/2-f)",
+                "Google (aşağıda 05 ve 07)"
+              ],
+              [
+                "Bölüm değerlendirmesi",
+                "E-postanın içindekiler (aşağıda 06) ve gönderen e-posta adresiniz",
+                "Bölümleri ve oyunu geliştirmek; gerekirse size yanıt vermek",
+                "Meşru menfaat (md. 5/2-f)",
+                "Bize e-postayla; Cloudflare ve Google üzerinden (aşağıda 07)"
+              ],
+              [
+                "Destek ve KVKK başvuruları",
+                "E-posta adresiniz, adınız (yazarsanız), talebinizin içeriği",
+                "Talebinizi cevaplamak; KVKK başvurusunu sonuçlandırmak",
+                "Başvurular: hukuki yükümlülük (md. 5/2-ç). Destek: sözleşmenin ifası ya da meşru menfaat (md. 5/2-c, 5/2-f)",
+                "Cloudflare ve Google üzerinden (aşağıda 07)"
+              ],
+              [
+                "Web sitesi (neaweforge.com)",
+                "Ziyaretçinin IP adresi ve teknik bağlantı bilgileri",
+                "Siteyi sunmak ve güvenliğini sağlamak",
+                "Meşru menfaat (md. 5/2-f)",
+                "GitHub (barındırma), Cloudflare (alan adı)"
+              ]
+            ]
           },
           {
             kind: "paragraph",
-            html: "shared_preferences, connectivity_plus, flutter_dotenv ve Flame yalnızca cihaz üzerinde çalışır; kişisel veri göndermez.",
+            html: "Veriler şu yollarla toplanır: oyunu kullanırken uygulama tarafından cihazınızda otomatik olarak; bölüm değerlendirmeleri, destek ve başvurular için sizin gönderdiğiniz e-postayla elektronik ortamda; reklam verileri için Google'ın reklam sistemi tarafından otomatik olarak; web sitesi verileri için siteyi ziyaret ettiğinizde otomatik olarak."
           },
-        ],
+          {
+            kind: "paragraph",
+            html: "Uygulama başka veri toplamaz; konum, kamera, mikrofon, rehber ya da dosyalarınıza erişmez."
+          }
+        ]
       },
       {
         number: "04",
-        title: "Verilerin Kullanım Amaçları",
+        title: "Yaş sorusu",
         blocks: [
           {
-            kind: "list",
-            items: [
-              "Kullanıcı hesabı oluşturma ve kimlik doğrulama <em>(planlanan — §2.5)</em>",
-              "Oyun içi sıralama tablosunun yönetimi <em>(planlanan — §2.5)</em>",
-              "Kişiselleştirilmiş veya kişiselleştirilmemiş reklam gösterimi",
-              "Uygulama hatalarının tespiti ve giderilmesi",
-              "Hizmet kalitesinin ölçülmesi",
-              "Beta sürecinde ürün geliştirme amacıyla geri bildirim toplanması ve değerlendirilmesi",
-            ],
+            kind: "paragraph",
+            html: "Oyun yetişkinler için tasarlanmıştır. İlk açılışta doğum yılınızı sorarız; doğum yılınız yalnızca cihazınızda saklanır, bize ya da Google'a gönderilmez. Doğum yılı sonradan değiştirilemez; yalnızca Verileri Sıfırla ile yeniden sorulur."
           },
-        ],
+          {
+            kind: "paragraph",
+            html: "Bu yıl ile doğum yılınızın farkı 18 ya da daha azsa 18 yaş altı sayılırsınız. Bu durumda Kullanım Koşulları'nı veliniz ya da vasinizle birlikte okumanızı ve oyunu onların izni ve gözetiminde oynamanızı isteriz. Reklamlar sizin için çocuklara yönelik olarak işaretlenir ve en çok \"G\" (genel izleyici) derecesindeki içerikle sınırlanır; Google'a doğum yılınız değil, yalnızca bu işaret gider. Reklam kimliği hiç kimse için kullanılmaz. Çocukların verisini rızaya dayanarak işlediğimiz bir işlem yoktur."
+          }
+        ]
       },
       {
         number: "05",
-        title: "Veri Güvenliği ve Sorumluluk Sınırlandırması",
+        title: "Reklamlar",
         blocks: [
           {
             kind: "paragraph",
-            html: "Bulut hesap sistemi etkinleştirildiğinde verileriniz, SOC 2 Type 2 sertifikalı, AES-256 şifreli Supabase bulut altyapısında saklanacaktır.",
-          },
-          {
-            kind: "warn",
-            title: "⚠ Önemli Güvenlik Uyarısı",
-            html: "İnternet üzerinden hiçbir veri iletim yöntemi %100 güvenli değildir. Neawe Forge, Supabase Inc. dahil üçüncü taraf altyapı sağlayıcılarında meydana gelen ve makul özen yükümlülüğü kapsamında öngörülemeyen veya önlenemeyen güvenlik olaylarından sorumlu tutulamaz. Bu sınırlama, Neawe Forge'un kendi kastından veya ağır ihmalinden doğan zararlar için uygulanmaz.",
-          },
-        ],
-      },
-      {
-        number: "06",
-        title: "Veri Saklama Süreleri",
-        blocks: [
-          {
-            kind: "table",
-            headers: ["Veri Türü", "Saklama Süresi"],
-            rows: [
-              ["Hesap verileri <em>(planlanan)</em>", "Hesap aktif olduğu sürece"],
-              ["Hesap silinmesi sonrası <em>(planlanan)</em>", "En fazla 30 gün"],
-              ["Teknik log verileri", "Google AdMob'un kendi politikasına tabi (bkz. §2.3, §10)"],
-              ["Reklam verileri", "AdMob politikasına tabi"],
-              ["Beta geri bildirim verileri (cihazda)", "Cihazınızda oyun verileriniz sıfırlanana kadar saklanır; otomatik bir süre sınırı yoktur"],
-              ["Beta geri bildirim verileri (e-posta kopyası)", "Tarafımıza e-posta ile ulaşan geri bildirim kayıtları, beta sürecinin bitiminden en fazla 90 gün sonra silinir"],
-            ],
-          },
-        ],
-      },
-      {
-        number: "07",
-        title: "KVKK Kapsamındaki Haklarınız",
-        blocks: [
-          {
-            kind: "table",
-            headers: ["Hak", "Nasıl Kullanılır"],
-            rows: [
-              ["Erişim", "E-posta ile talep gönderin."],
-              ["Düzeltme", "Yanlış verilerinizin düzeltilmesini isteyin."],
-              [
-                "Silme",
-                "Ayarlar &gt; Verilerimi Sil (uygulama içi) ile cihazınızdaki tüm oyun verileriniz anında silinir. Bulut hesap sistemi etkinleştirildiğinde: Ayarlar &gt; Hesabı Sil (uygulama içi) veya bu site üzerinde yayınlanacak hesap silme sayfası üzerinden de talep edebilirsiniz.",
-              ],
-              ["İtiraz", "Belirli amaçlarla işlenmesine itiraz edebilirsiniz."],
-              ["Taşınabilirlik", "Verilerinizi makine okunabilir formatta isteyin."],
-              ["Kısıtlama", "Belirli koşullarda işlemenin kısıtlanmasını isteyin."],
-            ],
-          },
-          {
-            kind: "paragraph",
-            html: 'Talep için <strong>support@neaweforge.com</strong> adresine "KVKK Veri Talebi" konusuyla yazın. 30 gün içinde yanıtlanır.',
-          },
-        ],
-      },
-      {
-        number: "08",
-        title: "AB Kullanıcıları için GDPR",
-        blocks: [
-          {
-            kind: "table",
-            headers: ["Veri Kategorisi", "Hukuki Dayanak"],
-            rows: [
-              ["Hesap verileri", "Sözleşmenin ifası (GDPR Madde 6/1-b)"],
-              ["Kişiselleştirilmiş reklamlar (AEA/Birleşik Krallık/İsviçre)", "Açık rıza (GDPR Madde 6/1-a) — Google UMP SDK üzerinden alınır"],
-              ["Kişiselleştirilmemiş reklamlar (iOS ve rıza verilmeyen durumlar)", "Meşru menfaat (GDPR Madde 6/1-f)"],
-              ["Log verileri", "Meşru menfaat (GDPR Madde 6/1-f)"],
-            ],
-          },
-        ],
-      },
-      {
-        number: "09",
-        title: "Çocukların Gizliliği",
-        blocks: [
-          {
-            kind: "paragraph",
-            html: "Words &amp; Hammers genel bir kelime bulmaca oyunudur ve belirli bir yaş grubuna özel olarak yönlendirilmemiştir; uygulama yaş doğrulaması yapmamaktadır, bu nedenle çocuk kullanıcılar tarafından da kullanılabilir. Çocuklardan kasıtlı olarak ek veya hassas veri toplanmaz; toplanan veriler bu Politika'nın 2. bölümünde açıklanan, oyunla sınırlı verilerle kısıtlıdır.",
-          },
-        ],
-      },
-      {
-        number: "10",
-        title: "Uluslararası Veri Transferi",
-        blocks: [
-          {
-            kind: "paragraph",
-            html: "Google AdMob, uygulamayı kullanırken aşağıdaki veri kategorilerini otomatik olarak toplar ve Google'ın (Amerika Birleşik Devletleri merkezli) küresel altyapısına aktarır (ayrıntılı SDK bazlı döküm için bkz. §2.2 ve §3):",
+            html: "Dükkândaki isteğe bağlı ödüllü reklamları Google AdMob gösterir; oyunda başka reklam yoktur."
           },
           {
             kind: "list",
             items: [
-              "Reklam tanımlayıcısı (Android GAID) — kimlikle bağlı, izleme amaçlı. <strong>iOS'ta uygulama App Tracking Transparency (ATT) izni talep etmediği için reklam tanımlayıcısına (IDFA) erişilmez; bu satır Android'e özgüdür.</strong>",
-              "Yaklaşık konum (IP üzerinden) — kimlikle bağlı",
-              "Görüntülenen reklamlar hakkında bilgi — kimlikle bağlı",
-              "Uygulama başlatma, dokunma ve reklam etkileşim verisi — kimlikle bağlı",
-              "Çökme logları, performans verisi (başlatma süresi, yanıt oranı, enerji kullanımı) ve diğer tanılama verileri — kimlikle bağlı değil",
-              "Kullanıcı kimliği beyanı — uygulama kodu Firebase Auth kullanmaz; bu beyan AdMob'un iç Firebase altyapısından kaynaklanıyor olabilir",
-            ],
-          },
-          {
-            kind: "paragraph",
-            html: "Bu aktarım, Google'ın kendi veri işleme sözleşmesi ve gizlilik politikası kapsamında gerçekleşir; 6698 sayılı Kanun'un 9. maddesi bağlamında uygun güvence mekanizmalarına tabidir.",
-          },
-          {
-            kind: "paragraph",
-            html: "Planlanan bulut hesabı özelliği (§2.5) etkinleştirildiğinde, hesap verileriniz Supabase Inc. aracılığıyla Avrupa Birliği ve/veya Amerika Birleşik Devletleri'ndeki sunucularda işlenebilecektir. Bu aktarım; 6698 sayılı Kanun'un 9. maddesi uyarınca Kişisel Verileri Koruma Kurulu'nun yeterlilik kararına, uygun güvencelere (Kurul onaylı standart sözleşme/taahhütname) veya ayrıca ve açıkça alınacak rızanıza dayandırılacaktır. AB kullanıcıları için ayrıca GDPR uyumlu Standard Contractual Clauses uygulanacaktır. Bu aktarım başlamadan önce, konuya özel bir onay ekranı ayrıca sunulacaktır.",
-          },
-        ],
+              "<strong>Ne zaman başlar:</strong> Reklam sistemi oyunun açılışında başlamaz. Dükkânda bir ödül için reklama dokunduğunuzda, \"Reklamı izle\"yi seçene kadar her seferinde kısa bir bilgi kartı gösteririz; bu seçimi yapmadıkça reklam sistemi başlamaz ve Google'a hiçbir veri gitmez. Bu seçimden sonra reklam sistemi dükkâna girdikten kısa bir süre sonra başlar (hemen çıkarsanız başlamaz) ve reklamın hızlı açılması için dükkân ekranında bir reklam önceden yüklenebilir. Yüklenen reklam, dükkândan çıksanız da oyun açık kaldığı sürece saklanabilir ve bir saat içindeki sonraki ziyaretinizde izlemeye hazır bekler; dükkândayken başlamış bir yükleme siz çıktıktan sonra tamamlanabilir, ama dükkân dışında yeni bir reklam isteği gönderilmez.",
+              "<strong>Kişiselleştirme yok:</strong> Bütün reklam istekleri kişiselleştirilmemiş olarak gönderilir. Uygulama reklam kimliğine (Android'de reklam kimliği, iOS'ta IDFA) erişmez ve iOS'ta izleme izni (ATT) istemez.",
+              "<strong>İçerik sınırı:</strong> Yetişkinler için en çok \"PG\" (ebeveyn rehberliği önerilir), 18 yaş altı için en çok \"G\" derecesindeki reklamlar istenir.",
+              "<strong>Sıklık sınırı:</strong> Günde en çok 25 reklam, saatte en çok 10 reklam izlenebilir; ilk iki reklamdan sonra reklamlar arasında 4 dakika beklenir, 10 dakika reklam izlenmezse ilk iki reklam yeniden beklemesizdir.",
+              "<strong>Google'ın işlediği veriler:</strong> Reklamı göstermek, ölçmek ve kötüye kullanımı önlemek için Google IP adresinizi, cihaz ve işletim sistemi bilgilerinizi ve reklam etkileşimlerinizi işler. Google bu veriler için bağımsız veri sorumlusudur; kendi gizlilik politikasına göre işler ve saklar.",
+              "<strong>Avrupa'da rıza ekranı:</strong> Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre'den erişimde Google'ın kendi rıza ekranı gösterilebilir; oyun şu anda yalnızca Türkiye'de dağıtılır."
+            ]
+          }
+        ]
       },
       {
-        number: "11",
-        title: "Politika Değişiklikleri ve Sürümleme",
+        number: "06",
+        title: "Bölüm değerlendirmeleri",
         blocks: [
           {
             kind: "paragraph",
-            html: "Bu politika güncellenebilir. Sürüm numarasının ondalık kısmındaki artışlar (ör. 1.0 → 1.1) küçük açıklama veya dil düzeltmelerini; tam sayı kısmındaki artışlar (ör. 1.x → 2.0) ise veri işleme kapsamını genişleten maddi değişiklikleri (örneğin §2.5'te açıklanan özelliklerin etkinleştirilmesi) ifade eder. Maddi bir güncelleme yapıldığında, uygulama güncel politikayı yeniden onaylamanızı isteyecek ve onayınız tarih ve sürüm bilgisiyle birlikte kaydedilecektir. Diğer önemli değişiklikler uygulama içi bildirim ve/veya e-posta ile duyurulur.",
+            html: "Bölüm sonunda bölümü değerlendirebilirsiniz; değerlendirmeleriniz önce yalnızca cihazınızda saklanır. Ayarlar'dan göndermeyi seçerseniz cihazınızın e-posta uygulaması açılır ve e-posta support@neaweforge.com adresine gider. İlk gönderimden önce bir bilgi kartı gösteririz. Göndermeden önce e-postayı görebilir, değiştirebilir ya da göndermekten vazgeçebilirsiniz."
           },
-        ],
+          {
+            kind: "paragraph",
+            html: "E-postada şunlar yer alır: kullanıcı adınız, değerlendirme sayısı ve gönderim tarihi; her bölüm için bölüm numarası ve kimliği, puanınız, bölüm yıldızınız, bölümü bitirdiğiniz an, verdiğiniz beğeni puanı (1-5), zorluk değerlendirmeniz ve en çok 120 karakterlik notunuz. E-posta adresinizi de görürüz."
+          },
+          {
+            kind: "paragraph",
+            html: "Bu bilgileri yalnızca bölümleri ve oyunu geliştirmek ve gerekirse size yanıt vermek için kullanırız. E-postaları en çok 3 ay saklarız; içerik, sizi tanıtmayan notlara aktarılabilir. Gönderdiğiniz değerlendirmeler de cihazınızda Verileri Sıfırla'ya ya da uygulamayı kaldırana kadar durur."
+          }
+        ]
+      },
+      {
+        number: "07",
+        title: "Alıcılar ve yurt dışına aktarım",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Verileri yalnızca aşağıdaki hizmet sağlayıcılarla, yukarıdaki amaçlar için paylaşırız; hiçbir veriyi satmayız."
+          },
+          {
+            kind: "table",
+            headers: [
+              "Alıcı",
+              "Ne için",
+              "Ülke"
+            ],
+            rows: [
+              [
+                "Google (AdMob)",
+                "Ödüllü reklam; Google bağımsız veri sorumlusudur",
+                "ABD, İrlanda"
+              ],
+              [
+                "Google (Gmail)",
+                "support@neaweforge.com adresine gelen e-postaların tutulduğu hesap",
+                "ABD"
+              ],
+              [
+                "Cloudflare",
+                "support@neaweforge.com adresinin yönlendirilmesi; alan adı",
+                "ABD"
+              ],
+              [
+                "GitHub",
+                "neaweforge.com'un barındırılması; ziyaretçi IP adresini güvenlik amacıyla kaydeder",
+                "ABD"
+              ]
+            ]
+          },
+          {
+            kind: "paragraph",
+            html: "Bu hizmet sağlayıcıların sunucuları yurt dışında olduğu için verileriniz yurt dışına aktarılır. Aktarım yukarıdaki amaçlarla sınırlıdır; Google'ın reklam için kendi adına işlediği veriler Google'ın kendi kurallarına tabidir (yukarıda 05). Tablodaki ülkeler sağlayıcıların merkezlerinin bulunduğu yerlerdir; sağlayıcılar veriyi başka ülkelerdeki veri merkezlerinde de işleyebilir."
+          }
+        ]
+      },
+      {
+        number: "08",
+        title: "Saklama ve silme",
+        blocks: [
+          {
+            kind: "list",
+            items: [
+              "<strong>Cihazınızdaki veriler:</strong> Ayarlar → Verileri Sıfırla'ya bastığınızda ya da uygulamayı kaldırdığınızda cihazınızdan anında silinir. Verileri Sıfırla, onay ve sürüm kayıtlarını ve Google'ın cihazda tuttuğu reklam rızası kaydını da siler; sürüm kaydı sıfırlama anından yeniden başlar, yaş sorusu ve onay ekranı yeniden gelir.",
+              "<strong>Cihaz yedeği:</strong> Cihazınızın yedekleme özelliği açıksa (Android'de Google hesabınızdaki yedek, iOS'ta iCloud yedeği) oyun verileriniz bu yedeğe girebilir ve yeni cihaza dönebilir. Yedek sizin hesabınızda durur; biz erişemeyiz. Yedekteki veri, yedek hizmetinin kurallarına göre silinir.",
+              "<strong>E-postalar:</strong> Bölüm değerlendirmeleri ve destek e-postaları en çok 3 ay saklanır. KVKK başvuru yazışmaları, başvuru sonuçlandıktan sonra olası bir şikâyet ya da uyuşmazlıkta hakkımızı kullanabilmemiz için ilgili zaman aşımı süreleri boyunca saklanır, sonra silinir.",
+              "<strong>Google:</strong> Reklam verileri Google'ın saklama politikasına göre saklanır."
+            ]
+          }
+        ]
+      },
+      {
+        number: "09",
+        title: "Veri güvenliği",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Oyun verileriniz işletim sisteminin uygulamaya ayırdığı korumalı alanda saklanır; başka uygulamaların bu verilere ulaşabileceği bir yol açmayız. Uygulama kişisel verilerinizi günlük kayıtlarına yazmaz. Destek e-posta hesabımız iki adımlı doğrulamayla korunur."
+          },
+          {
+            kind: "paragraph",
+            html: "Verilerinizin güvenliği cihazınızın güvenliğine de bağlıdır: ekran kilidi kullanmanızı ve cihaz yedeğinizi açık tutmanızı öneririz."
+          }
+        ]
+      },
+      {
+        number: "10",
+        title: "Haklarınız",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "KVKK md. 11 uyarınca:"
+          },
+          {
+            kind: "list",
+            items: [
+              "Kişisel verilerinizin işlenip işlenmediğini öğrenme,",
+              "İşlenmişse buna ilişkin bilgi talep etme,",
+              "İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme,",
+              "Yurt içinde ya da yurt dışında aktarıldığı üçüncü kişileri bilme,",
+              "Eksik ya da yanlış işlenmişse düzeltilmesini isteme,",
+              "Silinmesini ya da yok edilmesini isteme,",
+              "Düzeltme ve silme işlemlerinin, verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme,",
+              "Yalnızca otomatik sistemlerle analiz edilmesi sonucu aleyhinize bir sonuç çıkmasına itiraz etme,",
+              "Kanuna aykırı işleme nedeniyle zarara uğramanız hâlinde zararın giderilmesini isteme"
+            ]
+          },
+          {
+            kind: "paragraph",
+            html: "haklarına sahipsiniz."
+          },
+          {
+            kind: "paragraph",
+            html: "Başvurunuzu Türkçe olarak support@neaweforge.com adresine gönderebilirsiniz. Başvurunuzu en geç 30 gün içinde ve ücretsiz cevaplarız. Cevabımızı yetersiz bulursanız ya da süresinde cevap vermezsek Kişisel Verileri Koruma Kurulu'na, cevabımızı öğrendiğiniz tarihten itibaren 30 gün ve her hâlde başvuru tarihinizden itibaren 60 gün içinde şikâyette bulunabilirsiniz."
+          },
+          {
+            kind: "paragraph",
+            html: "Cihazınızdaki verileri biz göremeyiz: oyunun cihazdaki verilerini görmek ve silmek için en hızlı yol uygulamanın kendisidir (Ayarlar → Verileri Sıfırla)."
+          }
+        ]
+      },
+      {
+        number: "11",
+        title: "Eski sürümü kullananlar için",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Words &amp; Hammers'ın önceki sürümü (1.0.1) farklı çalışır ve bu metin onu anlatmaz. 1.0.1'de:"
+          },
+          {
+            kind: "list",
+            items: [
+              "onay ekranında Gizlilik Politikası \"kabul\" ettiriliyordu;",
+              "reklam sistemi oyun açılırken (ilk kurulumda onay ekranının hemen ardından) başlıyordu;",
+              "reklamlar kişiselleştirilmiş olarak isteniyor ve Android'de reklam kimliği kullanılabiliyordu;",
+              "dükkândaki ödüllü reklamın yanında oyun ekranında banner reklam vardı."
+            ]
+          },
+          {
+            kind: "paragraph",
+            html: "1.0.1 döneminde reklam için işlenen veriler Google'dadır ve Google'ın kendi kurallarına tabidir; bizde o döneme ait kişisel reklam verisi bulunmaz."
+          },
+          {
+            kind: "paragraph",
+            html: "Oyunu güncellediğinizde bu metin geçerli olur ve yaş sorusu ile onay ekranı bir kez gösterilir. Güncellemenizi öneririz; reklam kimliğinizi cihazınızın ayarlarından sıfırlayabilir ya da silebilirsiniz."
+          }
+        ]
       },
       {
         number: "12",
-        title: "İletişim",
-        blocks: [{ kind: "paragraph", html: "Sorularınız için: <strong>support@neaweforge.com</strong>" }],
+        title: "Değişiklikler",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Bu metni güncelleyebiliriz. Sürüm numarasının ondalık kısmındaki artış (ör. 2.0 → 2.1) küçük düzeltmeleri, tam sayı kısmındaki artış (ör. 2.x → 3.0) esaslı değişiklikleri gösterir. Esaslı değişikliklerde sizi uygulama içinde yeniden bilgilendiririz ve metni okuduğunuzu belirtmenizi isteriz; bu metin için onay istemeyiz."
+          }
+        ]
       },
-    ],
+      {
+        number: "13",
+        title: "Dil",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Bu metnin iki sürümü arasında fark olursa Türkçe sürüm esastır; İngilizce sürüm yalnızca bilgi amaçlıdır."
+          }
+        ]
+      }
+    ]
   },
   en: {
     docTitleLine1: "Privacy",
-    docTitleLine2: "Policy",
-    headerSub: "Privacy Policy",
-    lastUpdated: "23 August 2026",
+    docTitleLine2: "Notice",
+    headerSub: "Privacy Notice",
+    lastUpdated: "28.11.2026",
     sections: [
       {
         number: "01",
-        title: "Overview and Data Controller",
+        title: "Data controller",
         blocks: [
           {
             kind: "paragraph",
-            html: 'This Privacy Policy explains how "Words &amp; Hammers", developed by Neawe Forge (Sait KAPLAN), collects, uses, stores and protects your personal data.',
+            html: "This Privacy Notice is the privacy policy of Words &amp; Hammers."
           },
           {
-            kind: "table",
-            rows: [
-              ["Data Controller", "Neawe Forge (Sait KAPLAN)"],
-              ["Contact", "support@neaweforge.com"],
-              ["Applicable Law", "Turkish KVKK · GDPR (EU users) · Google Play &amp; App Store policies"],
-            ],
-          },
-        ],
+            kind: "paragraph",
+            html: "Words &amp; Hammers is developed and published by Sait KAPLAN under the name Neawe Forge; in this notice we refer to ourselves as \"we\". Under Turkish Law No. 6698 on the Protection of Personal Data (KVKK), the data controller is Sait KAPLAN. You can reach us at support@neaweforge.com."
+          }
+        ]
       },
       {
         number: "02",
-        title: "Personal Data We Collect",
+        title: "In short",
         blocks: [
-          { kind: "subtitle", html: "2.1 On-Device Data (Local Storage)" },
-          {
-            kind: "paragraph",
-            html: "The app does not currently send any personal data to a server. Your game progress, settings (sound, haptics, purchase confirmation, survey preference), and language preference are stored only on your device (<em>shared_preferences</em>) and are never transmitted to Neawe Forge.",
-          },
-          { kind: "subtitle", html: "2.2 Advertising Data (Google AdMob)" },
-          {
-            kind: "paragraph",
-            html: "AdMob may use advertising identifiers, approximate location, and app interaction data to deliver ads. The scope of this data depends on your platform and region:",
-          },
           {
             kind: "list",
             items: [
-              "<strong>On Apple devices (iOS):</strong> The app does not request App Tracking Transparency (ATT) permission and does not access the advertising identifier (IDFA). As a result, only non-personalized ads are shown on iOS; you are not tracked.",
-              "<strong>Users in the European Economic Area, the United Kingdom, and Switzerland:</strong> Before any personalized ad is shown, a separate, specific consent screen is presented via Google's User Messaging Platform (UMP) infrastructure.",
-              "<strong>Android users in other regions:</strong> Accepting this Privacy Policy and the Terms of Service at first launch covers processing of the advertising identifier (GAID) for this general purpose; a separate, dedicated consent screen specific to ad personalization is not currently presented in these regions.",
-            ],
-          },
-          { kind: "subtitle", html: "2.3 Technical / Log Data" },
-          {
-            kind: "paragraph",
-            html: "This data is collected automatically by the Google AdMob SDK, not by Neawe Forge, and is processed on Google's infrastructure. See §10 for a detailed breakdown.",
-          },
-          {
-            kind: "list",
-            items: [
-              "IP address · Device model · OS version",
-              "App error logs and crash reports",
-              "Date and time of Service usage",
-            ],
-          },
-          { kind: "subtitle", html: "2.4 Beta Feedback Data" },
-          {
-            kind: "paragraph",
-            html: 'During the beta testing period, an optional survey is shown after completing a stage. If you fill it out and tap "Send", your username, stage statistics (score, stars, completion date), your rating (if given), your difficulty selection (if given), and any free-text note you write are sent to <strong>support@neaweforge.com</strong> via your device\'s mail app. This data flow only happens when you tap "Send". You can turn the survey off entirely or cancel pending records from the Settings page.',
-          },
-          {
-            kind: "subtitle",
-            html: "2.5 Planned Future Features (Cloud Account, Leaderboard, Forge Points)",
-          },
-          {
-            kind: "paragraph",
-            html: 'Neawe Forge plans to add an optional cloud account, an online leaderboard, and an in-game point system called "Forge Points" to Words &amp; Hammers. The processing described in this section is <strong>not yet active</strong>. Once enabled:',
-          },
-          {
-            kind: "list",
-            items: [
-              "<strong>Email address and username</strong> — will be stored on Supabase infrastructure for authentication and account identification",
-              "<strong>Password</strong> — will be stored only as a bcrypt hash; plain text will never be stored",
-              "<strong>Username and Forge Points</strong> — will be visible to other users on the in-game leaderboard",
-              "<strong>Profile avatar</strong> — will be selected from a preset set of avatars; free-form photo upload will not be offered at this stage",
-            ],
-          },
-          {
-            kind: "paragraph",
-            html: "Forge Points have no monetary value, cannot be purchased, sold, transferred, or exchanged for real currency or any item of value, and may be adjusted or reset by Neawe Forge at any time.",
-          },
-          {
-            kind: "info",
-            html: "This Privacy Policy will be updated before these features are enabled, and you will be asked to give a separate, specific consent within the app. No data described in this section will be processed until you do.",
-          },
-        ],
+              "The game is played offline; you need an internet connection to read the legal texts before you accept them (at the game's first launch, and when an update changes them materially). Your game data is stored only on your device and is not sent to us.",
+              "There are no accounts, servers or leaderboards.",
+              "Ads are optional. Unless you choose to watch an ad for a reward in the Shop, the ad system never starts and no data goes to Google.",
+              "We receive stage feedback by email only if you choose to send it.",
+              "Settings → Reset Data deletes all your game data from the device immediately."
+            ]
+          }
+        ]
       },
       {
         number: "03",
-        title: "Third-Party Service Providers",
+        title: "Data we process, purposes and legal grounds",
         blocks: [
           {
             kind: "table",
-            headers: ["Service", "Purpose", "Policy", "Status"],
+            headers: [
+              "Processing activity",
+              "Data",
+              "Purpose",
+              "Legal ground (KVKK Art. 5)",
+              "Where it stays, who receives it"
+            ],
             rows: [
               [
-                "Google AdMob",
-                "Ad delivery &amp; personalization",
-                '<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>',
-                "Active",
+                "Running the game on your device",
+                "Username, four-digit tag, avatar, a random player number generated on the device, language region, registration date; stage progress (scores, stars, play counts, the paths of found words); emeralds, Forge Points and hammers; settings (sound, vibration, theme, color-blind mode, comfort level, purchase confirmation, feedback survey); whether in-game introductions have been shown",
+                "Providing the game",
+                "Establishing or performing the contract (Art. 5(2)(c))",
+                "Only on your device; not sent to us. If your device backup is on, it may be included in that backup (see 08)"
               ],
               [
-                "Google Play Services",
-                "App platform services",
-                '<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>',
-                "Active",
+                "Age question",
+                "Birth year",
+                "Providing the game with settings suitable for your age (see 04)",
+                "Establishing or performing the contract (Art. 5(2)(c))",
+                "Only on your device; your birth year is never sent anywhere"
               ],
               [
-                "Supabase Inc.",
-                "Authentication &amp; user database (planned cloud account feature)",
-                '<a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">supabase.com/privacy</a>',
-                "Planned — not yet active",
+                "Consent and version record",
+                "The version and date of the Terms of Service you accepted and of the Privacy Notice shown to you, the app version in which you accepted, the moments the two documents were opened; the moment each app version was first opened on your device; the moments the ad and feedback information cards were shown and chosen",
+                "Being able to show that information was given and acceptance was obtained",
+                "Compliance with a legal obligation (Art. 5(2)(ç)) and the establishment, exercise or protection of a right (Art. 5(2)(e))",
+                "Only on your device; not sent to us. In a dispute, the record on your device serves as evidence"
               ],
-            ],
+              [
+                "Rewarded ads",
+                "Data processed by Google: IP address and approximate location based on it, device and operating system information, app information, ad interactions, identifiers used for frequency capping and abuse prevention, error and performance data of the ad system. On your device: the ad counter (daily count, number of ads watched in a row, time of the last ad, times of the ads watched in the last hour)",
+                "Showing the rewarded ad you asked for and giving the reward; limiting ad frequency",
+                "Showing the ad you asked for and giving the reward: establishing or performing the contract (Art. 5(2)(c)); limiting ad frequency and preventing abuse: legitimate interest (Art. 5(2)(f))",
+                "Google (see 05 and 07)"
+              ],
+              [
+                "Stage feedback",
+                "The contents of the email (see 06) and your sender email address",
+                "Improving the stages and the game; replying to you if needed",
+                "Legitimate interest (Art. 5(2)(f))",
+                "To us by email; via Cloudflare and Google (see 07)"
+              ],
+              [
+                "Support and KVKK requests",
+                "Your email address, your name (if you write it), the content of your request",
+                "Answering your request; completing a KVKK request",
+                "Requests: legal obligation (Art. 5(2)(ç)). Support: performance of the contract or legitimate interest (Art. 5(2)(c), 5(2)(f))",
+                "Via Cloudflare and Google (see 07)"
+              ],
+              [
+                "Website (neaweforge.com)",
+                "The visitor's IP address and technical connection information",
+                "Serving the website and keeping it secure",
+                "Legitimate interest (Art. 5(2)(f))",
+                "GitHub (hosting), Cloudflare (domain)"
+              ]
+            ]
           },
           {
             kind: "paragraph",
-            html: "shared_preferences, connectivity_plus, flutter_dotenv, and Flame operate entirely on-device and do not send personal data.",
+            html: "Data is collected as follows: automatically by the app on your device while you use the game; electronically through the emails you send for stage feedback, support and requests; automatically by Google's ad system for ad data; and automatically when you visit the website for website data."
           },
-        ],
+          {
+            kind: "paragraph",
+            html: "The app collects no other data; it does not access your location, camera, microphone, contacts or files."
+          }
+        ]
       },
       {
         number: "04",
-        title: "Purposes of Data Processing",
+        title: "Age question",
         blocks: [
           {
-            kind: "list",
-            items: [
-              "User account creation and authentication <em>(planned — §2.5)</em>",
-              "In-game leaderboard management <em>(planned — §2.5)</em>",
-              "Personalized or non-personalized ad delivery",
-              "Error detection and resolution",
-              "Measuring and improving service quality",
-              "Collecting and evaluating feedback for product development during the beta period",
-            ],
+            kind: "paragraph",
+            html: "The game is designed for adults. On first launch we ask for your birth year; it is stored only on your device and is not sent to us or to Google. Your birth year cannot be changed later; it is asked again only after Reset Data."
           },
-        ],
+          {
+            kind: "paragraph",
+            html: "If the difference between this year and your birth year is 18 or less, you are treated as under 18. In that case we ask you to read the Terms of Service together with your parent or legal guardian and to play with their permission and under their supervision. Your ads are marked as directed to children and limited to content rated \"G\" (general audiences) at most; Google receives only this mark, not your birth year. The advertising ID is not used for anyone. We carry out no processing of children's data based on consent."
+          }
+        ]
       },
       {
         number: "05",
-        title: "Data Security and Liability Limitation",
+        title: "Ads",
         blocks: [
           {
             kind: "paragraph",
-            html: "Once the cloud account system is enabled, your data will be stored on Supabase Inc.'s SOC 2 Type 2 certified, AES-256 encrypted cloud infrastructure.",
-          },
-          {
-            kind: "warn",
-            title: "⚠ Important Security Notice",
-            html: "No method of transmission over the internet is 100% secure. Neawe Forge cannot be held liable for security incidents on third-party infrastructure, including Supabase Inc., that were not foreseeable or preventable within our duty of reasonable care. This limitation does not apply to damages arising from Neawe Forge's own intentional misconduct or gross negligence.",
-          },
-        ],
-      },
-      {
-        number: "06",
-        title: "Data Retention Periods",
-        blocks: [
-          {
-            kind: "table",
-            headers: ["Data Type", "Retention Period"],
-            rows: [
-              ["Account data <em>(planned)</em>", "While the account is active"],
-              ["After deletion <em>(planned)</em>", "Maximum 30 days from request"],
-              ["Technical log data", "Subject to Google AdMob's own policy (see §2.3, §10)"],
-              ["Advertising data", "Subject to AdMob's own policy"],
-              ["Beta feedback data (on-device)", "Stored on your device until your game data is reset; no automatic time limit"],
-              ["Beta feedback data (email copy)", "Feedback records that reach us by email are deleted no later than 90 days after the beta period ends"],
-            ],
-          },
-        ],
-      },
-      {
-        number: "07",
-        title: "Your Rights under KVKK & GDPR",
-        blocks: [
-          {
-            kind: "table",
-            headers: ["Right", "How to Exercise"],
-            rows: [
-              ["Right to Access", "Email us to learn what data is being processed."],
-              ["Right to Rectification", "Request correction of inaccurate or incomplete data."],
-              [
-                "Right to Deletion",
-                "Settings &gt; Delete My Data (in-app) instantly deletes all game data stored on your device. Once the cloud account system is enabled: Settings &gt; Delete Account in-app, or via the account-deletion page that will be published on this site.",
-              ],
-              ["Right to Object", "Object to processing for specific purposes."],
-              ["Data Portability", "Request your data in machine-readable format."],
-              ["Right to Restriction", "Request restriction under certain conditions."],
-            ],
-          },
-          {
-            kind: "paragraph",
-            html: 'Email <strong>support@neaweforge.com</strong> with subject "Data Rights Request". Answered within 30 days.',
-          },
-        ],
-      },
-      {
-        number: "08",
-        title: "GDPR Legal Bases (EU Users)",
-        blocks: [
-          {
-            kind: "table",
-            headers: ["Data Category", "Legal Basis"],
-            rows: [
-              ["Account data", "Performance of contract (GDPR Art. 6/1-b)"],
-              ["Personalized ads (EEA/UK/Switzerland)", "Explicit consent (GDPR Art. 6/1-a) — obtained via Google's UMP SDK"],
-              ["Non-personalized ads (iOS and where no consent is given)", "Legitimate interests (GDPR Art. 6/1-f)"],
-              ["Log data", "Legitimate interests (GDPR Art. 6/1-f)"],
-            ],
-          },
-        ],
-      },
-      {
-        number: "09",
-        title: "Children's Privacy",
-        blocks: [
-          {
-            kind: "paragraph",
-            html: "Words &amp; Hammers is a general-audience word puzzle game and is not specifically directed at any age group; the app does not perform age verification, so it may also be used by children. We do not intentionally collect any additional or sensitive data from children; the data collected is limited to what is described in Section 2 of this Policy.",
-          },
-        ],
-      },
-      {
-        number: "10",
-        title: "International Data Transfers",
-        blocks: [
-          {
-            kind: "paragraph",
-            html: "Google AdMob automatically collects the following data categories while you use the app and transfers them to Google's (US-based) global infrastructure (for a detailed SDK-level breakdown, see §2.2 and §3):",
+            html: "The optional rewarded ads in the Shop are shown by Google AdMob; there are no other ads in the game."
           },
           {
             kind: "list",
             items: [
-              "Advertising identifier (Android GAID) — linked to identity, used for tracking. <strong>On iOS, the app does not request App Tracking Transparency (ATT) permission and does not access the advertising identifier (IDFA); this line is Android-specific.</strong>",
-              "Approximate location (via IP) — linked to identity",
-              "Information about ads shown to you — linked to identity",
-              "App launch, tap, and ad interaction data — linked to identity",
-              "Crash logs, performance data (launch time, response rate, energy use), and other diagnostic data — not linked to identity",
-              "A user ID claim — the app code does not use Firebase Auth; this claim may originate from AdMob's internal Firebase infrastructure",
-            ],
-          },
-          {
-            kind: "paragraph",
-            html: "This transfer takes place under Google's own data processing agreement and privacy policy, and is subject to appropriate safeguard mechanisms under Article 9 of Turkish Law No. 6698 (KVKK).",
-          },
-          {
-            kind: "paragraph",
-            html: "Once the planned cloud account feature (§2.5) is enabled, your account data may be processed on servers located in the EU and/or US via Supabase Inc. This transfer will rely on an adequacy decision, appropriate safeguards (a Board-approved standard contract or undertaking), or your separately and explicitly obtained consent, as required under Article 9 of Turkish Law No. 6698 (KVKK). GDPR-compliant Standard Contractual Clauses will also apply for EU users. A dedicated consent screen will be presented before this transfer begins.",
-          },
-        ],
+              "<strong>When they start:</strong> The ad system does not start when the game opens. When you tap an ad for a reward in the Shop, we show a short information card each time until you choose \"Watch ad\"; unless you make that choice, the ad system does not start and no data goes to Google. After that choice, the ad system starts shortly after you enter the Shop (not if you leave right away), and an ad may be preloaded on the Shop screen so that it opens quickly. A loaded ad may be kept while the game stays open, even after you leave the Shop, and is ready to watch on your next visit within one hour; a load that started in the Shop may finish after you leave, but no new ad request is sent outside the Shop.",
+              "<strong>No personalization:</strong> All ad requests are sent as non-personalized. The app does not access the advertising ID (the advertising ID on Android, IDFA on iOS) and does not ask for tracking permission (ATT) on iOS.",
+              "<strong>Content limit:</strong> Ads rated \"PG\" (parental guidance suggested) at most are requested for adults, and \"G\" at most for players under 18.",
+              "<strong>Frequency limit:</strong> You can watch at most 25 ads a day and at most 10 ads an hour; after the first two ads, you wait 4 minutes between ads, and if you watch no ad for 10 minutes, the first two ads are again without a wait.",
+              "<strong>Data processed by Google:</strong> To show and measure ads and to prevent abuse, Google processes your IP address, device and operating system information and ad interactions. Google is an independent data controller for this data and processes and keeps it under its own privacy policy.",
+              "<strong>Consent screen in Europe:</strong> When accessed from the European Economic Area, the United Kingdom or Switzerland, Google's own consent screen may be shown; the game is currently distributed only in Türkiye."
+            ]
+          }
+        ]
       },
       {
-        number: "11",
-        title: "Policy Changes and Versioning",
+        number: "06",
+        title: "Stage feedback",
         blocks: [
           {
             kind: "paragraph",
-            html: "This policy may be updated. An increase in the decimal part of the version number (e.g. 1.0 → 1.1) reflects minor clarifications or wording fixes; an increase in the whole-number part (e.g. 1.x → 2.0) reflects a material change that expands the scope of data processing (for example, activating the features described in §2.5). For a material update, the app will ask you to re-accept the current policy, and your acceptance will be recorded together with its date and version. Other significant changes will be announced via in-app notification and/or email.",
+            html: "You can rate a stage when you finish it; your ratings are first stored only on your device. If you choose to send them from Settings, your device's email app opens and the email goes to support@neaweforge.com. Before the first sending we show an information card. Before sending, you can see the email, change it or decide not to send it."
           },
-        ],
+          {
+            kind: "paragraph",
+            html: "The email contains: your username, the number of ratings and the sending date; for each stage, the stage number and ID, your score, your stage stars, the time you finished the stage, the rating you gave (1-5), your difficulty rating and your note of up to 120 characters. We also see your email address."
+          },
+          {
+            kind: "paragraph",
+            html: "We use this information only to improve the stages and the game and to reply to you if needed. We keep the emails for at most 3 months; their content may be moved into notes that do not identify you. Ratings you have sent also stay on your device until Reset Data or until you uninstall the app."
+          }
+        ]
+      },
+      {
+        number: "07",
+        title: "Recipients and transfers abroad",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "We share data only with the service providers below, for the purposes above; we never sell any data."
+          },
+          {
+            kind: "table",
+            headers: [
+              "Recipient",
+              "For",
+              "Country"
+            ],
+            rows: [
+              [
+                "Google (AdMob)",
+                "Rewarded ads; Google is an independent data controller",
+                "USA, Ireland"
+              ],
+              [
+                "Google (Gmail)",
+                "The account that holds emails sent to support@neaweforge.com",
+                "USA"
+              ],
+              [
+                "Cloudflare",
+                "Forwarding of support@neaweforge.com; domain",
+                "USA"
+              ],
+              [
+                "GitHub",
+                "Hosting of neaweforge.com; records visitor IP addresses for security",
+                "USA"
+              ]
+            ]
+          },
+          {
+            kind: "paragraph",
+            html: "Because these providers' servers are abroad, your data is transferred abroad. The transfer is limited to the purposes above; the data Google processes for ads on its own behalf is subject to Google's own rules (see 05 above). The countries in the table are where the providers are based; the providers may also process the data in data centers in other countries."
+          }
+        ]
+      },
+      {
+        number: "08",
+        title: "Retention and deletion",
+        blocks: [
+          {
+            kind: "list",
+            items: [
+              "<strong>Data on your device:</strong> deleted from your device immediately when you tap Settings → Reset Data or uninstall the app. Reset Data also deletes the consent and version records and the ad consent record Google keeps on the device; the version record starts again from the moment of the reset, and the age question and the consent screen are shown again.",
+              "<strong>Device backup:</strong> if your device's backup feature is on (your Google account backup on Android, iCloud backup on iOS), your game data may be included in that backup and restored on a new device. The backup stays in your account; we cannot access it. Data in the backup is deleted under the rules of the backup service.",
+              "<strong>Emails:</strong> stage feedback and support emails are kept for at most 3 months. KVKK request correspondence is kept after the request is closed for the relevant limitation periods, so that we can exercise our rights in a possible complaint or dispute, and is then deleted.",
+              "<strong>Google:</strong> ad data is kept under Google's retention policy."
+            ]
+          }
+        ]
+      },
+      {
+        number: "09",
+        title: "Data security",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Your game data is stored in the protected area the operating system assigns to the app; we open no path through which other apps could reach this data. The app does not write your personal data to its logs. Our support email account is protected with two-step verification."
+          },
+          {
+            kind: "paragraph",
+            html: "The security of your data also depends on the security of your device: we recommend using a screen lock and keeping your device backup on."
+          }
+        ]
+      },
+      {
+        number: "10",
+        title: "Your rights",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "Under Article 11 of the KVKK, you have the right to:"
+          },
+          {
+            kind: "list",
+            items: [
+              "learn whether your personal data is processed,",
+              "request information if it has been processed,",
+              "learn the purpose of processing and whether it is used in line with that purpose,",
+              "know the third parties in Türkiye or abroad to whom it is transferred,",
+              "request correction if it is incomplete or inaccurate,",
+              "request its deletion or destruction,",
+              "request that correction and deletion be notified to the third parties to whom the data was transferred,",
+              "object to a result against you arising solely from automated analysis,",
+              "claim compensation if you suffer damage because of unlawful processing."
+            ]
+          },
+          {
+            kind: "paragraph",
+            html: "You can send your request in Turkish to support@neaweforge.com. We answer it free of charge within 30 days at the latest. If you find our answer insufficient or we do not answer in time, you can file a complaint with the Personal Data Protection Board (Kişisel Verileri Koruma Kurulu) within 30 days of learning our answer and in any case within 60 days of your request."
+          },
+          {
+            kind: "paragraph",
+            html: "We cannot see the data on your device: the quickest way to see and delete the game's data on your device is the app itself (Settings → Reset Data)."
+          }
+        ]
+      },
+      {
+        number: "11",
+        title: "For players on the previous version",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "The previous version of Words &amp; Hammers (1.0.1) works differently and is not described by this notice. In 1.0.1:"
+          },
+          {
+            kind: "list",
+            items: [
+              "the consent screen asked you to \"accept\" the Privacy Policy;",
+              "the ad system started as the game opened (on first install, right after the consent screen);",
+              "ads were requested as personalized, and the advertising ID could be used on Android;",
+              "besides the rewarded ad in the Shop, there was a banner ad on the game screen."
+            ]
+          },
+          {
+            kind: "paragraph",
+            html: "Data processed for ads during the 1.0.1 period is held by Google under its own rules; we hold no personal ad data from that period."
+          },
+          {
+            kind: "paragraph",
+            html: "When you update the game, this notice applies and the age question and the consent screen are shown once. We recommend updating; you can reset or delete your advertising ID in your device settings."
+          }
+        ]
       },
       {
         number: "12",
-        title: "Contact",
-        blocks: [{ kind: "paragraph", html: "For questions: <strong>support@neaweforge.com</strong>" }],
+        title: "Changes",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "We may update this notice. An increase in the decimal part of the version number (e.g. 2.0 → 2.1) marks minor corrections; an increase in the whole number (e.g. 2.x → 3.0) marks material changes. With material changes we inform you again in the app and ask you to confirm that you have read the notice; we do not ask for your approval of this notice."
+          }
+        ]
       },
-    ],
-  },
+      {
+        number: "13",
+        title: "Language",
+        blocks: [
+          {
+            kind: "paragraph",
+            html: "In case of any conflict between the two versions of this notice, the Turkish version prevails; the English version is provided for information only."
+          }
+        ]
+      }
+    ]
+  }
 };

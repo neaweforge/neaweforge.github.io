@@ -1,6 +1,9 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
+// --display/--body in tokens.css name Cinzel and Jost; fonts.css is what
+// actually loads them, from the site itself (no Google Fonts request).
+import "./styles/fonts.css";
 import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/nav.css";
@@ -37,18 +40,6 @@ export function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple_touch_icon.png" />
         <link rel="manifest" href="/site_manifest.json" />
-        {/* --display/--body in tokens.css name these families, but naming a
-            font doesn't load it — this is what actually fetches Cinzel and
-            Jost. Without it every page silently falls back to each
-            variable's system-font alternate. Weights listed here are
-            exactly the ones the CSS uses (checked via grep) — at most 2 per
-            family, nothing speculative. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Jost:wght@300;700&display=swap"
-          rel="stylesheet"
-        />
         <Meta />
         <Links />
         {/* Applies the previously-chosen theme/lang before first paint —
